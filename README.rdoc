@@ -1,6 +1,6 @@
-# PandocRuby
+= PandocRuby
 
-Wrapper for [Pandoc](http://johnmacfarlane.net/pandoc/), a Haskell library with command line tools for converting one markup format to another.
+Wrapper for {http://johnmacfarlane.net/pandoc/ Pandoc}, a Haskell library with command line tools for converting one markup format to another.
 
 Pandoc can read markdown and (subsets of) reStructuredText, HTML, and LaTeX, and it can write markdown, reStructuredText, HTML, LaTeX, ConTeXt, PDF, RTF, DocBook XML, OpenDocument XML, ODT, GNU Texinfo, MediaWiki markup, groff man pages, and S5 HTML slide shows
 
@@ -9,20 +9,20 @@ with PandocRuby.bin_path = '/path/to/bin'
 
 Use like so:
 
-    @converter = PandocRuby.new('/some/file.md', :f => :markdown, :t => :rst)
+    @converter = PandocRuby.new('/some/file.md', :from => :markdown, :to => :rst)
     puts @converter.convert
 
 This takes the the Markdown formatted file and converts it to reStructuredText.
 
-You can also use the #convert class method:
+You can also use the <tt>#convert</tt> class method:
 
-    puts PandocRuby.convert('/some/file.md', :f => :markdown, :t => :html)
+    puts PandocRuby.convert('/some/file.md', :from => :markdown, :to => :html)
 
-Another also: you get a #to_s, for somewhat nicer use in Rails views.
+Another also: you get a <tt>#to_s</tt>, for somewhat nicer use in Rails views.
 
     ... helper file ...
     def format(text)
-      PandocRuby.new(text)
+      PandocRuby.convert(text)
     end
 
     ... view file ...
@@ -32,13 +32,13 @@ The default behavior follows the pandoc executable's behavior, converting markdo
 
     PandocRuby.new('/some/file.html', 'html2markdown')
 
-will use Pandoc's `html2markdown` wrapper.
+will use Pandoc's <tt>html2markdown</tt> wrapper. 
 
-For more information on Pandoc, see the [Pandoc documentation](http://johnmacfarlane.net/pandoc/) or run `man pandoc`.
+For more information on Pandoc, see the {http://johnmacfarlane.net/pandoc/ Pandoc documentation} or run <tt>man pandoc</tt>.
 
-Pretty much everything in the gem was derived directly from [Albino](http://github.com/github/albino).
+Pretty much everything in the gem was derived directly from {http://github.com/github/albino Albino}.
 
-## Note on Patches/Pull Requests
+== Note on Patches/Pull Requests
  
 * Fork the project.
 * Make your feature addition or bug fix.
@@ -46,9 +46,9 @@ Pretty much everything in the gem was derived directly from [Albino](http://gith
   future version unintentionally.
 * Commit, do not mess with rakefile, version, or history.
   (if you want to have your own version, that is fine but
-   bump version in a commit by itself I can ignore when I pull)
+  bump version in a commit by itself I can ignore when I pull)
 * Send me a pull request. Bonus points for topic branches.
 
-## Copyright
+== Copyright
 
 Copyright (c) 2009 William Melody. See LICENSE for details.

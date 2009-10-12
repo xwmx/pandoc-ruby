@@ -4,7 +4,7 @@ require 'mocha'
 class PandocRubyTest < Test::Unit::TestCase
   
   def setup
-    @file = File.join(File.dirname(__FILE__), '..', 'README')
+    @file = File.join(File.dirname(__FILE__), 'test.md')
     @converter = PandocRuby.new(@file, :t => :rst)
   end
   
