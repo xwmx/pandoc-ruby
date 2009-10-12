@@ -6,7 +6,7 @@ begin
   Jeweler::Tasks.new do |gem|
     gem.name = "pandoc-ruby"
     gem.summary = %Q{PandocRuby}
-    gem.description = %Q{TODO: longer description of your gem}
+    gem.description = %Q{Ruby wrapper for Pandoc}
     gem.email = "wmelody@gmail.com"
     gem.homepage = "http://github.com/autodata/pandoc-ruby"
     gem.authors = ["William Melody"]

@@ -1,0 +1,50 @@
+# PandocRuby
+
+Wrapper for [Pandoc](http://johnmacfarlane.net/pandoc/), a Haskell library and command line tool for converting one markup format to another.
+
+Pandoc can read markdown and (subsets of) reStructuredText, HTML, and LaTeX, and it can write markdown, reStructuredText, HTML, LaTeX, ConTeXt, PDF, RTF, DocBook XML, OpenDocument XML, ODT, GNU Texinfo, MediaWiki markup, groff man pages, and S5 HTML slide shows
+
+Assumes pandoc is in the path.  If not, set its location
+with PandocRuby.bin = '/path/to/pandoc'
+
+Use like so:
+
+    @converter = PandocRuby.new('/some/file.md', :f => :markdown, :t => :rst)
+    puts @converter.convert
+
+This takes the the Markdown formatted file and converts it to reStructuredText.
+
+You can also use the #convert class method:
+
+    puts PandocRuby.convert('/some/file.md', :f => :markdown, :t => :html)
+
+Another also: you get a #to_s, for somewhat nicer use in Rails views.
+
+    ... helper file ...
+    def format(text)
+      PandocRuby.new(text)
+    end
+
+    ... view file ...
+    <%= format text %>
+
+The default behavior follows Pandoc's behavior, converting markdown to html. You can pass a symbol hash of options in the initializer.
+
+For more information on Pandoc, see the [Pandoc documnentation](http://johnmacfarlane.net/pandoc/) or run `man pandoc`.
+
+Pretty much everything in the gem was derived directly from [Albino](http://github.com/github/albino).
+
+## Note on Patches/Pull Requests
+ 
+* Fork the project.
+* Make your feature addition or bug fix.
+* Add tests for it. This is important so I don't break it in a
+  future version unintentionally.
+* Commit, do not mess with rakefile, version, or history.
+  (if you want to have your own version, that is fine but
+   bump version in a commit by itself I can ignore when I pull)
+* Send me a pull request. Bonus points for topic branches.
+
+## Copyright
+
+Copyright (c) 2009 William Melody. See LICENSE for details.
