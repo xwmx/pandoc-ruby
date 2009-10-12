@@ -1,11 +1,11 @@
 # PandocRuby
 
-Wrapper for [Pandoc](http://johnmacfarlane.net/pandoc/), a Haskell library and command line tool for converting one markup format to another.
+Wrapper for [Pandoc](http://johnmacfarlane.net/pandoc/), a Haskell library with command line tools for converting one markup format to another.
 
 Pandoc can read markdown and (subsets of) reStructuredText, HTML, and LaTeX, and it can write markdown, reStructuredText, HTML, LaTeX, ConTeXt, PDF, RTF, DocBook XML, OpenDocument XML, ODT, GNU Texinfo, MediaWiki markup, groff man pages, and S5 HTML slide shows
 
-Assumes pandoc is in the path.  If not, set its location
-with PandocRuby.bin = '/path/to/pandoc'
+Assumes pandoc executables are in the path.  If not, set their location
+with PandocRuby.bin_path = '/path/to/bin'
 
 Use like so:
 
@@ -28,9 +28,13 @@ Another also: you get a #to_s, for somewhat nicer use in Rails views.
     ... view file ...
     <%= format text %>
 
-The default behavior follows Pandoc's behavior, converting markdown to html. You can pass a symbol hash of options in the initializer.
+The default behavior follows the pandoc executable's behavior, converting markdown to html. To specify options, simply pass options as a hash to the initializer. Pandoc's wrapper executables can also be used by passing the executable name as the second argument. For example,
 
-For more information on Pandoc, see the [Pandoc documnentation](http://johnmacfarlane.net/pandoc/) or run `man pandoc`.
+    PandocRuby.new('/some/file.html', 'html2markdown')
+
+will use Pandoc's `html2markdown` wrapper.
+
+For more information on Pandoc, see the [Pandoc documentation](http://johnmacfarlane.net/pandoc/) or run `man pandoc`.
 
 Pretty much everything in the gem was derived directly from [Albino](http://github.com/github/albino).
 

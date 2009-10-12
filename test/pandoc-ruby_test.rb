@@ -25,6 +25,18 @@ class PandocRubyTest < Test::Unit::TestCase
     converter.convert
   end
   
+  should "accept optional executable" do
+    converter = PandocRuby.new(@file, 'html2markdown')
+    assert converter.expects(:execute).with('html2markdown').returns(true)
+    converter.convert
+  end
+  
+  should "not accept non-pandoc optional executable" do
+    converter = PandocRuby.new(@file, 'ls')
+    assert converter.expects(:execute).with('pandoc').returns(true)
+    converter.convert
+  end
+  
   should "work with strings" do
     converter = PandocRuby.new('## this is a title')
     assert_match %r(h2), converter.convert
