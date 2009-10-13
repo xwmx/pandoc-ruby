@@ -46,6 +46,8 @@ For more information on Pandoc, see the [Pandoc documentation](http://johnmacfar
 
 Pretty much everything in the gem was derived directly from [Albino](http://github.com/github/albino).
 
+If you'd prefer a pure-Ruby extended markdown interpreter that can output a few different formats, take a look at [Maruku](http://maruku.rubyforge.org/).
+
 ## Caveats
 
 * This has only been tested on *nix systems.
