@@ -37,18 +37,24 @@ class PandocRubyTest < Test::Unit::TestCase
     assert converter.convert
   end
   
+  should "accept a variety of options" do
+    converter = PandocRuby.new(@file, :s, {:to => :rst, :f => :markdown}, 'no-wrap')
+    converter.expects(:execute).with('pandoc -s --to=rst -f markdown --no-wrap').returns(true)
+    assert converter.convert
+  end
+
   should "accept optional executable" do
     converter = PandocRuby.new(@file, 'html2markdown')
     converter.expects(:execute).with('html2markdown').returns(true)
     assert converter.convert
   end
   
-  should "not accept non-pandoc optional executable" do
-    converter = PandocRuby.new(@file, 'ls')
-    converter.expects(:execute).with('pandoc').returns(true)
+  should "use non-executable second arg as option" do
+    converter = PandocRuby.new(@file, 'toc')
+    converter.expects(:execute).with('pandoc --toc').returns(true)
     assert converter.convert
   end
-  
+
   should "work with strings" do
     converter = PandocRuby.new('## this is a title')
     assert_match %r(h2), converter.convert
