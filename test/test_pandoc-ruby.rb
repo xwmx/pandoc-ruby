@@ -72,7 +72,7 @@ class PandocRubyTest < Test::Unit::TestCase
     begin
       400.times do
         PandocRuby.convert(@file)
-      end
+      end 
       assert true
     rescue Errno::EMFILE, Errno::EAGAIN => e
       flunk e
