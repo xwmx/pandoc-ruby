@@ -25,17 +25,7 @@ You can use the `#convert` class method:
 
     puts PandocRuby.convert('/some/file.md', :from => :markdown, :to => :html)
 
-Included is a `#to_s` method for somewhat nicer use in Rails views.
-
-    ... helper file ...
-    def format(text)
-      PandocRuby.convert(text)
-    end
-
-    ... view file ...
-    <%= format text %>
-
-The default behavior follows the pandoc executable's behavior, converting markdown to html. To specify options, simply pass options as a hash to the initializer. Pandoc's wrapper executables can also be used by passing the executable name as the second argument. For example,
+When no options are passed, pandoc's default behavior converts markdown to html. To specify options, simply pass options as a hash to the initializer. Pandoc's wrapper executables can also be used by passing the executable name as the second argument. For example,
 
     PandocRuby.new('/some/file.html', 'html2markdown')
 
