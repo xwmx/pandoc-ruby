@@ -1,7 +1,7 @@
 require 'test_helper'
 require 'mocha'
 
-class PandocRubyTest < Test::Unit::TestCase
+class TestPandocRuby < Test::Unit::TestCase
   
   def setup
     @file = File.join(File.dirname(__FILE__), 'test.md')
