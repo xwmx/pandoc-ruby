@@ -25,7 +25,7 @@ class PandocRuby
     else
       @executable = 'pandoc'
     end
-    @options = args.empty? ? [] : args
+    @options = args
   end
 
   def convert
