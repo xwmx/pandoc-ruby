@@ -35,20 +35,17 @@ class PandocRuby
   end
 
   def convert
-    if @@bin_path
-      execute File.join(@@bin_path, @executable) + convert_options
-    else
-      execute @executable + convert_options
-    end
+    executable = @@bin_path ? File.join(@@bin_path, @executable) : @executable
+    execute executable + convert_options
   end
   alias_method :to_s, :convert
 
   def convert_options
     @options.inject('') do |string, (flag, value)|
-      if flag.to_s.length == 1
-        string + " -#{flag} #{value}"
+      string + if flag.to_s.length == 1 
+        " -#{flag} #{value}"
       else
-        string + " --#{flag}=#{value}"
+        " --#{flag}=#{value}"
       end
     end
   end
