@@ -10,7 +10,7 @@ begin
     gem.email = "wmelody@gmail.com"
     gem.homepage = "http://github.com/autodata/pandoc-ruby"
     gem.authors = ["William Melody"]
-    gem.add_development_dependency "thoughtbot-shoulda"
+    gem.add_development_dependency "shoulda"
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
 rescue LoadError
