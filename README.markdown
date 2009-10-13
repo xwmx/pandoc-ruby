@@ -1,24 +1,31 @@
-= PandocRuby
+# PandocRuby
 
-Wrapper for {http://johnmacfarlane.net/pandoc/ Pandoc}, a Haskell library with command line tools for converting one markup format to another.
+Wrapper for [Pandoc](http://johnmacfarlane.net/pandoc/), a Haskell library with command line tools for converting one markup format to another.
 
 Pandoc can read markdown and (subsets of) reStructuredText, HTML, and LaTeX, and it can write markdown, reStructuredText, HTML, LaTeX, ConTeXt, PDF, RTF, DocBook XML, OpenDocument XML, ODT, GNU Texinfo, MediaWiki markup, groff man pages, and S5 HTML slide shows
 
-Assumes pandoc executables are in the path.  If not, set their location
-with PandocRuby.bin_path = '/path/to/bin'
+## Installation
 
-Use like so:
+First, make sure to [install Pandoc](http://johnmacfarlane.net/pandoc/#installing-pandoc).
+
+Next, install PandocRuby from gemcutter.
+
+    gem install gemcutter
+    gem tumble
+    gem install pandoc-ruby
+    
+## Usage
 
     @converter = PandocRuby.new('/some/file.md', :from => :markdown, :to => :rst)
     puts @converter.convert
 
 This takes the the Markdown formatted file and converts it to reStructuredText.
 
-You can also use the <tt>#convert</tt> class method:
+You can also use the `#convert` class method:
 
     puts PandocRuby.convert('/some/file.md', :from => :markdown, :to => :html)
 
-Another also: you get a <tt>#to_s</tt>, for somewhat nicer use in Rails views.
+Another also: you get a `#to_s`, for somewhat nicer use in Rails views.
 
     ... helper file ...
     def format(text)
@@ -32,13 +39,16 @@ The default behavior follows the pandoc executable's behavior, converting markdo
 
     PandocRuby.new('/some/file.html', 'html2markdown')
 
-will use Pandoc's <tt>html2markdown</tt> wrapper. 
+will use Pandoc's `html2markdown` wrapper.
 
-For more information on Pandoc, see the {http://johnmacfarlane.net/pandoc/ Pandoc documentation} or run <tt>man pandoc</tt>.
+Assumes pandoc executables are in the path.  If not, set their location
+with `PandocRuby.bin_path = '/path/to/bin'`
 
-Pretty much everything in the gem was derived directly from {http://github.com/github/albino Albino}.
+For more information on Pandoc, see the [Pandoc documentation](http://johnmacfarlane.net/pandoc/) or run `man pandoc`.
 
-== Note on Patches/Pull Requests
+Pretty much everything in the gem was derived directly from [Albino](http://github.com/github/albino).
+
+## Note on Patches/Pull Requests
  
 * Fork the project.
 * Make your feature addition or bug fix.
@@ -49,6 +59,6 @@ Pretty much everything in the gem was derived directly from {http://github.com/g
   bump version in a commit by itself I can ignore when I pull)
 * Send me a pull request. Bonus points for topic branches.
 
-== Copyright
+## Copyright
 
 Copyright (c) 2009 William Melody. See LICENSE for details.

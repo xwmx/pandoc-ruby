@@ -14,18 +14,19 @@ Gem::Specification.new do |s|
   s.email = %q{wmelody@gmail.com}
   s.extra_rdoc_files = [
     "LICENSE",
-     "README"
+     "README.markdown"
   ]
   s.files = [
     ".document",
      ".gitignore",
      "LICENSE",
-     "README",
+     "README.markdown",
      "Rakefile",
      "VERSION",
      "lib/pandoc-ruby.rb",
      "pandoc-ruby.gemspec",
      "test/pandoc-ruby_test.rb",
+     "test/test.md",
      "test/test_helper.rb"
   ]
   s.homepage = %q{http://github.com/autodata/pandoc-ruby}
