@@ -31,12 +31,25 @@ When no options are passed, pandoc's default behavior converts markdown to html.
 
 will use Pandoc's `html2markdown` wrapper.
 
-Assumes pandoc executables are in the path.  If not, set their location
+Other arguments are simply converted into command line options, accepting symbols or strings for options without arguments and hashes of strings or symbols for options with arguments.
+
+    PandocRuby.convert('/some/file.html', :s, {:to => :rst, :f => :markdown}, 'no-wrap')
+
+becomes
+
+    pandoc -s --to=rst -f markdown --no-wrap /some/file.html
+
+PandocRuby assumes the pandoc executables are in the path.  If not, set their location
 with `PandocRuby.bin_path = '/path/to/bin'`
 
 For more information on Pandoc, see the [Pandoc documentation](http://johnmacfarlane.net/pandoc/) or run `man pandoc`.
 
 Pretty much everything in the gem was derived directly from [Albino](http://github.com/github/albino).
+
+## Caveats
+
+* This has only been tested on *nix systems.
+* Some conversions may still not work and/or require additional dependencies.
 
 ## Note on Patches/Pull Requests
  
