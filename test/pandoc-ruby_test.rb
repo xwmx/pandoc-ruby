@@ -8,10 +8,22 @@ class PandocRubyTest < Test::Unit::TestCase
     @converter = PandocRuby.new(@file, :t => :rst)
   end
   
+  def teardown
+    PandocRuby.bin_path = nil
+  end
+  
   should "convert mimic default behavior" do
     converter = PandocRuby.new(@file)
     assert converter.expects(:execute).with('pandoc').returns(true)
     converter.convert
+  end
+  
+  should "convert with altered bin_path" do
+    path = %x[which pandoc].strip
+    PandocRuby.bin_path = path
+    converter = PandocRuby.new(@file)
+    converter.expects(:execute).with("#{path}/pandoc").returns(true)
+    assert converter.convert
   end
   
   should "accept short options" do

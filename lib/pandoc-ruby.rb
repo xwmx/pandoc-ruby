@@ -10,7 +10,7 @@ class PandocRuby
   ]
   
   def self.bin_path=(path)
-    @@bin_path = bin_path
+    @@bin_path = path
   end
 
   def self.convert(*args)
