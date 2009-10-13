@@ -19,13 +19,13 @@ Next, install PandocRuby from gemcutter.
     @converter = PandocRuby.new('/some/file.md', :from => :markdown, :to => :rst)
     puts @converter.convert
 
-This takes the the Markdown formatted file and converts it to reStructuredText.
+This takes the Markdown formatted file and converts it to reStructuredText.
 
-You can also use the `#convert` class method:
+You can use the `#convert` class method:
 
     puts PandocRuby.convert('/some/file.md', :from => :markdown, :to => :html)
 
-Another also: you get a `#to_s`, for somewhat nicer use in Rails views.
+Included is a `#to_s` method for somewhat nicer use in Rails views.
 
     ... helper file ...
     def format(text)
