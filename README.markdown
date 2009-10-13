@@ -44,9 +44,9 @@ with `PandocRuby.bin_path = '/path/to/bin'`
 
 For more information on Pandoc, see the [Pandoc documentation](http://johnmacfarlane.net/pandoc/) or run `man pandoc`.
 
-Pretty much everything in the gem was derived directly from [Albino](http://github.com/github/albino).
+If you'd prefer a faster, pure-Ruby extended markdown interpreter that can output a few different formats, take a look at [Maruku](http://maruku.rubyforge.org/).
 
-If you'd prefer a pure-Ruby extended markdown interpreter that can output a few different formats, take a look at [Maruku](http://maruku.rubyforge.org/).
+This gem was inspired by [Albino](http://github.com/github/albino).
 
 ## Caveats
 
