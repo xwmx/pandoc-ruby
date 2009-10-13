@@ -12,10 +12,10 @@ class PandocRubyTest < Test::Unit::TestCase
     PandocRuby.bin_path = nil
   end
   
-  should "convert mimic default behavior" do
+  should "call bare pandoc when passed no options" do
     converter = PandocRuby.new(@file)
-    assert converter.expects(:execute).with('pandoc').returns(true)
-    converter.convert
+    converter.expects(:execute).with('pandoc').returns(true)
+    assert converter.convert
   end
   
   should "convert with altered bin_path" do
@@ -27,26 +27,26 @@ class PandocRubyTest < Test::Unit::TestCase
   end
   
   should "accept short options" do
-    assert @converter.expects(:execute).with('pandoc -t rst').returns(true)
-    @converter.convert
+    @converter.expects(:execute).with('pandoc -t rst').returns(true)
+    assert @converter.convert
   end
   
   should "accept long options" do
     converter = PandocRuby.new(@file, :to => :rst)
-    assert converter.expects(:execute).with('pandoc --to=rst').returns(true)
-    converter.convert
+    converter.expects(:execute).with('pandoc --to=rst').returns(true)
+    assert converter.convert
   end
   
   should "accept optional executable" do
     converter = PandocRuby.new(@file, 'html2markdown')
-    assert converter.expects(:execute).with('html2markdown').returns(true)
-    converter.convert
+    converter.expects(:execute).with('html2markdown').returns(true)
+    assert converter.convert
   end
   
   should "not accept non-pandoc optional executable" do
     converter = PandocRuby.new(@file, 'ls')
-    assert converter.expects(:execute).with('pandoc').returns(true)
-    converter.convert
+    converter.expects(:execute).with('pandoc').returns(true)
+    assert converter.convert
   end
   
   should "work with strings" do
