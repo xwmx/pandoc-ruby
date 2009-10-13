@@ -67,4 +67,15 @@ class PandocRubyTest < Test::Unit::TestCase
   should "have convert class method" do
     assert_equal @converter.convert, PandocRuby.convert(@file, :t => :rst)
   end
+  
+  should "run more than 400 times without error" do
+    begin
+      400.times do
+        PandocRuby.convert(@file)
+      end
+      assert true
+    rescue Errno::EMFILE, Errno::EAGAIN => e
+      flunk e
+    end
+  end
 end
