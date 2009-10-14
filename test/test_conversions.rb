@@ -32,10 +32,6 @@ class TestConversions < Test::Unit::TestCase
     return h
   end
   
-  def setup
-    @file = File.join(File.dirname(__FILE__), 'test.md')
-  end
-  
   [:markdown, :html, :rst, :latex].each do |from|
     formatted_strings.each_key do |format|
       unless from == format
