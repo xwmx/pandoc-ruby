@@ -51,8 +51,8 @@ This gem was inspired by [Albino](http://github.com/github/albino).
 ## Caveats
 
 * This has only been tested on *nix systems.
-* ODT is not currently supported.
-* PDF conversions may require additional dependencies.
+* ODT is not currently supported because it is a binary format.
+* PDF conversion may require additional dependencies and has not been tested.
 
 ## Note on Patches/Pull Requests
  
