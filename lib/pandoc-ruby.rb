@@ -20,7 +20,7 @@ class PandocRuby
   def initialize(*args)
     target = args.shift
     @target  = File.exists?(target) ? File.read(target) : target rescue target
-    if args[0] && !args[0].respond_to?(:merge) && EXECUTABLES.include?(args[0])
+    if args[0] && !args[0].respond_to?(:each_pair) && EXECUTABLES.include?(args[0])
       @executable = args.shift
     else
       @executable = 'pandoc'
