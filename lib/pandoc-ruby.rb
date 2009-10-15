@@ -33,7 +33,12 @@ class PandocRuby
     execute executable + convert_options
   end
   alias_method :to_s, :convert
-
+  
+  def to_html
+    @options << {:to => :html}
+    convert
+  end
+  
 private
 
   def execute(command)
@@ -45,7 +50,6 @@ private
     end
     output
   end
-
 
   def convert_options
     @options.inject('') do |string, opt|

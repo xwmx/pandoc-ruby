@@ -54,7 +54,13 @@ class TestPandocRuby < Test::Unit::TestCase
     converter.expects(:execute).with('pandoc --toc').returns(true)
     assert converter.convert
   end
-
+  
+  should "convert to html with to_html" do
+    converter = PandocRuby.new(@file)
+    converter.expects(:execute).with('pandoc --to=html').returns(true)
+    assert converter.to_html
+  end
+  
   should "work with strings" do
     converter = PandocRuby.new('## this is a title')
     assert_match %r(h2), converter.convert
