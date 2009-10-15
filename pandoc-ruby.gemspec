@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{pandoc-ruby}
-  s.version = "0.0.7"
+  s.version = "0.0.8"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["William Melody"]
@@ -25,6 +25,8 @@ Gem::Specification.new do |s|
      "VERSION",
      "lib/pandoc-ruby.rb",
      "pandoc-ruby.gemspec",
+     "test/benchmark.rb",
+     "test/benchmark.txt",
      "test/test.md",
      "test/test_conversions.rb",
      "test/test_helper.rb",
@@ -36,7 +38,8 @@ Gem::Specification.new do |s|
   s.rubygems_version = %q{1.3.5}
   s.summary = %q{PandocRuby}
   s.test_files = [
-    "test/test_conversions.rb",
+    "test/benchmark.rb",
+     "test/test_conversions.rb",
      "test/test_helper.rb",
      "test/test_pandoc-ruby.rb"
   ]
