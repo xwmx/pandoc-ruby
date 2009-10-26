@@ -84,4 +84,28 @@ class TestPandocRuby < Test::Unit::TestCase
       flunk e
     end
   end
+  
+  should "have reader and writer constants" do
+    assert_equal PandocRuby::READERS, {
+      'rst'       => 'reStructuredText',
+      'markdown'  => 'markdown',
+      'html'      => 'HTML',
+      'latex'     => 'LaTeX'
+    }
+    
+    assert_equal PandocRuby::WRITERS, {
+      'markdown'      => 'markdown',
+      'rst'           => 'reStructuredText',
+      'html'          => 'HTML',
+      'latex'         => 'LaTeX',
+      'context'       => 'ConTeXt',
+      'man'           => 'groff man',
+      'mediawiki'     => 'MediaWiki markup',
+      'texinfo'       => 'GNU Texinfo',
+      'docbook'       => 'DocBook XML',
+      'opendocument'  => 'OpenDocument XML',
+      's5'            => 'S5 HTML and javascript slide show',
+      'rtf'           => 'rich text format'
+    }
+  end
 end

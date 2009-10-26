@@ -9,6 +9,28 @@ class PandocRuby
     hsmarkdown
   ]
   
+  READERS  = {
+    'rst'       => 'reStructuredText',
+    'markdown'  => 'markdown',
+    'html'      => 'HTML',
+    'latex'     => 'LaTeX'
+  }
+
+  WRITERS    = {
+    'markdown'      => 'markdown',
+    'rst'           => 'reStructuredText',
+    'html'          => 'HTML',
+    'latex'         => 'LaTeX',
+    'context'       => 'ConTeXt',
+    'man'           => 'groff man',
+    'mediawiki'     => 'MediaWiki markup',
+    'texinfo'       => 'GNU Texinfo',
+    'docbook'       => 'DocBook XML',
+    'opendocument'  => 'OpenDocument XML',
+    's5'            => 'S5 HTML and javascript slide show',
+    'rtf'           => 'rich text format'
+  }
+  
   def self.bin_path=(path)
     @@bin_path = path
   end

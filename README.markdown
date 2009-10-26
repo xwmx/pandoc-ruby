@@ -42,6 +42,8 @@ becomes
 PandocRuby assumes the pandoc executables are in the path.  If not, set their location
 with `PandocRuby.bin_path = '/path/to/bin'`
 
+Available format readers and writers are available in the `PandocRuby::READERS` and `PandocRuby::WRITERS` constants.
+
 For more information on Pandoc, see the [Pandoc documentation](http://johnmacfarlane.net/pandoc/) or run `man pandoc`.
 
 If you'd prefer a pure-Ruby extended markdown interpreter that can output a few different formats, take a look at [Maruku](http://maruku.rubyforge.org/).
