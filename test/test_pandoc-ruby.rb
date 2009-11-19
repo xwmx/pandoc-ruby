@@ -60,10 +60,12 @@ class TestPandocRuby < Test::Unit::TestCase
     assert converter.convert
   end
   
-  should "convert to html with to_html" do
-    converter = PandocRuby.new(@file)
-    converter.expects(:execute).with('pandoc --to=html').returns(true)
-    assert converter.to_html
+  PandocRuby::WRITERS.each_key do |w|
+    should "convert to #{w} with to_#{w}" do
+      converter = PandocRuby.new(@file)
+      converter.expects(:execute).with("pandoc --to=#{w}").returns(true)
+      assert converter.send("to_#{w}")
+    end
   end
   
   should "work with strings" do

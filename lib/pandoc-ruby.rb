@@ -52,9 +52,11 @@ class PandocRuby
   end
   alias_method :to_s, :convert
   
-  def to_html
-    @options << {:to => :html}
-    convert
+  WRITERS.each_key do |w|
+    define_method(:"to_#{w}") do
+      @options << {:to => w.to_sym}
+      convert
+    end
   end
   
 private

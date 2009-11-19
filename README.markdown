@@ -39,6 +39,12 @@ becomes
 
     pandoc -s -f markdown --to=rst --no-wrap --table-of-contents /some/file.html
 
+Also provided are `#to_[writer]` instance methods for each of the writers:
+
+    PandocRuby.new("# Some title").to_html
+    # or
+    PandocRuby.new("# Some title").to_man
+
 PandocRuby assumes the pandoc executables are in the path.  If not, set their location
 with `PandocRuby.bin_path = '/path/to/bin'`
 
