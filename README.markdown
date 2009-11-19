@@ -16,6 +16,7 @@ Next, install PandocRuby from [gemcutter](http://gemcutter.org/gems/pandoc-ruby)
     
 ## Usage
 
+    require 'pandoc-ruby'
     @converter = PandocRuby.new('/some/file.md', :from => :markdown, :to => :rst)
     puts @converter.convert
 
