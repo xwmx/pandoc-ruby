@@ -8,10 +8,10 @@ Pandoc can read markdown and (subsets of) reStructuredText, HTML, and LaTeX, and
 
 First, make sure to [install Pandoc](http://johnmacfarlane.net/pandoc/#installing-pandoc).
 
-Next, install PandocRuby from gemcutter.
-
+Next, install PandocRuby from [gemcutter](http://gemcutter.org/gems/pandoc-ruby).
+    
     gem install gemcutter
-    gem tumble
+    gem tumble  # unless you've already run this.
     gem install pandoc-ruby
     
 ## Usage
@@ -52,7 +52,7 @@ Available format readers and writers are available in the `PandocRuby::READERS` 
 
 For more information on Pandoc, see the [Pandoc documentation](http://johnmacfarlane.net/pandoc/) or run `man pandoc`.
 
-If you'd prefer a pure-Ruby extended markdown interpreter that can output a few different formats, take a look at [Maruku](http://maruku.rubyforge.org/).
+If you'd prefer a pure-Ruby extended markdown interpreter that can output a few different formats, take a look at [Maruku](http://maruku.rubyforge.org/). If you want to use the full reStructuredText syntax from within Ruby, check out [RbST](http://rdoc.info/projects/autodata/rbst), a docutils wrapper.
 
 This gem was inspired by [Albino](http://github.com/github/albino). For a slightly different approach to using Pandoc with Ruby, see [Pandoku](http://github.com/dahlia/pandoku).
 
