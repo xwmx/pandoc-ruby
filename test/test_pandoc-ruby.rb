@@ -38,8 +38,14 @@ class TestPandocRuby < Test::Unit::TestCase
   end
   
   should "accept a variety of options" do
-    converter = PandocRuby.new(@file, :s, {:to => :rst, :f => :markdown}, 'no-wrap')
-    converter.expects(:execute).with('pandoc -s --to=rst -f markdown --no-wrap').returns(true)
+    converter = PandocRuby.new(@file, :s, {:f => :markdown, :to => :rst}, 'no-wrap')
+    converter.expects(:execute).with('pandoc -s -f markdown --to=rst --no-wrap').returns(true)
+    assert converter.convert
+  end
+  
+  should "convert underscore symbol ares to hyphenated long options" do
+    converter = PandocRuby.new(@file, {:email_obfuscation => :javascript}, :table_of_contents)
+    converter.expects(:execute).with('pandoc --email-obfuscation=javascript --table-of-contents').returns(true)
     assert converter.convert
   end
 

@@ -33,11 +33,11 @@ will use Pandoc's `html2markdown` wrapper.
 
 Other arguments are simply converted into command line options, accepting symbols or strings for options without arguments and hashes of strings or symbols for options with arguments.
 
-    PandocRuby.convert('/some/file.html', :s, {:to => :rst, :f => :markdown}, 'no-wrap')
+    PandocRuby.convert('/some/file.html', :s, {:f => :markdown, :to => :rst}, 'no-wrap', :table_of_contents)
 
 becomes
 
-    pandoc -s --to=rst -f markdown --no-wrap /some/file.html
+    pandoc -s -f markdown --to=rst --no-wrap --table-of-contents /some/file.html
 
 PandocRuby assumes the pandoc executables are in the path.  If not, set their location
 with `PandocRuby.bin_path = '/path/to/bin'`

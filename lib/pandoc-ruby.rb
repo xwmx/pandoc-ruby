@@ -72,12 +72,17 @@ private
   def convert_options
     @options.inject('') do |string, opt|
       string + if opt.respond_to?(:each_pair)
-        opt.inject('') do |s, (flag, val)|
-          s + (flag.to_s.length == 1 ? " -#{flag} #{val}" : " --#{flag}=#{val}")
-        end
+        convert_opts_with_args(opt)
       else
-        opt.to_s.length == 1 ? " -#{opt}" : " --#{opt}"
+        opt.to_s.length == 1 ? " -#{opt}" : " --#{opt.to_s.gsub(/_/, '-')}"
       end
+    end
+  end
+  
+  def convert_opts_with_args(opt)
+    opt.inject('') do |string, (flag, val)|
+      flag = flag.to_s.gsub(/_/, '-')
+      string + (flag.length == 1 ? " -#{flag} #{val}" : " --#{flag}=#{val}")
     end
   end
 end
