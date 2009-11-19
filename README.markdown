@@ -35,15 +35,17 @@ Other arguments are simply converted into command line options, accepting symbol
 
     PandocRuby.convert('/some/file.html', :s, {:f => :markdown, :to => :rst}, 'no-wrap', :table_of_contents)
 
-becomes
+is equivalent to
 
     pandoc -s -f markdown --to=rst --no-wrap --table-of-contents /some/file.html
 
 Also provided are `#to_[writer]` instance methods for each of the writers:
 
     PandocRuby.new("# Some title").to_html
+    => "<div id=\"some-title\"\n><h1\n  >Some title</h1\n  ></div\n>"
     # or
-    PandocRuby.new("# Some title").to_man
+    PandocRuby.new("# Some title").to_rtf
+    => "{\\pard \\ql \\f0 \\sa180 \\li0 \\fi0 \\b \\fs36 Some title\\par}"
 
 PandocRuby assumes the pandoc executables are in the path.  If not, set their location
 with `PandocRuby.bin_path = '/path/to/bin'`
