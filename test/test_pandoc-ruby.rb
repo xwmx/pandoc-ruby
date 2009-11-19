@@ -1,10 +1,9 @@
 require 'test_helper'
-require 'mocha'
 
 class TestPandocRuby < Test::Unit::TestCase
   
   def setup
-    @file = File.join(File.dirname(__FILE__), 'test.md')
+    @file = File.join(File.dirname(__FILE__), 'files', 'test.md')
     @converter = PandocRuby.new(@file, :t => :rst)
   end
   

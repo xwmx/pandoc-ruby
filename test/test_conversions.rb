@@ -1,5 +1,4 @@
 require 'test_helper'
-require 'mocha'
 
 class TestConversions < Test::Unit::TestCase
   

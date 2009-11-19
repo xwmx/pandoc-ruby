@@ -4,7 +4,7 @@
 #   http://tomayko.com/writings/ruby-markdown-libraries-real-cheap-for-you-two-for-price-of-one
 
 iterations = 100
-test_file = "#{File.dirname(__FILE__)}/benchmark.txt"
+test_file = File.join(File.dirname(__FILE__), 'files', 'benchmark.txt')
 impl_gems = {
   'BlueCloth'   => 'bluecloth',
   'RDiscount'   => 'rdiscount',
