@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{pandoc-ruby}
-  s.version = "0.1.0"
+  s.version = "0.2.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["William Melody"]
-  s.date = %q{2009-11-04}
+  s.date = %q{2009-11-18}
   s.description = %q{Ruby wrapper for Pandoc}
   s.email = %q{wmelody@gmail.com}
   s.extra_rdoc_files = [
@@ -26,8 +26,8 @@ Gem::Specification.new do |s|
      "lib/pandoc-ruby.rb",
      "pandoc-ruby.gemspec",
      "test/benchmark.rb",
-     "test/benchmark.txt",
-     "test/test.md",
+     "test/files/benchmark.txt",
+     "test/files/test.md",
      "test/test_conversions.rb",
      "test/test_helper.rb",
      "test/test_pandoc-ruby.rb"
