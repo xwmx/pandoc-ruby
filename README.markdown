@@ -48,6 +48,11 @@ Also provided are `#to_[writer]` instance methods for each of the writers:
     PandocRuby.new("# Some title").to_rtf
     => "{\\pard \\ql \\f0 \\sa180 \\li0 \\fi0 \\b \\fs36 Some title\\par}"
 
+Similarly, there are class methods for each of the readers, so readers and writers can be specified like this:
+
+    PandocRuby.html("<h1>hello</h1>").to_latex
+    => "\\section{hello}"
+
 PandocRuby assumes the pandoc executables are in the path.  If not, set their location
 with `PandocRuby.bin_path = '/path/to/bin'`
 

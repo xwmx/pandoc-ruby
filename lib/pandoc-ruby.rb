@@ -52,6 +52,15 @@ class PandocRuby
   end
   alias_method :to_s, :convert
   
+  class << self
+    READERS.each_key do |r|
+      define_method(r) do |*args|
+        args += [{:from => r}]
+        new(*args)
+      end
+    end
+  end
+  
   WRITERS.each_key do |w|
     define_method(:"to_#{w}") do
       @options << {:to => w.to_sym}

@@ -60,6 +60,14 @@ class TestPandocRuby < Test::Unit::TestCase
     assert converter.convert
   end
   
+  PandocRuby::READERS.each_key do |r|
+    should "convert from #{r} with PandocRuby.#{r}" do
+      converter = PandocRuby.send(r, @file)
+      converter.expects(:execute).with("pandoc --from=#{r}").returns(true)
+      assert converter.convert
+    end
+  end
+  
   PandocRuby::WRITERS.each_key do |w|
     should "convert to #{w} with to_#{w}" do
       converter = PandocRuby.new(@file)
