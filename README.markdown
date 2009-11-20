@@ -40,10 +40,10 @@ is equivalent to
 
     pandoc -s -f markdown --to=rst --no-wrap --table-of-contents /some/file.html
 
-Also provided are `#to_[writer]` instance methods for each of the writers:
+Also provided are `#to_[writer]` instance methods for each of the writers, and these can also accept options:
 
-    PandocRuby.new("# Some title").to_html
-    => "<div id=\"some-title\"\n><h1\n  >Some title</h1\n  ></div\n>"
+    PandocRuby.new("# Some title").to_html(:no_wrap)
+    => "<div id=\"some-title\"><h1>Some title</h1></div>"
     # or
     PandocRuby.new("# Some title").to_rtf
     => "{\\pard \\ql \\f0 \\sa180 \\li0 \\fi0 \\b \\fs36 Some title\\par}"

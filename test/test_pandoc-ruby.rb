@@ -36,10 +36,16 @@ class TestPandocRuby < Test::Unit::TestCase
     assert converter.convert
   end
   
-  should "accept a variety of options" do
+  should "accept a variety of options in initializer" do
     converter = PandocRuby.new(@file, :s, {:f => :markdown, :to => :rst}, 'no-wrap')
     converter.expects(:execute).with('pandoc -s -f markdown --to=rst --no-wrap').returns(true)
     assert converter.convert
+  end
+  
+  should "accept a variety of options in convert" do
+    converter = PandocRuby.new(@file)
+    converter.expects(:execute).with('pandoc -s -f markdown --to=rst --no-wrap').returns(true)
+    assert converter.convert(:s, {:f => :markdown, :to => :rst}, 'no-wrap')
   end
   
   should "convert underscore symbol ares to hyphenated long options" do
@@ -71,8 +77,8 @@ class TestPandocRuby < Test::Unit::TestCase
   PandocRuby::WRITERS.each_key do |w|
     should "convert to #{w} with to_#{w}" do
       converter = PandocRuby.new(@file)
-      converter.expects(:execute).with("pandoc --to=#{w}").returns(true)
-      assert converter.send("to_#{w}")
+      converter.expects(:execute).with("pandoc --no-wrap --to=#{w}").returns(true)
+      assert converter.send("to_#{w}", :no_wrap)
     end
   end
   

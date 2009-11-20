@@ -46,9 +46,9 @@ class PandocRuby
     @options = args
   end
 
-  def convert
+  def convert(*args)
     executable = @@bin_path ? File.join(@@bin_path, @executable) : @executable
-    execute executable + convert_options
+    execute executable + convert_options(args)
   end
   alias_method :to_s, :convert
   
@@ -62,9 +62,9 @@ class PandocRuby
   end
   
   WRITERS.each_key do |w|
-    define_method(:"to_#{w}") do
-      @options << {:to => w.to_sym}
-      convert
+    define_method(:"to_#{w}") do |*args|
+      args += [{:to => w.to_sym}]
+      convert(*args)
     end
   end
   
@@ -80,8 +80,8 @@ private
     output
   end
 
-  def convert_options
-    @options.inject('') do |string, opt|
+  def convert_options(opts = [])
+    (@options + opts).flatten.inject('') do |string, opt|
       string + if opt.respond_to?(:each_pair)
         convert_opts_with_args(opt)
       else
