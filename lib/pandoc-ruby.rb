@@ -1,4 +1,4 @@
-require 'open4'
+require 'open3'
 
 class PandocRuby
   @@bin_path = nil
@@ -72,7 +72,7 @@ private
 
   def execute(command)
     output = ''
-    Open4::popen4(command) do |pid, stdin, stdout, stderr| 
+    Open3::popen3(command) do |stdin, stdout, stderr| 
       stdin.puts @target 
       stdin.close
       output = stdout.read.strip 

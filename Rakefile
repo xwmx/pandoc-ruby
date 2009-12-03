@@ -12,7 +12,6 @@ begin
     gem.authors = ["William Melody"]
     gem.add_development_dependency "shoulda"
     gem.add_development_dependency "mocha"
-    gem.add_dependency "open4"
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
 rescue LoadError
