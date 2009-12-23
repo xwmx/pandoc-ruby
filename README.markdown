@@ -43,8 +43,8 @@ Also provided are `#to_[writer]` instance methods for each of the writers, and t
     PandocRuby.new("# Some title").to_html(:no_wrap)
     => "<div id=\"some-title\"><h1>Some title</h1></div>"
     # or
-    PandocRuby.new("# Some title", :standalone).to_rtf
-    => "{\\rtf1\\ansi\\deff0{\\fonttbl{\\f0 \\fswiss Helvetica;}{\\f1 Courier;}}\n{\\colortbl;\\red255\\green0\\blue0;\\red0\\green0\\blue255;}\n\\widowctrl\\hyphauto\n\n{\\pard \\ql \\f0 \\sa180 \\li0 \\fi0 \\b \\fs36 Some title\\par}\n\n}"
+    PandocRuby.new("# Some title").to_rst
+    => "Some title\n=========="
 
 Similarly, there are class methods for each of the readers, so readers and writers can be specified like this:
 
@@ -65,6 +65,8 @@ This gem was inspired by [Albino](http://github.com/github/albino). For a slight
 ## Pandoc Notes
 
 * If you are trying to generate a standalone HTML, LaTeX or RTF file, remember to pass the `:standalone` option so the correct header and footer are added.
+
+  PandocRuby.new("# Some title", :standalone).to_rtf
 
 ## Caveats
 
