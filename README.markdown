@@ -64,7 +64,7 @@ This gem was inspired by [Albino](http://github.com/github/albino). For a slight
 
 ## Pandoc Notes
 
-* If you are trying to generate a standalone HTML, LaTeX or RTF file, remember to pass the `:standalone` option so the correct header and footer are added.
+If you are trying to generate a standalone HTML, LaTeX or RTF file, remember to pass the `:standalone` option so the correct header and footer are added.
 
     PandocRuby.new("# Some title", :standalone).to_rtf
 
