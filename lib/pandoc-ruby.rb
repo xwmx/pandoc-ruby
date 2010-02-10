@@ -2,6 +2,8 @@ require 'open3'
 
 class PandocRuby
   @@bin_path = nil
+  @@allow_file_paths = false
+  
   EXECUTABLES = %W[
     pandoc
     markdown2pdf
@@ -34,14 +36,22 @@ class PandocRuby
   def self.bin_path=(path)
     @@bin_path = path
   end
-
+  
+  def self.allow_file_paths=(value)
+    @@allow_file_paths = value
+  end
+  
   def self.convert(*args)
     new(*args).convert
   end
 
   def initialize(*args)
     target = args.shift
-    @target  = File.exists?(target) ? File.read(target) : target rescue target
+    @target = if @@allow_file_paths && File.exists?(target)
+      File.read(target)
+    else
+      target rescue target
+    end
     @executable = EXECUTABLES.include?(args[0]) ? args.shift : 'pandoc'
     @options = args
   end

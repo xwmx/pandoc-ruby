@@ -9,6 +9,7 @@ class TestPandocRuby < Test::Unit::TestCase
   
   def teardown
     PandocRuby.bin_path = nil
+    PandocRuby.allow_file_paths = false
   end
   
   should "call bare pandoc when passed no options" do
@@ -25,6 +26,16 @@ class TestPandocRuby < Test::Unit::TestCase
     assert converter.convert
   end
   
+  should "treat file paths as strings by default" do
+    assert_equal "<p\n>#{@file}</p\n>", PandocRuby.new(@file).to_html
+  end
+
+  should "treat file paths as file paths when enabled" do
+    PandocRuby.allow_file_paths = true
+    assert PandocRuby.new(@file).to_html.match(%r{This is a Title})
+  end
+
+
   should "accept short options" do
     @converter.expects(:execute).with('pandoc -t rst').returns(true)
     assert @converter.convert
@@ -128,5 +139,6 @@ class TestPandocRuby < Test::Unit::TestCase
       's5'            => 'S5 HTML and javascript slide show',
       'rtf'           => 'rich text format'
     }
+
   end
 end
