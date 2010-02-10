@@ -15,24 +15,24 @@ Next, install PandocRuby from [gemcutter](http://gemcutter.org/gems/pandoc-ruby)
 ## Usage
 
     require 'pandoc-ruby'
-    @converter = PandocRuby.new('/some/file.md', :from => :markdown, :to => :rst)
+    @converter = PandocRuby.new('# Markdown Title', :from => :markdown, :to => :rst)
     puts @converter.convert
 
-This takes the Markdown formatted file and converts it to reStructuredText. The first argument can be either a file or a string.
+This takes the Markdown formatted file and converts it to reStructuredText.
 
 You can also use the `#convert` class method:
 
-    puts PandocRuby.convert('/some/file.md', :from => :markdown, :to => :html)
+    puts PandocRuby.convert('# Markdown Title', :from => :markdown, :to => :html)
 
 When no options are passed, pandoc's default behavior converts markdown to html. To specify options, simply pass options as a hash to the initializer. Pandoc's wrapper executables can also be used by passing the executable name as the second argument. For example,
 
-    PandocRuby.new('/some/file.html', 'html2markdown')
+    PandocRuby.new('<p>Some <em>HTML</em></p>', 'html2markdown')
 
 will use Pandoc's `html2markdown` wrapper.
 
 Other arguments are simply converted into command line options, accepting symbols or strings for options without arguments and hashes of strings or symbols for options with arguments.
 
-    PandocRuby.convert('/some/file.html', :s, {:f => :markdown, :to => :rst}, 'no-wrap', :table_of_contents)
+    PandocRuby.convert('# Markdown Title', :s, {:f => :markdown, :to => :rst}, 'no-wrap', :table_of_contents)
 
 is equivalent to
 
@@ -54,6 +54,11 @@ Similarly, there are class methods for each of the readers, so readers and write
 PandocRuby assumes the pandoc executables are in the path.  If not, set their location
 with `PandocRuby.bin_path = '/path/to/bin'`
 
+Pandoc can also be set to take a file path as the first argument. For security reasons, this is disabled by default, but it can be enabled and used as follows
+
+    PandocRuby.allow_file_paths = true
+    PandocRuby.html('/some/file.html').to_markdown
+
 Available format readers and writers are available in the `PandocRuby::READERS` and `PandocRuby::WRITERS` constants.
 
 For more information on Pandoc, see the [Pandoc documentation](http://johnmacfarlane.net/pandoc/) or run `man pandoc` ([also available here](http://johnmacfarlane.net/pandoc/pandoc.1.html)).
@@ -62,9 +67,9 @@ If you'd prefer a pure-Ruby extended markdown interpreter that can output a few 
 
 This gem was inspired by [Albino](http://github.com/github/albino). For a slightly different approach to using Pandoc with Ruby, see [Pandoku](http://github.com/dahlia/pandoku).
 
-## Pandoc Notes
+## Pandoc Hint
 
-If you are trying to generate a standalone file rather than just a fragment, remember to pass the `:standalone` option so the correct header and footer are added.
+If you are trying to generate a standalone file with full file headers rather than just a marked up fragment, remember to pass the `:standalone` option so the correct header and footer are added.
 
     PandocRuby.new("# Some title", :standalone).to_rtf
 
