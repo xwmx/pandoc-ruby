@@ -36,7 +36,7 @@ Other arguments are simply converted into command line options, accepting symbol
 
 is equivalent to
 
-    pandoc -s -f markdown --to=rst --no-wrap --table-of-contents /some/file.html
+    echo "# Markdown Title" | pandoc -s -f markdown --to=rst --no-wrap --table-of-contents
 
 Also provided are `#to_[writer]` instance methods for each of the writers, and these can also accept options:
 
