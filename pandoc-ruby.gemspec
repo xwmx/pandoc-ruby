@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["William Melody"]
-  s.date = %q{2010-02-10}
+  s.date = %q{2010-03-29}
   s.description = %q{Ruby wrapper for Pandoc}
   s.email = %q{wmelody@gmail.com}
   s.extra_rdoc_files = [
@@ -32,10 +32,10 @@ Gem::Specification.new do |s|
      "test/test_helper.rb",
      "test/test_pandoc-ruby.rb"
   ]
-  s.homepage = %q{http://rdoc.info/projects/autodata/pandoc-ruby}
+  s.homepage = %q{http://rdoc.info/projects/alphabetum/pandoc-ruby}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.3.5}
+  s.rubygems_version = %q{1.3.6}
   s.summary = %q{PandocRuby}
   s.test_files = [
     "test/benchmark.rb",

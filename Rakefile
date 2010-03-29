@@ -8,7 +8,7 @@ begin
     gem.summary = %Q{PandocRuby}
     gem.description = %Q{Ruby wrapper for Pandoc}
     gem.email = "wmelody@gmail.com"
-    gem.homepage = "http://rdoc.info/projects/autodata/pandoc-ruby"
+    gem.homepage = "http://rdoc.info/projects/alphabetum/pandoc-ruby"
     gem.authors = ["William Melody"]
     gem.add_development_dependency "shoulda"
     gem.add_development_dependency "mocha"
