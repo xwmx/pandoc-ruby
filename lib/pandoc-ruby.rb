@@ -12,25 +12,41 @@ class PandocRuby
   ]
   
   READERS  = {
-    'rst'       => 'reStructuredText',
-    'markdown'  => 'markdown',
-    'html'      => 'HTML',
-    'latex'     => 'LaTeX'
+    'native'       => 'pandoc native',
+    'json'         => 'pandoc JSON',
+    'markdown'     => 'markdown',
+    'rst'          => 'reStructuredText',
+    'textile'      => 'textile',
+    'html'         => 'HTML',
+    'latex'        => 'LaTeX',
   }
 
   WRITERS    = {
-    'markdown'      => 'markdown',
-    'rst'           => 'reStructuredText',
+    'native'        => 'pandoc native',
+    'json'          => 'pandoc JSON',
     'html'          => 'HTML',
-    'latex'         => 'LaTeX',
-    'context'       => 'ConTeXt',
-    'man'           => 'groff man',
-    'mediawiki'     => 'MediaWiki markup',
-    'texinfo'       => 'GNU Texinfo',
+    'html5'         => 'HTML5',
+    's5'            => 'S5 HTML slideshow',
+    'slidy'         => 'Slidy HTML slideshow',
+    'dzslides'      => 'Dzslides HTML slideshow',
     'docbook'       => 'DocBook XML',
     'opendocument'  => 'OpenDocument XML',
-    's5'            => 'S5 HTML and javascript slide show',
-    'rtf'           => 'rich text format'
+    'latex'         => 'LaTeX',
+    'beamer'        => 'Beamer PDF slideshow',
+    'context'       => 'ConTeXt',
+    'texinfo'       => 'GNU Texinfo',
+    'man'           => 'groff man',
+    'markdown'      => 'markdown',
+    'plain'         => 'plain',
+    'rst'           => 'reStructuredText',
+    'mediawiki'     => 'MediaWiki markup',
+    'textile'       => 'textile',
+    'rtf'           => 'rich text format',
+    'org'           => 'emacs org mode',
+    'asciidoc'      => 'asciidoc',
+    'odt'           => 'odt',
+    'docx'          => 'docx',
+    'epub'          => 'epub'
   }
   
   def self.bin_path=(path)

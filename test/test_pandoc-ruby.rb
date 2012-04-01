@@ -135,25 +135,41 @@ class TestPandocRuby < Test::Unit::TestCase
   
   should "have reader and writer constants" do
     assert_equal PandocRuby::READERS, {
-      'rst'       => 'reStructuredText',
-      'markdown'  => 'markdown',
-      'html'      => 'HTML',
-      'latex'     => 'LaTeX'
+      "html"      =>  "HTML",
+      "latex"     =>  "LaTeX",
+      "textile"   =>  "textile",
+      "native"    =>  "pandoc native",
+      "markdown"  =>  "markdown",
+      "json"      =>  "pandoc JSON",
+      "rst"       =>  "reStructuredText"
     }
     
     assert_equal PandocRuby::WRITERS, {
-      'markdown'      => 'markdown',
-      'rst'           => 'reStructuredText',
-      'html'          => 'HTML',
-      'latex'         => 'LaTeX',
-      'context'       => 'ConTeXt',
-      'man'           => 'groff man',
-      'mediawiki'     => 'MediaWiki markup',
-      'texinfo'       => 'GNU Texinfo',
-      'docbook'       => 'DocBook XML',
-      'opendocument'  => 'OpenDocument XML',
-      's5'            => 'S5 HTML and javascript slide show',
-      'rtf'           => 'rich text format'
+      "mediawiki"     =>  "MediaWiki markup",
+      "html"          =>  "HTML",
+      "plain"         =>  "plain",
+      "docx"          =>  "docx",
+      "latex"         =>  "LaTeX",
+      "s5"            =>  "S5 HTML slideshow",
+      "textile"       =>  "textile",
+      "texinfo"       =>  "GNU Texinfo",
+      "docbook"       =>  "DocBook XML",
+      "html5"         =>  "HTML5",
+      "native"        =>  "pandoc native",
+      "epub"          =>  "epub",
+      "org"           =>  "emacs org mode",
+      "rtf"           =>  "rich text format",
+      "markdown"      =>  "markdown",
+      "man"           =>  "groff man",
+      "dzslides"      =>  "Dzslides HTML slideshow",
+      "beamer"        =>  "Beamer PDF slideshow",
+      "json"          =>  "pandoc JSON",
+      "opendocument"  =>  "OpenDocument XML",
+      "slidy"         =>  "Slidy HTML slideshow",
+      "rst"           =>  "reStructuredText",
+      "context"       =>  "ConTeXt",
+      "odt"           =>  "odt",
+      "asciidoc"      =>  "asciidoc"
     }
 
   end
