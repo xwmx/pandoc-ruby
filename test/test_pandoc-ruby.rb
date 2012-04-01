@@ -27,7 +27,7 @@ class TestPandocRuby < Test::Unit::TestCase
   end
   
   should "treat file paths as strings by default" do
-    assert_equal "<p\n>#{@file}</p\n>", PandocRuby.new(@file).to_html
+    assert_equal "<p>#{@file}</p>", PandocRuby.new(@file).to_html
   end
 
   should "treat file paths as file paths when enabled" do
@@ -49,13 +49,13 @@ class TestPandocRuby < Test::Unit::TestCase
   
   should "accept a variety of options in initializer" do
     converter = PandocRuby.new(@file, :s, {:f => :markdown, :to => :rst}, 'no-wrap')
-    converter.expects(:execute).with('pandoc -s -f markdown --to=rst --no-wrap').returns(true)
+    converter.expects(:execute).with('pandoc -s --to=rst -f markdown --no-wrap').returns(true)
     assert converter.convert
   end
   
   should "accept a variety of options in convert" do
     converter = PandocRuby.new(@file)
-    converter.expects(:execute).with('pandoc -s -f markdown --to=rst --no-wrap').returns(true)
+    converter.expects(:execute).with('pandoc -s --to=rst -f markdown --no-wrap').returns(true)
     assert converter.convert(:s, {:f => :markdown, :to => :rst}, 'no-wrap')
   end
   
