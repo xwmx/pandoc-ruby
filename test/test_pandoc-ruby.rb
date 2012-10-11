@@ -53,7 +53,7 @@ class TestPandocRuby < Test::Unit::TestCase
     }, 'no-wrap')
     converter \
       .expects(:execute) \
-      .with('pandoc -s --to=rst -f markdown --no-wrap') \
+      .with('pandoc -s -f markdown --to=rst --no-wrap') \
       .returns(true)
     assert converter.convert
   end
@@ -62,7 +62,7 @@ class TestPandocRuby < Test::Unit::TestCase
     converter = PandocRuby.new(@file)
     converter \
       .expects(:execute) \
-      .with('pandoc -s --to=rst -f markdown --no-wrap') \
+      .with('pandoc -s -f markdown --to=rst --no-wrap') \
       .returns(true)
     assert converter.convert(:s, {:f => :markdown, :to => :rst}, 'no-wrap')
   end
