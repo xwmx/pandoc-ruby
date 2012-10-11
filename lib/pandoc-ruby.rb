@@ -11,17 +11,17 @@ class PandocRuby
     hsmarkdown
   ]
   
-  READERS  = {
-    'native'       => 'pandoc native',
-    'json'         => 'pandoc JSON',
-    'markdown'     => 'markdown',
-    'rst'          => 'reStructuredText',
-    'textile'      => 'textile',
-    'html'         => 'HTML',
-    'latex'        => 'LaTeX',
+  READERS = {
+    'native'   => 'pandoc native',
+    'json'     => 'pandoc JSON',
+    'markdown' => 'markdown',
+    'rst'      => 'reStructuredText',
+    'textile'  => 'textile',
+    'html'     => 'HTML',
+    'latex'    => 'LaTeX',
   }
 
-  WRITERS    = {
+  WRITERS = {
     'native'        => 'pandoc native',
     'json'          => 'pandoc JSON',
     'html'          => 'HTML',
