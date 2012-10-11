@@ -9,15 +9,17 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["William Melody"]
-  s.date = "2012-04-01"
+  s.date = "2012-10-11"
   s.description = "Ruby wrapper for Pandoc"
-  s.email = "wmelody@gmail.com"
+  s.email = "hi@williammelody.com"
   s.extra_rdoc_files = [
     "LICENSE",
     "README.markdown"
   ]
   s.files = [
     ".document",
+    "Gemfile",
+    "Gemfile.lock",
     "LICENSE",
     "README.markdown",
     "Rakefile",
@@ -27,28 +29,35 @@ Gem::Specification.new do |s|
     "test/benchmark.rb",
     "test/files/benchmark.txt",
     "test/files/test.md",
+    "test/helper.rb",
     "test/test_conversions.rb",
-    "test/test_helper.rb",
     "test/test_pandoc-ruby.rb"
   ]
-  s.homepage = "http://rdoc.info/projects/alphabetum/pandoc-ruby"
+  s.homepage = "http://github.com/alphabetum/pandoc-ruby"
+  s.licenses = ["MIT"]
   s.require_paths = ["lib"]
-  s.rubygems_version = "1.8.10"
+  s.rubygems_version = "1.8.24"
   s.summary = "PandocRuby"
 
   if s.respond_to? :specification_version then
     s.specification_version = 3
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
-      s.add_development_dependency(%q<shoulda>, [">= 0"])
+      s.add_development_dependency(%q<jeweler>, ["~> 1.8.4"])
       s.add_development_dependency(%q<mocha>, [">= 0"])
+      s.add_development_dependency(%q<rdoc>, ["~> 3.12"])
+      s.add_development_dependency(%q<shoulda>, [">= 0"])
     else
-      s.add_dependency(%q<shoulda>, [">= 0"])
+      s.add_dependency(%q<jeweler>, ["~> 1.8.4"])
       s.add_dependency(%q<mocha>, [">= 0"])
+      s.add_dependency(%q<rdoc>, ["~> 3.12"])
+      s.add_dependency(%q<shoulda>, [">= 0"])
     end
   else
-    s.add_dependency(%q<shoulda>, [">= 0"])
+    s.add_dependency(%q<jeweler>, ["~> 1.8.4"])
     s.add_dependency(%q<mocha>, [">= 0"])
+    s.add_dependency(%q<rdoc>, ["~> 3.12"])
+    s.add_dependency(%q<shoulda>, [">= 0"])
   end
 end
 
