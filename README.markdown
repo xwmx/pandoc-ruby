@@ -6,7 +6,7 @@ Pandoc can read markdown and (subsets of) reStructuredText, HTML, and LaTeX, and
 
 ## Installation
 
-First, make sure to [install Pandoc](http://johnmacfarlane.net/pandoc/#installing-pandoc).
+First, make sure to [install Pandoc](http://johnmacfarlane.net/pandoc/installing.html).
 
 Next, install PandocRuby from [RubyGems](http://rubygems.org/gems/pandoc-ruby).
 
