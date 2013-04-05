@@ -101,7 +101,7 @@ private
     Open3::popen3(command) do |stdin, stdout, stderr| 
       stdin.puts @target 
       stdin.close
-      output = stdout.read.strip 
+      output = stdout.read 
     end
     output
   end
