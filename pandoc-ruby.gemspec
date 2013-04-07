@@ -36,11 +36,11 @@ Gem::Specification.new do |s|
   s.homepage = "http://github.com/alphabetum/pandoc-ruby"
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
-  s.rubygems_version = "2.0.0"
+  s.rubygems_version = "1.8.25"
   s.summary = "PandocRuby"
 
   if s.respond_to? :specification_version then
-    s.specification_version = 4
+    s.specification_version = 3
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
       s.add_development_dependency(%q<jeweler>, ["~> 1.8.4"])
