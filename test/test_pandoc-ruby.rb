@@ -27,7 +27,7 @@ class TestPandocRuby < Test::Unit::TestCase
   end
   
   should "treat file paths as strings by default" do
-    assert_equal "<p>#{@file}</p>", PandocRuby.new(@file).to_html
+    assert_equal "<p>#{@file}</p>\n", PandocRuby.new(@file).to_html
   end
 
   should "treat file paths as file paths when enabled" do

@@ -56,7 +56,7 @@ class TestConversions < Test::Unit::TestCase
       unless from == format
         should "convert #{from} to #{format}" do
           assert_equal(
-            PandocRuby.convert(TestConversions.formatted_strings[from], :from => from, :to => format), 
+            PandocRuby.convert(TestConversions.formatted_strings[from], :from => from, :to => format).strip, 
             TestConversions.formatted_strings[format]
           )
         end
