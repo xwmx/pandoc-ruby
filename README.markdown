@@ -2,7 +2,7 @@
 
 Wrapper for [Pandoc](http://johnmacfarlane.net/pandoc/), a Haskell library with command line tools for converting one markup format to another.
 
-Pandoc can read markdown and (subsets of) reStructuredText, HTML, and LaTeX, and it can write markdown, reStructuredText, HTML, LaTeX, ConTeXt, PDF, RTF, DocBook XML, OpenDocument XML, ODT, GNU Texinfo, MediaWiki markup, groff man pages, and S5 HTML slide shows
+Pandoc can convert documents in markdown, reStructuredText, textile, HTML, DocBook, LaTeX, or MediaWiki markup to a variety of formats, including markdown, reStructuredText, HTML, LaTeX, ConTeXt, PDF, RTF, DocBook XML, OpenDocument XML, ODT, GNU Texinfo, MediaWiki markup, groff man pages, HTML slide shows, EPUB, and Microsoft Word docx.
 
 ## Installation
 
@@ -76,7 +76,6 @@ If you are trying to generate a standalone file with full file headers rather th
 ## Caveats
 
 * This has only been tested on \*nix systems.
-* ODT is not currently supported because it is a binary format.
 * PDF conversion may require additional dependencies and has not been tested.
 
 ## Note on Patches/Pull Requests
