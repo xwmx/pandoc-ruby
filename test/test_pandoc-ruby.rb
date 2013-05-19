@@ -109,6 +109,17 @@ class TestPandocRuby < Test::Unit::TestCase
     end
   end
   
+  PandocRuby::BINARY_WRITERS.each_key do |w|
+    should "convert to #{w} with to_#{w}" do
+      converter = PandocRuby.new(@file)
+      converter \
+        .expects(:execute) \
+        .with(regexp_matches(/^pandoc --no-wrap --to=#{w} --output=/)) \
+        .returns(true)
+      assert converter.send("to_#{w}", :no_wrap)
+    end
+  end
+  
   should "work with strings" do
     converter = PandocRuby.new('## this is a title')
     assert_match %r(h2), converter.convert
@@ -148,7 +159,6 @@ class TestPandocRuby < Test::Unit::TestCase
       "mediawiki"     =>  "MediaWiki markup",
       "html"          =>  "HTML",
       "plain"         =>  "plain",
-      "docx"          =>  "docx",
       "latex"         =>  "LaTeX",
       "s5"            =>  "S5 HTML slideshow",
       "textile"       =>  "textile",
@@ -156,7 +166,6 @@ class TestPandocRuby < Test::Unit::TestCase
       "docbook"       =>  "DocBook XML",
       "html5"         =>  "HTML5",
       "native"        =>  "pandoc native",
-      "epub"          =>  "epub",
       "org"           =>  "emacs org mode",
       "rtf"           =>  "rich text format",
       "markdown"      =>  "markdown",
@@ -168,8 +177,14 @@ class TestPandocRuby < Test::Unit::TestCase
       "slidy"         =>  "Slidy HTML slideshow",
       "rst"           =>  "reStructuredText",
       "context"       =>  "ConTeXt",
-      "odt"           =>  "odt",
       "asciidoc"      =>  "asciidoc"
+    }
+
+    assert_equal PandocRuby::BINARY_WRITERS, {
+      "odt"   => "OpenDocument",
+      "docx"  => "Word docx",
+      "epub"  => "EPUB V2",
+      "epub3" => "EPUB V3"
     }
 
   end
