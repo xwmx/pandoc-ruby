@@ -65,6 +65,9 @@ class PandocRuby
   def self.convert(*args)
     new(*args).convert
   end
+  
+  attr_accessor :options
+  def options; @options || [] end
 
   def initialize(*args)
     target = args.shift
@@ -74,14 +77,14 @@ class PandocRuby
       target rescue target
     end
     @executable = EXECUTABLES.include?(args[0]) ? args.shift : 'pandoc'
-    @options = args
+    self.options = args
   end
 
-  def convert_binary(executable, *args)
+  def convert_binary(executable)
     tmp_file = Tempfile.new('pandoc-conversion')
     begin
-      args += [{:output => tmp_file.path}]
-      execute executable + convert_options(args)
+      self.options += [{:output => tmp_file.path}]
+      execute executable + stringify_options(self.options)
       return IO.binread(tmp_file)
     ensure
       tmp_file.unlink
@@ -89,11 +92,12 @@ class PandocRuby
   end
 
   def convert(*args)
+    self.options += args if args
     executable = @@bin_path ? File.join(@@bin_path, @executable) : @executable
     if will_output_binary?(args)
-      convert_binary(executable, *args)
+      convert_binary(executable)
     else
-      execute executable + convert_options(args)
+      execute executable + stringify_options(self.options)
     end
   end
   alias_method :to_s, :convert
@@ -126,20 +130,33 @@ private
     output
   end
 
-  def convert_options(opts = [])
-    (@options + opts).flatten.inject('') do |string, opt|
-      string + if opt.respond_to?(:each_pair)
-        convert_opts_with_args(opt)
-      else
-        opt.to_s.length == 1 ? " -#{opt}" : " --#{opt.to_s.gsub(/_/, '-')}"
-      end
+  def stringify_options(opts = [])
+    opts.inject('') do |string, (option, value)|
+      string += case
+                when value != nil
+                  create_option(option, value)
+                when option.respond_to?(:each_pair)
+                  stringify_options(option)
+                else
+                  create_option(option)
+                end
     end
   end
-  
-  def convert_opts_with_args(opt)
-    opt.inject('') do |string, (flag, val)|
-      flag = flag.to_s.gsub(/_/, '-')
-      string + (flag.length == 1 ? " -#{flag} #{val}" : " --#{flag}=#{val}")
+
+  def create_option(flag, argument = nil)
+    if !!argument
+      "#{option_flag(flag)} #{argument}"
+    else
+      option_flag(flag)
+    end
+  end
+
+  def option_flag(flag)
+    return if !flag
+    if flag.length == 1
+      " -#{flag}"
+    else
+      " --#{flag.to_s.gsub(/_/, '-')}"
     end
   end
 

@@ -43,7 +43,7 @@ class TestPandocRuby < Test::Unit::TestCase
   
   should "accept long options" do
     converter = PandocRuby.new(@file, :to => :rst)
-    converter.expects(:execute).with('pandoc --to=rst').returns(true)
+    converter.expects(:execute).with('pandoc --to rst').returns(true)
     assert converter.convert
   end
   
@@ -53,7 +53,7 @@ class TestPandocRuby < Test::Unit::TestCase
     }, 'no-wrap')
     converter \
       .expects(:execute) \
-      .with('pandoc -s -f markdown --to=rst --no-wrap') \
+      .with('pandoc -s -f markdown --to rst --no-wrap') \
       .returns(true)
     assert converter.convert
   end
@@ -62,7 +62,7 @@ class TestPandocRuby < Test::Unit::TestCase
     converter = PandocRuby.new(@file)
     converter \
       .expects(:execute) \
-      .with('pandoc -s -f markdown --to=rst --no-wrap') \
+      .with('pandoc -s -f markdown --to rst --no-wrap') \
       .returns(true)
     assert converter.convert(:s, {:f => :markdown, :to => :rst}, 'no-wrap')
   end
@@ -73,7 +73,7 @@ class TestPandocRuby < Test::Unit::TestCase
     }, :table_of_contents)
     converter \
       .expects(:execute) \
-      .with('pandoc --email-obfuscation=javascript --table-of-contents') \
+      .with('pandoc --email-obfuscation javascript --table-of-contents') \
       .returns(true)
     assert converter.convert
   end
@@ -93,7 +93,7 @@ class TestPandocRuby < Test::Unit::TestCase
   PandocRuby::READERS.each_key do |r|
     should "convert from #{r} with PandocRuby.#{r}" do
       converter = PandocRuby.send(r, @file)
-      converter.expects(:execute).with("pandoc --from=#{r}").returns(true)
+      converter.expects(:execute).with("pandoc --from #{r}").returns(true)
       assert converter.convert
     end
   end
@@ -103,7 +103,7 @@ class TestPandocRuby < Test::Unit::TestCase
       converter = PandocRuby.new(@file)
       converter \
         .expects(:execute) \
-        .with("pandoc --no-wrap --to=#{w}") \
+        .with("pandoc --no-wrap --to #{w}") \
         .returns(true)
       assert converter.send("to_#{w}", :no_wrap)
     end
@@ -114,7 +114,7 @@ class TestPandocRuby < Test::Unit::TestCase
       converter = PandocRuby.new(@file)
       converter \
         .expects(:execute) \
-        .with(regexp_matches(/^pandoc --no-wrap --to=#{w} --output=/)) \
+        .with(regexp_matches(/^pandoc --no-wrap --to #{w} --output /)) \
         .returns(true)
       assert converter.send("to_#{w}", :no_wrap)
     end
