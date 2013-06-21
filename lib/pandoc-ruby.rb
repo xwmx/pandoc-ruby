@@ -65,9 +65,18 @@ class PandocRuby
   def self.convert(*args)
     new(*args).convert
   end
-  
+
   attr_accessor :options
   def options; @options || [] end
+  
+  attr_accessor :option_string
+  def options_string; @option_string || '' end
+
+  attr_accessor :binary_output
+  def binary_output; @binary_output || false end
+  
+  attr_accessor :writer
+  def writer; @writer || 'html' end
 
   def initialize(*args)
     target = args.shift
@@ -76,28 +85,43 @@ class PandocRuby
     else
       target rescue target
     end
-    @executable = EXECUTABLES.include?(args[0]) ? args.shift : 'pandoc'
+    @executable = args.shift if EXECUTABLES.include?(args[0])
     self.options = args
   end
 
-  def convert_binary(executable)
-    tmp_file = Tempfile.new('pandoc-conversion')
+  def executable
+    @executable ||= 'pandoc'
+    @@bin_path ? File.join(@@bin_path, @executable) : @executable
+  end
+
+  def command_with_options
+    self.executable + self.option_string
+  end
+
+  def convert_binary
     begin
+      tmp_file = Tempfile.new('pandoc-conversion')
       self.options += [{:output => tmp_file.path}]
-      execute executable + stringify_options(self.options)
+      self.option_string =  "#{self.option_string} --output #{tmp_file.path}"
+      execute(self.command_with_options)
       return IO.binread(tmp_file)
     ensure
+      tmp_file.close
       tmp_file.unlink
     end
   end
 
+  def convert_string
+    execute(self.command_with_options)
+  end
+
   def convert(*args)
     self.options += args if args
-    executable = @@bin_path ? File.join(@@bin_path, @executable) : @executable
-    if will_output_binary?(args)
-      convert_binary(executable)
+    self.option_string = stringify_options(self.options)
+    if self.binary_output
+      self.convert_binary
     else
-      execute executable + stringify_options(self.options)
+      self.convert_string
     end
   end
   alias_method :to_s, :convert
@@ -144,6 +168,8 @@ private
   end
 
   def create_option(flag, argument = nil)
+    return if !flag
+    set_pandoc_ruby_options(flag, argument)
     if !!argument
       "#{option_flag(flag)} #{argument}"
     else
@@ -152,7 +178,6 @@ private
   end
 
   def option_flag(flag)
-    return if !flag
     if flag.length == 1
       " -#{flag}"
     else
@@ -160,17 +185,12 @@ private
     end
   end
 
-  def will_output_binary?(opts = [])
-    (@options+opts).flatten.each do |opt|
-      if opt.respond_to?(:each_pair)
-        opt.each_pair do |opt_key, opt_value|
-          if opt_key == :to && BINARY_WRITERS.keys.include?(opt_value.to_s)
-            return true
-          end 
-        end
-      end
+  def set_pandoc_ruby_options(flag, argument = nil)
+    case flag.to_sym
+    when :t, :to
+      self.writer = argument.to_s
+      self.binary_output = true if BINARY_WRITERS.keys.include?(self.writer)
     end
-    false
   end
 
 end
