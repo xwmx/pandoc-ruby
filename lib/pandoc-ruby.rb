@@ -119,7 +119,7 @@ class PandocRuby
 
   def convert(*args)
     self.options += args if args
-    self.option_string = stringify_options(self.options)
+    self.option_string = prepare_options(self.options)
     if self.binary_output
       self.convert_binary
     else
@@ -156,13 +156,13 @@ private
     output
   end
 
-  def stringify_options(opts = [])
+  def prepare_options(opts = [])
     opts.inject('') do |string, (option, value)|
       string += case
                 when value != nil
                   create_option(option, value)
                 when option.respond_to?(:each_pair)
-                  stringify_options(option)
+                  prepare_options(option)
                 else
                   create_option(option)
                 end
