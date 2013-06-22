@@ -67,7 +67,7 @@ If you'd prefer a pure-Ruby extended markdown interpreter that can output a few 
 
 This gem was inspired by [Albino](http://github.com/github/albino). For a slightly different approach to using Pandoc with Ruby, see [Pandoku](http://github.com/dahlia/pandoku).
 
-## Pandoc Hint
+## Pandoc Tip
 
 If you are trying to generate a standalone file with full file headers rather than just a marked up fragment, remember to pass the `:standalone` option so the correct header and footer are added.
 
