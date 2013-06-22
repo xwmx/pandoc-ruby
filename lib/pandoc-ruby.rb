@@ -22,7 +22,7 @@ class PandocRuby
     'latex'    => 'LaTeX',
   }
 
-  WRITERS = {
+  STRING_WRITERS = {
     'native'        => 'pandoc native',
     'json'          => 'pandoc JSON',
     'html'          => 'HTML',
@@ -53,6 +53,8 @@ class PandocRuby
     'epub'  => 'EPUB V2',
     'epub3' => 'EPUB V3'
   }
+
+  WRITERS = STRING_WRITERS.merge(BINARY_WRITERS)
   
   def self.bin_path=(path)
     @@bin_path = path
@@ -135,7 +137,7 @@ class PandocRuby
     end
   end
   
-  WRITERS.merge(BINARY_WRITERS).each_key do |w|
+  WRITERS.each_key do |w|
     define_method(:"to_#{w}") do |*args|
       args += [{:to => w.to_sym}]
       convert(*args)

@@ -98,7 +98,7 @@ class TestPandocRuby < Test::Unit::TestCase
     end
   end
   
-  PandocRuby::WRITERS.each_key do |w|
+  PandocRuby::STRING_WRITERS.each_key do |w|
     should "convert to #{w} with to_#{w}" do
       converter = PandocRuby.new(@file)
       converter \
@@ -155,7 +155,7 @@ class TestPandocRuby < Test::Unit::TestCase
       "rst"       =>  "reStructuredText"
     }
     
-    assert_equal PandocRuby::WRITERS, {
+    assert_equal PandocRuby::STRING_WRITERS, {
       "mediawiki"     =>  "MediaWiki markup",
       "html"          =>  "HTML",
       "plain"         =>  "plain",
@@ -187,5 +187,8 @@ class TestPandocRuby < Test::Unit::TestCase
       "epub3" => "EPUB V3"
     }
 
+    assert_equal PandocRuby::WRITERS, (
+      PandocRuby::STRING_WRITERS.merge(PandocRuby::BINARY_WRITERS)
+    )
   end
 end
