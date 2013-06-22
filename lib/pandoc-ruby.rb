@@ -183,8 +183,8 @@ private
   # and written to, then read back into the program as a string, then the
   # temp file is closed and unlinked.
   def convert_binary
+    tmp_file = Tempfile.new('pandoc-conversion')
     begin
-      tmp_file = Tempfile.new('pandoc-conversion')
       self.options += [{:output => tmp_file.path}]
       self.option_string =  "#{self.option_string} --output #{tmp_file.path}"
       execute(command_with_options)
