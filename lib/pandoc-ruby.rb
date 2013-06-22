@@ -221,7 +221,7 @@ private
   def prepare_options(opts = [])
     opts.inject('') do |string, (option, value)|
       string += case
-                when value != nil
+                when value
                   create_option(option, value)
                 when option.respond_to?(:each_pair)
                   prepare_options(option)
