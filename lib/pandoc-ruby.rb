@@ -238,15 +238,15 @@ private
     return if !flag
     set_pandoc_ruby_options(flag, argument)
     if !!argument
-      "#{option_flag(flag)} #{argument}"
+      "#{format_flag(flag)} #{argument}"
     else
-      option_flag(flag)
+      format_flag(flag)
     end
   end
 
   # Formats an option flag in order to be used with the pandoc command line
   # tool.
-  def option_flag(flag)
+  def format_flag(flag)
     if flag.length == 1
       " -#{flag}"
     else
