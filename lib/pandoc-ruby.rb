@@ -90,7 +90,7 @@ class PandocRuby
   def options; @options || [] end
   
   attr_accessor :option_string
-  def options_string; @option_string || '' end
+  def option_string; @option_string || '' end
 
   attr_accessor :binary_output
   def binary_output; @binary_output || false end
