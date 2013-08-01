@@ -91,4 +91,4 @@ If you are trying to generate a standalone file with full file headers rather th
 
 ## Copyright
 
-Copyright (c) 2009-2012 William Melody · Follow me [@alphabetum](http://twitter.com/alphabetum)
+Copyright (c) 2009-∞ William Melody · => [@alphabetum](http://twitter.com/alphabetum)
