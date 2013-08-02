@@ -160,6 +160,7 @@ class PandocRuby
   # converted string.
   #
   # Example:
+  # 
   #   PandocRuby.new("# text").to_html
   #   # => "<h1 id=\"text\">text</h1>\n"
   WRITERS.each_key do |w|
