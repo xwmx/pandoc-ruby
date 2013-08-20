@@ -237,6 +237,7 @@ private
   # command line options. If the option has an argument, it is also included.
   def create_option(flag, argument = nil)
     return if !flag
+    flag = flag.to_s
     set_pandoc_ruby_options(flag, argument)
     if !!argument
       "#{format_flag(flag)} #{argument}"
@@ -258,8 +259,7 @@ private
   # Takes an option and optional argument and uses them to set any flags
   # used by PandocRuby.
   def set_pandoc_ruby_options(flag, argument = nil)
-    case flag.to_sym
-    when :t, :to
+    if flag == 't' || flag == 'to'
       self.writer = argument.to_s
       self.binary_output = true if BINARY_WRITERS.keys.include?(self.writer)
     end
