@@ -208,12 +208,15 @@ private
 
   # Runs the command and returns the output.
   def execute(command)
-    output = ''
-    Open3::popen3(command) do |stdin, stdout, stderr| 
+    output = error = exit_status = nil
+    Open3::popen3(command) do |stdin, stdout, stderr, wait_thr|
       stdin.puts @target 
       stdin.close
       output = stdout.read 
+      error = stderr.read
+      exit_status = wait_thr.value
     end
+    raise error unless exit_status.success?
     output
   end
 
