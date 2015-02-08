@@ -25,7 +25,7 @@ class TestConversions < Test::Unit::TestCase
     h[:latex] =
       %Q|\\section{This is a Title}\n\nSome \\emph{emphasized text} and\n\\href{http://daringfireball.net/projects/markdown/}{a link}|
     h[:beamer] =
-      %Q|\\begin{frame}\\frametitle{This is a Title}\n\nSome \\emph{emphasized text} and\n\\href{http://daringfireball.net/projects/markdown/}{a link}\n\n\\end{frame}|
+      %Q|\\begin{frame}{This is a Title}\n\nSome \\emph{emphasized text} and\n\\href{http://daringfireball.net/projects/markdown/}{a link}\n\n\\end{frame}|
     h[:context] =
       %Q|\\section[this-is-a-title]{This is a Title}\n\nSome {\\em emphasized text} and\n\\useURL[url1][http://daringfireball.net/projects/markdown/][][a\nlink]\\from[url1]|
     h[:texinfo] =
