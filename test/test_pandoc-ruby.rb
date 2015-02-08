@@ -1,12 +1,12 @@
 require 'helper'
 
 class TestPandocRuby < Test::Unit::TestCase
-  
+
   def setup
     @file = File.join(File.dirname(__FILE__), 'files', 'test.md')
     @converter = PandocRuby.new(@file, :t => :rst)
   end
-  
+
   def teardown
     PandocRuby.bin_path = nil
     PandocRuby.allow_file_paths = false
@@ -17,7 +17,7 @@ class TestPandocRuby < Test::Unit::TestCase
     converter.expects(:execute).with('pandoc').returns(true)
     assert converter.convert
   end
-  
+
   should "convert with altered bin_path" do
     path = %x[which pandoc].strip
     PandocRuby.bin_path = path
@@ -25,7 +25,7 @@ class TestPandocRuby < Test::Unit::TestCase
     converter.expects(:execute).with("#{path}/pandoc").returns(true)
     assert converter.convert
   end
-  
+
   should "treat file paths as strings by default" do
     assert_equal "<p>#{@file}</p>\n", PandocRuby.new(@file).to_html
   end
@@ -40,13 +40,13 @@ class TestPandocRuby < Test::Unit::TestCase
     @converter.expects(:execute).with('pandoc -t rst').returns(true)
     assert @converter.convert
   end
-  
+
   should "accept long options" do
     converter = PandocRuby.new(@file, :to => :rst)
     converter.expects(:execute).with('pandoc --to rst').returns(true)
     assert converter.convert
   end
-  
+
   should "accept a variety of options in initializer" do
     converter = PandocRuby.new(@file, :s, {
       :f => :markdown, :to => :rst
@@ -57,7 +57,7 @@ class TestPandocRuby < Test::Unit::TestCase
       .returns(true)
     assert converter.convert
   end
-  
+
   should "accept a variety of options in convert" do
     converter = PandocRuby.new(@file)
     converter \
@@ -66,7 +66,7 @@ class TestPandocRuby < Test::Unit::TestCase
       .returns(true)
     assert converter.convert(:s, {:f => :markdown, :to => :rst}, 'no-wrap')
   end
-  
+
   should "convert underscore symbol ares to hyphenated long options" do
     converter = PandocRuby.new(@file, {
       :email_obfuscation => :javascript
@@ -83,13 +83,13 @@ class TestPandocRuby < Test::Unit::TestCase
     converter.expects(:execute).with('html2markdown').returns(true)
     assert converter.convert
   end
-  
+
   should "use non-executable second arg as option" do
     converter = PandocRuby.new(@file, 'toc')
     converter.expects(:execute).with('pandoc --toc').returns(true)
     assert converter.convert
   end
-  
+
   PandocRuby::READERS.each_key do |r|
     should "convert from #{r} with PandocRuby.#{r}" do
       converter = PandocRuby.send(r, @file)
@@ -97,7 +97,7 @@ class TestPandocRuby < Test::Unit::TestCase
       assert converter.convert
     end
   end
-  
+
   PandocRuby::STRING_WRITERS.each_key do |w|
     should "convert to #{w} with to_#{w}" do
       converter = PandocRuby.new(@file)
@@ -108,7 +108,7 @@ class TestPandocRuby < Test::Unit::TestCase
       assert converter.send("to_#{w}", :no_wrap)
     end
   end
-  
+
   PandocRuby::BINARY_WRITERS.each_key do |w|
     should "convert to #{w} with to_#{w}" do
       converter = PandocRuby.new(@file)
@@ -119,31 +119,31 @@ class TestPandocRuby < Test::Unit::TestCase
       assert converter.send("to_#{w}", :no_wrap)
     end
   end
-  
+
   should "work with strings" do
     converter = PandocRuby.new('## this is a title')
     assert_match %r(h2), converter.convert
   end
-  
+
   should "alias to_s" do
     assert_equal @converter.convert, @converter.to_s
   end
-  
+
   should "have convert class method" do
     assert_equal @converter.convert, PandocRuby.convert(@file, :t => :rst)
   end
-  
+
   should "run more than 400 times without error" do
     begin
       400.times do
         PandocRuby.convert(@file)
-      end 
+      end
       assert true
     rescue Errno::EMFILE, Errno::EAGAIN => e
       flunk e
     end
   end
-  
+
   should "have reader and writer constants" do
     assert_equal PandocRuby::READERS, {
       "html"      =>  "HTML",
@@ -154,7 +154,7 @@ class TestPandocRuby < Test::Unit::TestCase
       "json"      =>  "pandoc JSON",
       "rst"       =>  "reStructuredText"
     }
-    
+
     assert_equal PandocRuby::STRING_WRITERS, {
       "mediawiki"     =>  "MediaWiki markup",
       "html"          =>  "HTML",

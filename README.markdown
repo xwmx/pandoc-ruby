@@ -79,7 +79,7 @@ If you are trying to generate a standalone file with full file headers rather th
 * PDF conversion may require additional dependencies and has not been tested.
 
 ## Note on Patches/Pull Requests
- 
+
 * Fork the project.
 * Make your feature addition or bug fix.
 * Add tests for it. This is important so I don't break it in a
