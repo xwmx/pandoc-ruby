@@ -47,7 +47,7 @@ class TestConversions < Test::Unit::TestCase
     h[:org] =
       %Q|* This is a Title\n\nSome /emphasized text/ and\n[[http://daringfireball.net/projects/markdown/][a link]]|
     h[:asciidoc] =
-      %Q|This is a Title\n---------------\n\nSome _emphasized text_ and\nhttp://daringfireball.net/projects/markdown/[a link]|
+      %Q|[[this-is-a-title]]\nThis is a Title\n---------------\n\nSome _emphasized text_ and\nhttp://daringfireball.net/projects/markdown/[a link]|
     return h
   end
  

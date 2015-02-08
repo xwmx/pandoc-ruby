@@ -10,4 +10,7 @@ group :development, :test do
   gem "rdoc", "~> 3.12"
   gem "shoulda", ">= 0"
   gem "rake"
+
+  # Included by Jeff
+  gem "pry", "0.10.1"
 end
