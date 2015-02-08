@@ -22,10 +22,6 @@ class TestConversions < Test::Unit::TestCase
       %Q|<sect1 id=\"this-is-a-title\">\n  <title>This is a Title</title>\n  <para>\n    Some <emphasis>emphasized text</emphasis> and\n    <ulink url=\"http://daringfireball.net/projects/markdown/\">a\n    link</ulink>\n  </para>\n</sect1>|
     h[:opendocument] =
       %Q|<text:h text:style-name=\"Heading_20_1\" text:outline-level=\"1\">This is a\nTitle</text:h>\n<text:p text:style-name=\"First_20_paragraph\">Some\n<text:span text:style-name=\"T1\">emphasized</text:span><text:span text:style-name=\"T2\">\n</text:span><text:span text:style-name=\"T3\">text</text:span> and\n<text:a xlink:type=\"simple\" xlink:href=\"http://daringfireball.net/projects/markdown/\" office:name=\"\"><text:span text:style-name=\"Definition\">a\nlink</text:span></text:a></text:p>|
-    # As of [Pandoc 1.12][1], sections are always labeled. This adds the section
-    # label to the expected string, matching output of Pandoc 1.13.2.
-    #
-    # [1]: https://github.com/jgm/pandoc/commit/8d19e45b97d81276b046de2a5078cf5ce0122745
     h[:latex] =
       %Q|\\section{This is a Title}\\label{this-is-a-title}\n\nSome \\emph{emphasized text} and\n\\href{http://daringfireball.net/projects/markdown/}{a link}|
     h[:beamer] =
