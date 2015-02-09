@@ -37,7 +37,7 @@ class TestConversions < Test::Unit::TestCase
     h[:plain] =
       %Q|THIS IS A TITLE\n\n\nSome _emphasized text_ and a link|
     h[:rst] =
-      %Q|This is a Title\n===============\n\nSome *emphasized text* and `a\nlink <http://daringfireball.net/projects/markdown/>`_|
+      %Q|This is a Title\n===============\n\nSome *emphasized text* and `a\nlink <http://daringfireball.net/projects/markdown/>`__|
     h[:mediawiki] =
       %Q|= This is a Title =\n\nSome ''emphasized text'' and [http://daringfireball.net/projects/markdown/ a link]|
     h[:textile] =
