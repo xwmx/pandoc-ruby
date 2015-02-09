@@ -15,7 +15,7 @@ class TestConversions < Test::Unit::TestCase
     h[:s5] =
       %Q|<div id=\"this-is-a-title\" class=\"slide section level1\">\n<h1>This is a Title</h1>\n<p>Some <em>emphasized text</em> and <a href=\"http://daringfireball.net/projects/markdown/\">a link</a></p>\n</div>|
     h[:slidy] =
-      %Q|<div class=\"section slide level1\" id=\"this-is-a-title\">\n<h1 id=\"this-is-a-title\">This is a Title</h1>\n<p>Some <em>emphasized text</em> and <a href=\"http://daringfireball.net/projects/markdown/\">a link</a></p>\n</div>|
+      %Q|<div id=\"this-is-a-title\" class=\"slide section level1\">\n<h1>This is a Title</h1>\n<p>Some <em>emphasized text</em> and <a href=\"http://daringfireball.net/projects/markdown/\">a link</a></p>\n</div>|
     h[:dzslides] =
       %Q|<section id=\"this-is-a-title\" class=\"slide level1\">\n<h1>This is a Title</h1>\n<p>Some <em>emphasized text</em> and <a href=\"http://daringfireball.net/projects/markdown/\">a link</a></p>\n</section>|
     h[:docbook] =
