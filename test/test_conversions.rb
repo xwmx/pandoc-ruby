@@ -1,7 +1,7 @@
 require 'helper'
 
 class TestConversions < Test::Unit::TestCase
-  
+
   def self.formatted_strings
     h = Hash.new
     h[:native] =
@@ -50,18 +50,18 @@ class TestConversions < Test::Unit::TestCase
       %Q|[[this-is-a-title]]\nThis is a Title\n---------------\n\nSome _emphasized text_ and\nhttp://daringfireball.net/projects/markdown/[a link]|
     return h
   end
- 
+
   [:markdown, :html, :rst, :latex].each do |from|
     formatted_strings.each_key do |format|
       unless from == format
         should "convert #{from} to #{format}" do
           assert_equal(
-            PandocRuby.convert(TestConversions.formatted_strings[from], :from => from, :to => format).strip, 
+            PandocRuby.convert(TestConversions.formatted_strings[from], :from => from, :to => format).strip,
             TestConversions.formatted_strings[format]
           )
         end
       end
     end
   end
-  
+
 end

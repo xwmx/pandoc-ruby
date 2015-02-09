@@ -6,7 +6,7 @@ class PandocRuby
 
   @@bin_path = nil
   @@allow_file_paths = false
-  
+
   # The executable options. The `pandoc` executable is used by default.
   EXECUTABLES = %W[
     pandoc
@@ -14,7 +14,7 @@ class PandocRuby
     html2markdown
     hsmarkdown
   ]
-  
+
   # The available readers and their corresponding names. The keys are used to
   # generate methods and specify options to Pandoc.
   READERS = {
@@ -65,13 +65,13 @@ class PandocRuby
 
   # All of the available Writers.
   WRITERS = STRING_WRITERS.merge(BINARY_WRITERS)
-  
+
   # If the pandoc executables are not in the PATH, bin_path can be set to
   # the directory they are contained in.
   def self.bin_path=(path)
     @@bin_path = path
   end
-  
+
   # Pandoc can also be used with a file path as the first argument. For
   # security reasons, this is disabled by default, but it can be enabled by
   # setting this to `true`.
@@ -89,13 +89,13 @@ class PandocRuby
 
   attr_accessor :options
   def options; @options || [] end
-  
+
   attr_accessor :option_string
   def option_string; @option_string || '' end
 
   attr_accessor :binary_output
   def binary_output; @binary_output || false end
-  
+
   attr_accessor :writer
   def writer; @writer || 'html' end
 
@@ -137,13 +137,13 @@ class PandocRuby
     end
   end
   alias_method :to_s, :convert
-  
+
   # Generate class methods for each of the readers in PandocRuby::READERS.
   # When one of these methods is called, it simply calls the initializer
   # with the `from` option set to the reader key, and returns the object.
   #
   # Example:
-  # 
+  #
   #   PandocRuby.markdown("# text")
   #   # => #<PandocRuby:0x007 @target="# text", @options=[{:from=>"markdown"}]
   class << self
@@ -154,14 +154,14 @@ class PandocRuby
       end
     end
   end
-  
+
   # Generate instance methods for each of the writers in PandocRuby::WRITERS.
   # When one of these methods is called, it simply calls the `#convert` method
   # with the `to` option set to the writer key, thereby returning the
   # converted string.
   #
   # Example:
-  # 
+  #
   #   PandocRuby.new("# text").to_html
   #   # => "<h1 id=\"text\">text</h1>\n"
   WRITERS.each_key do |w|
@@ -170,7 +170,7 @@ class PandocRuby
       convert(*args)
     end
   end
-  
+
 private
 
   # Sets the executable, which by default is `pandoc`. The `@executable`
@@ -210,10 +210,10 @@ private
   # Runs the command and returns the output.
   def execute(command)
     output = ''
-    Open3::popen3(command) do |stdin, stdout, stderr| 
-      stdin.puts @target 
+    Open3::popen3(command) do |stdin, stdout, stderr|
+      stdin.puts @target
       stdin.close
-      output = stdout.read 
+      output = stdout.read
     end
     output
   end
