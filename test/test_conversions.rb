@@ -41,7 +41,7 @@ class TestConversions < Test::Unit::TestCase
     h[:mediawiki] =
       %Q|= This is a Title =\n\nSome ''emphasized text'' and [http://daringfireball.net/projects/markdown/ a link]|
     h[:textile] =
-      %Q|h1. This is a Title\n\nSome _emphasized text_ and \"a link\":http://daringfireball.net/projects/markdown/|
+      %Q|h1(#this-is-a-title). This is a Title\n\nSome _emphasized text_ and \"a link\":http://daringfireball.net/projects/markdown/|
     h[:rtf] =
       %Q|{\\pard \\ql \\f0 \\sa180 \\li0 \\fi0 \\b \\fs36 This is a Title\\par}\n{\\pard \\ql \\f0 \\sa180 \\li0 \\fi0 Some {\\i emphasized text} and {\\field{\\*\\fldinst{HYPERLINK \"http://daringfireball.net/projects/markdown/\"}}{\\fldrslt{\\ul\na link\n}}}\n\\par}|
     h[:org] =
