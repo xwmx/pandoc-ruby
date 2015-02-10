@@ -89,6 +89,12 @@ class TestPandocRuby < Test::Unit::TestCase
     assert converter.convert
   end
 
+  should "raise RuntimeError from pandoc executable error" do
+    assert_raise RuntimeError do
+      PandocRuby.new("# hello", "badopt").to_html5
+    end
+  end
+
   PandocRuby::READERS.each_key do |r|
     should "convert from #{r} with PandocRuby.#{r}" do
       converter = PandocRuby.send(r, @file)
