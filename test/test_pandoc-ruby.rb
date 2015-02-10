@@ -8,7 +8,7 @@ class TestPandocRuby < Test::Unit::TestCase
   end
 
   def teardown
-    PandocRuby.bin_path = nil
+    PandocRuby.pandoc_path = 'pandoc'
     PandocRuby.allow_file_paths = false
   end
 
@@ -18,11 +18,11 @@ class TestPandocRuby < Test::Unit::TestCase
     assert converter.convert
   end
 
-  should "convert with altered bin_path" do
-    path = %x[which pandoc].strip
-    PandocRuby.bin_path = path
+  should "convert with altered pandoc_path" do
+    path = '/usr/bin/env pandoc'
+    PandocRuby.pandoc_path = path
     converter = PandocRuby.new(@file)
-    converter.expects(:execute).with("#{path}/pandoc").returns(true)
+    converter.expects(:execute).with("#{path}").returns(true)
     assert converter.convert
   end
 
@@ -77,13 +77,7 @@ class TestPandocRuby < Test::Unit::TestCase
     assert converter.convert
   end
 
-  should "accept optional executable" do
-    converter = PandocRuby.new(@file, 'html2markdown')
-    converter.expects(:execute).with('html2markdown').returns(true)
-    assert converter.convert
-  end
-
-  should "use non-executable second arg as option" do
+  should "use second arg as option" do
     converter = PandocRuby.new(@file, 'toc')
     converter.expects(:execute).with('pandoc --toc').returns(true)
     assert converter.convert

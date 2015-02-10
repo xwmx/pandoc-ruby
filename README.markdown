@@ -24,12 +24,6 @@ You can also use the `#convert` class method:
 
     puts PandocRuby.convert('# Markdown Title', :from => :markdown, :to => :html)
 
-When no options are passed, pandoc's default behavior converts markdown to html. To specify options, simply pass options as a hash to the initializer. Pandoc's wrapper executables can also be used by passing the executable name as the second argument. For example,
-
-    PandocRuby.new('<p>Some <em>HTML</em></p>', 'html2markdown')
-
-will use Pandoc's `html2markdown` wrapper.
-
 Other arguments are simply converted into command line options, accepting symbols or strings for options without arguments and hashes of strings or symbols for options with arguments.
 
     PandocRuby.convert('# Markdown Title', :s, {:f => :markdown, :to => :rst}, 'no-wrap', :table_of_contents)
@@ -51,8 +45,9 @@ Similarly, there are class methods for each of the readers, so readers and write
     PandocRuby.html("<h1>hello</h1>").to_latex
     => "\\section{hello}"
 
-PandocRuby assumes the pandoc executables are in the path.  If not, set their location
-with `PandocRuby.bin_path = '/path/to/bin'`
+PandocRuby assumes the `pandoc` executable is in the path.  If you'd like to set
+a custom executable path, you can do so
+with `PandocRuby.pandoc_path = '/path/to/pandoc'`
 
 Pandoc can also be set to take a file path as the first argument. For security reasons, this is disabled by default, but it can be enabled and used as follows
 
