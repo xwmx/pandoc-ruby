@@ -1,5 +1,6 @@
 require 'open3'
 require 'tempfile'
+require 'pry'
 
 class PandocRuby
 
