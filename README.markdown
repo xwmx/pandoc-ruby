@@ -75,6 +75,7 @@ If you are trying to generate a standalone file with full file headers rather th
 
 ## Caveats
 
+* Ruby 1.9.3 or higher is required.
 * This has only been tested on \*nix systems.
 * PDF conversion may require additional dependencies and has not been tested.
 
