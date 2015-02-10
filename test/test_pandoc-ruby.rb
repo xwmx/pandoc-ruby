@@ -11,7 +11,7 @@ class TestPandocRuby < Test::Unit::TestCase
     PandocRuby.bin_path = nil
     PandocRuby.allow_file_paths = false
   end
-  
+
   should "call bare pandoc when passed no options" do
     converter = PandocRuby.new(@file)
     converter.expects(:execute).with('pandoc').returns(true)
@@ -34,7 +34,6 @@ class TestPandocRuby < Test::Unit::TestCase
     PandocRuby.allow_file_paths = true
     assert PandocRuby.new(@file).to_html.match(%r{This is a Title})
   end
-
 
   should "accept short options" do
     @converter.expects(:execute).with('pandoc -t rst').returns(true)
