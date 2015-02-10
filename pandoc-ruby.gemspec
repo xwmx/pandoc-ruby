@@ -43,14 +43,12 @@ Gem::Specification.new do |s|
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
       s.add_development_dependency('mocha', '~> 1.1', '>= 1.1.0')
-      s.add_development_dependency('pry', '~> 0.10.1', '>= 0.10.1')
       s.add_development_dependency('rake', '~> 10.4', '>= 10.4.2')
       s.add_development_dependency('rdoc', '~> 4.2', '>= 4.2.0')
       s.add_development_dependency('shoulda', '~> 3.5', '>= 3.5.0')
       s.add_development_dependency('test-unit', '~> 3.0', '>= 3.0.9')
     else
       s.add_dependency(%q<mocha>, ["~> 1.1.0"])
-      s.add_dependency(%q<pry>, ["~> 0.10.1"])
       s.add_dependency(%q<rake>, ["~> 10.4.2"])
       s.add_dependency(%q<rdoc>, ["~> 4.2.0"])
       s.add_dependency(%q<shoulda>, ["~> 3.5.0"])
@@ -58,7 +56,6 @@ Gem::Specification.new do |s|
     end
   else
     s.add_dependency(%q<mocha>, ["~> 1.1.0"])
-    s.add_dependency(%q<pry>, ["~> 0.10.1"])
     s.add_dependency(%q<rake>, ["~> 10.4.2"])
     s.add_dependency(%q<rdoc>, ["~> 4.2.0"])
     s.add_dependency(%q<shoulda>, ["~> 3.5.0"])

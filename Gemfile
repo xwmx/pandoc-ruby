@@ -7,7 +7,6 @@ source "http://rubygems.org"
 # Include everything needed to run rake, tests, features, etc.
 group :development, :test do
   gem "mocha",      "~> 1.1.0"
-  gem "pry",        "~> 0.10.1"
   gem "rake"
   gem "rdoc",       "~> 4.2.0"
   gem "shoulda",    "~> 3.5.0"
