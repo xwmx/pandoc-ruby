@@ -109,11 +109,11 @@ class PandocRuby
     @target = if @@allow_file_paths && target.is_a?(String) && File.exists?(target)
       File.read(target)
     elsif @@allow_file_paths && target.is_a?(Array)
-      target_string = ""
+      target_strings = []
       target.each do | file_path |
-        target_string << File.read(file_path)
+        target_strings << File.read(file_path)
       end
-      target_string
+      target_strings.join("\n\n")
     else
       target rescue target
     end

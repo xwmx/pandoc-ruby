@@ -38,8 +38,12 @@ class TestPandocRuby < Test::Unit::TestCase
 
   should "concatenate multiple files if provided an array" do
     PandocRuby.allow_file_paths = true
-    assert_match /This is a Title/, PandocRuby.new(@file_array).to_html
+    html_output = PandocRuby.new(@file_array).to_html
+
+    assert_match "This is a Title", html_output
+    assert_match "link</a></p>\n<h1", html_output
   end
+
   
 
   should "accept short options" do
