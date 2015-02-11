@@ -4,6 +4,7 @@ class TestPandocRuby < Test::Unit::TestCase
 
   def setup
     @file = File.join(File.dirname(__FILE__), 'files', 'test.md')
+    @file_array = [@file, @file]
     @converter = PandocRuby.new(@file, :t => :rst)
   end
 
@@ -35,6 +36,11 @@ class TestPandocRuby < Test::Unit::TestCase
     assert PandocRuby.new(@file).to_html.match(%r{This is a Title})
   end
 
+  should "concatenate multiple files if provided an array" do
+    PandocRuby.allow_file_paths = true
+    assert_match /This is a Title/, PandocRuby.new(@file_array).to_html
+  end
+  
 
   should "accept short options" do
     @converter.expects(:execute).with('pandoc -t rst').returns(true)

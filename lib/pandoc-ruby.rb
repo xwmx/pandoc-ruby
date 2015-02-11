@@ -1,6 +1,5 @@
 require 'open3'
 require 'tempfile'
-require 'pry'
 
 class PandocRuby
 
@@ -99,16 +98,22 @@ class PandocRuby
   attr_accessor :writer
   def writer; @writer || 'html' end
 
-  # Create a new PandocRuby converter object. The first argument should be
-  # the string that will be converted or, if `.allow_file_paths` has been set
-  # to `true`, this can also be a path to a file. The executable name can
-  # be used as the second argument, but will default to `pandoc` if the second
-  # argument is omitted or anything other than an executable name. Any other
-  # arguments will be converted to pandoc options.
+  # Create a new PandocRuby converter object. The first argument should be the
+  # string that will be converted or, if `.allow_file_paths` has been set to
+  # `true`, this can also be a path to a file (or an array of file paths). The
+  # executable name can be used as the second argument, but will default to
+  # `pandoc` if the second argument is omitted or anything other than an
+  # executable name. Any other arguments will be converted to pandoc options.
   def initialize(*args)
     target = args.shift
-    @target = if @@allow_file_paths && File.exists?(target)
+    @target = if @@allow_file_paths && target.is_a?(String) && File.exists?(target)
       File.read(target)
+    elsif @@allow_file_paths && target.is_a?(Array)
+      target_string = ""
+      target.each do | file_path |
+        target_string << File.read(file_path)
+      end
+      target_string
     else
       target rescue target
     end
