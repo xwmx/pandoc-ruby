@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "pandoc-ruby"
-  s.version = "0.7.5"
+  s.version = "1.0.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["William Melody"]
-  s.date = "2013-08-20"
+  s.date = "2015-02-09"
   s.description = "Ruby wrapper for Pandoc"
   s.email = "hi@williammelody.com"
   s.extra_rdoc_files = [
@@ -35,6 +35,7 @@ Gem::Specification.new do |s|
   s.homepage = "http://github.com/alphabetum/pandoc-ruby"
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
+  s.required_ruby_version = '>= 1.9.3'
   s.rubygems_version = "1.8.25"
   s.summary = "PandocRuby"
 
@@ -42,17 +43,23 @@ Gem::Specification.new do |s|
     s.specification_version = 3
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
-      s.add_development_dependency(%q<mocha>, ["~> 0.13.3"])
-      s.add_development_dependency(%q<rdoc>, ["~> 3.12"])
-      s.add_development_dependency(%q<shoulda>, [">= 0"])
+      s.add_development_dependency('mocha', '~> 1.1', '>= 1.1.0')
+      s.add_development_dependency('rake', '~> 10.4', '>= 10.4.2')
+      s.add_development_dependency('rdoc', '~> 4.2', '>= 4.2.0')
+      s.add_development_dependency('shoulda', '~> 3.5', '>= 3.5.0')
+      s.add_development_dependency('test-unit', '~> 3.0', '>= 3.0.9')
     else
-      s.add_dependency(%q<mocha>, ["~> 0.13.3"])
-      s.add_dependency(%q<rdoc>, ["~> 3.12"])
-      s.add_dependency(%q<shoulda>, [">= 0"])
+      s.add_dependency(%q<mocha>, ["~> 1.1.0"])
+      s.add_dependency(%q<rake>, ["~> 10.4.2"])
+      s.add_dependency(%q<rdoc>, ["~> 4.2.0"])
+      s.add_dependency(%q<shoulda>, ["~> 3.5.0"])
+      s.add_dependency(%q<test-unit>, ["~> 3.0.9"])
     end
   else
-    s.add_dependency(%q<mocha>, ["~> 0.13.3"])
-    s.add_dependency(%q<rdoc>, ["~> 3.12"])
-    s.add_dependency(%q<shoulda>, [">= 0"])
+    s.add_dependency(%q<mocha>, ["~> 1.1.0"])
+    s.add_dependency(%q<rake>, ["~> 10.4.2"])
+    s.add_dependency(%q<rdoc>, ["~> 4.2.0"])
+    s.add_dependency(%q<shoulda>, ["~> 3.5.0"])
+    s.add_dependency(%q<test-unit>, ["~> 3.0.9"])
   end
 end
