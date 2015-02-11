@@ -3,16 +3,8 @@ require 'tempfile'
 
 class PandocRuby
 
-  @@bin_path = nil
+  @@pandoc_path = 'pandoc'
   @@allow_file_paths = false
-
-  # The executable options. The `pandoc` executable is used by default.
-  EXECUTABLES = %W[
-    pandoc
-    markdown2pdf
-    html2markdown
-    hsmarkdown
-  ]
 
   # The available readers and their corresponding names. The keys are used to
   # generate methods and specify options to Pandoc.
@@ -65,10 +57,10 @@ class PandocRuby
   # All of the available Writers.
   WRITERS = STRING_WRITERS.merge(BINARY_WRITERS)
 
-  # If the pandoc executables are not in the PATH, bin_path can be set to
-  # the directory they are contained in.
-  def self.bin_path=(path)
-    @@bin_path = path
+  # To use run the pandoc command with a custom executable path, the path
+  # to the pandoc executable can be set here.
+  def self.pandoc_path=(path)
+    @@pandoc_path = path
   end
 
   # Pandoc can also be used with a file path as the first argument. For
@@ -117,7 +109,6 @@ class PandocRuby
     else
       target rescue target
     end
-    @executable = args.shift if EXECUTABLES.include?(args[0])
     self.options = args
   end
 
@@ -178,14 +169,6 @@ class PandocRuby
 
 private
 
-  # Sets the executable, which by default is `pandoc`. The `@executable`
-  # variable can be set in the initializer, so testing for its presence first.
-  # Finally, checking to see if the bin_path was set and, if so, using that.
-  def executable
-    @executable ||= 'pandoc'
-    @@bin_path ? File.join(@@bin_path, @executable) : @executable
-  end
-
   # Executes the pandoc command for binary writers. A temp file is created
   # and written to, then read back into the program as a string, then the
   # temp file is closed and unlinked.
@@ -209,17 +192,20 @@ private
 
   # Combines the executable string with the option string.
   def command_with_options
-    executable + self.option_string
+    @@pandoc_path + self.option_string
   end
 
   # Runs the command and returns the output.
   def execute(command)
-    output = ''
-    Open3::popen3(command) do |stdin, stdout, stderr|
+    output = error = exit_status = nil
+    Open3::popen3(command) do |stdin, stdout, stderr, wait_thr|
       stdin.puts @target
       stdin.close
       output = stdout.read
+      error = stderr.read
+      exit_status = wait_thr.value
     end
+    raise error unless exit_status.success?
     output
   end
 
