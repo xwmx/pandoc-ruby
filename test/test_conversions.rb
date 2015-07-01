@@ -29,7 +29,7 @@ class TestConversions < Test::Unit::TestCase
     h[:context] =
       %Q|\\section[this-is-a-title]{This is a Title}\n\nSome {\\em emphasized text} and\n\\useURL[url1][http://daringfireball.net/projects/markdown/][][a\nlink]\\from[url1]|
     h[:texinfo] =
-      %Q|@node Top\n@top Top\n\n@menu\n* This is a Title::\n@end menu\n\n@node This is a Title\n@chapter This is a Title\n@anchor{#this-is-a-title}\nSome @emph{emphasized text} and @uref{http://daringfireball.net/projects/markdown/,a link}|
+      %Q|@node Top\n@top Top\n\n@menu\n* This is a Title::\n@end menu\n\n@node This is a Title\n@chapter This is a Title\n@anchor{#this-is-a-title}\nSome @emph{emphasized text} and\n@uref{http://daringfireball.net/projects/markdown/,a link}|
     h[:man] =
       %Q|.SH This is a Title\n.PP\nSome \\f[I]emphasized text\\f[] and a\nlink (http://daringfireball.net/projects/markdown/)|
     h[:markdown] =
