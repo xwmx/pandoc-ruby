@@ -6,6 +6,7 @@ source "http://rubygems.org"
 # Add dependencies to develop your gem here.
 # Include everything needed to run rake, tests, features, etc.
 group :development, :test do
+  gem "docx",       "~> 0.2.07", :require => ["docx"]
   gem "mocha",      "~> 1.1.0"
   gem "rake"
   gem "rdoc",       "~> 4.2.0"
