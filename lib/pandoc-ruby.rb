@@ -192,14 +192,23 @@ private
   # Runs the command and returns the output.
   def execute(command)
     output = error = exit_status = nil
+    @timeout ||= 31557600 # A year should be enough?
     Open3::popen3(command) do |stdin, stdout, stderr, wait_thr|
-      stdin.puts @target
-      stdin.close
-      output = stdout.read
-      error = stderr.read
-      exit_status = wait_thr.value
+      begin
+        Timeout.timeout(@timeout) do
+          stdin.puts @target
+          stdin.close
+          output = stdout.read
+          error = stderr.read
+          exit_status = wait_thr.value
+        end
+      rescue Timeout::Error => ex
+        Process.kill 9, wait_thr.pid
+        error = "Pandoc timed out after #{@timeout} seconds." + (error ? "\n#{error}" : "")
+      end
     end
-    raise error unless exit_status.success?
+  
+    raise error unless exit_status && exit_status.success?
     output
   end
 
@@ -222,9 +231,10 @@ private
   # used by the library, and returns string with the option formatted as a
   # command line options. If the option has an argument, it is also included.
   def create_option(flag, argument = nil)
-    return if !flag
+    return "" if !flag
     flag = flag.to_s
     set_pandoc_ruby_options(flag, argument)
+    return "" if flag == 'timeout' # pandoc doesn't accept timeouts yet
     if !!argument
       "#{format_flag(flag)} #{argument}"
     else
@@ -245,9 +255,12 @@ private
   # Takes an option and optional argument and uses them to set any flags
   # used by PandocRuby.
   def set_pandoc_ruby_options(flag, argument = nil)
-    if flag == 't' || flag == 'to'
+    case flag
+    when 't', 'to'
       self.writer = argument.to_s
       self.binary_output = true if BINARY_WRITERS.keys.include?(self.writer)
+    when 'timeout'
+      @timeout = argument
     end
   end
 
