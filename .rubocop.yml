@@ -1,0 +1,7 @@
+# .rubocop.yml
+#
+# Configuration for rubocop, a static code analyzer for Ruby.
+#
+# https://github.com/bbatsov/rubocop#configuration
+
+inherit_from: .rubocop_todo.yml
