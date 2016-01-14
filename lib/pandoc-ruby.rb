@@ -1,5 +1,6 @@
 require 'open3'
 require 'tempfile'
+require 'timeout'
 
 class PandocRuby
 
@@ -207,7 +208,7 @@ private
         error = "Pandoc timed out after #{@timeout} seconds." + (error ? "\n#{error}" : "")
       end
     end
-  
+
     raise error unless exit_status && exit_status.success?
     output
   end
