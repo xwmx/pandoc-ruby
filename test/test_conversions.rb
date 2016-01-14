@@ -4,10 +4,6 @@ class TestConversions < Test::Unit::TestCase
 
   def self.formatted_strings
     h = Hash.new
-    h[:native] =
-      %Q|[Header 1 (\"this-is-a-title\",[],[]) [Str \"This\",Space,Str \"is\",Space,Str \"a\",Space,Str \"Title\"]\n,Para [Str \"Some\",Space,Emph [Str \"emphasized\",Space,Str \"text\"],Space,Str \"and\",Space,Link [Str \"a\",Space,Str \"link\"] (\"http://daringfireball.net/projects/markdown/\",\"\")]]|
-    h[:json] =
-      %Q|[{"unMeta":{}},[{"t":"Header","c":[1,["this-is-a-title",[],[]],[{"t":"Str","c":"This"},{"t":"Space","c":[]},{"t":"Str","c":"is"},{"t":"Space","c":[]},{"t":"Str","c":"a"},{"t":"Space","c":[]},{"t":"Str","c":"Title"}]]},{"t":"Para","c":[{"t":"Str","c":"Some"},{"t":"Space","c":[]},{"t":"Emph","c":[{"t":"Str","c":"emphasized"},{"t":"Space","c":[]},{"t":"Str","c":"text"}]},{"t":"Space","c":[]},{"t":"Str","c":"and"},{"t":"Space","c":[]},{"t":"Link","c":[[{"t":"Str","c":"a"},{"t":"Space","c":[]},{"t":"Str","c":"link"}],["http://daringfireball.net/projects/markdown/",""]]}]}]]|
     h[:html] =
       %Q|<h1 id=\"this-is-a-title\">This is a Title</h1>\n<p>Some <em>emphasized text</em> and <a href=\"http://daringfireball.net/projects/markdown/\">a link</a></p>|
     h[:html5] =
