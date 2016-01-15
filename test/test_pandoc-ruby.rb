@@ -32,7 +32,7 @@ class TestPandocRuby < Test::Unit::TestCase
 
   should "treat file paths as file paths when enabled" do
     PandocRuby.allow_file_paths = true
-    assert PandocRuby.new(@file).to_html.match(%r{This is a Title})
+    assert PandocRuby.new(@file).to_html.match(/This is a Title/)
   end
 
   should "accept short options" do
@@ -121,7 +121,7 @@ class TestPandocRuby < Test::Unit::TestCase
 
   should "work with strings" do
     converter = PandocRuby.new('## this is a title')
-    assert_match %r(h2), converter.convert
+    assert_match(/h2/, converter.convert)
   end
 
   should "alias to_s" do

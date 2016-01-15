@@ -185,13 +185,6 @@ Style/RedundantSelf:
   Exclude:
     - 'lib/pandoc-ruby.rb'
 
-# Offense count: 2
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, SupportedStyles, AllowInnerSlashes.
-Style/RegexpLiteral:
-  Exclude:
-    - 'test/test_pandoc-ruby.rb'
-
 # Offense count: 1
 # Cop supports --auto-correct.
 Style/RescueModifier:
