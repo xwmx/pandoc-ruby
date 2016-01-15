@@ -233,7 +233,7 @@ private
   # used by the library, and returns string with the option formatted as a
   # command line options. If the option has an argument, it is also included.
   def create_option(flag, argument = nil)
-    return "" if !flag
+    return "" unless flag
     flag = flag.to_s
     set_pandoc_ruby_options(flag, argument)
     return "" if flag == 'timeout' # pandoc doesn't accept timeouts yet

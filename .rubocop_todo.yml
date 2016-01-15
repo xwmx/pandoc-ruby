@@ -158,12 +158,6 @@ Style/MultilineIfThen:
 
 # Offense count: 1
 # Cop supports --auto-correct.
-Style/NegatedIf:
-  Exclude:
-    - 'lib/pandoc-ruby.rb'
-
-# Offense count: 1
-# Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle, MinBodyLength, SupportedStyles.
 Style/Next:
   Exclude:
