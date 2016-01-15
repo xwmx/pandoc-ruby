@@ -46,7 +46,7 @@ puts "Running benchmarks ..."
 results =
   implementations.inject([]) do |r, impl|
     GC.start
-    r << [ impl, benchmark(impl, test_data, iterations) ]
+    r << [impl, benchmark(impl, test_data, iterations)]
   end
 
 puts "Results for #{iterations} iterations:"
