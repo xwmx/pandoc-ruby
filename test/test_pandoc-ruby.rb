@@ -63,7 +63,7 @@ class TestPandocRuby < Test::Unit::TestCase
       .expects(:execute) \
       .with('pandoc -s -f markdown --to rst --no-wrap') \
       .returns(true)
-    assert converter.convert(:s, {:f => :markdown, :to => :rst}, 'no-wrap')
+    assert converter.convert(:s, { :f => :markdown, :to => :rst }, 'no-wrap')
   end
 
   should 'convert underscore symbol ares to hyphenated long options' do

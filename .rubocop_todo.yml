@@ -118,9 +118,3 @@ Style/RedundantSelf:
 Style/RescueModifier:
   Exclude:
     - 'lib/pandoc-ruby.rb'
-
-# Offense count: 8
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, EnforcedStyleForEmptyBraces, SupportedStyles.
-Style/SpaceInsideHashLiteralBraces:
-  Enabled: false
