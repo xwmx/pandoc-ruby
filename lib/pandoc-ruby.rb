@@ -107,7 +107,7 @@ class PandocRuby
   # arguments will be converted to pandoc options.
   def initialize(*args)
     target = args.shift
-    @target = if @@allow_file_paths && File.exists?(target)
+    @target = if @@allow_file_paths && File.exist?(target)
                 File.read(target)
               else
                 target rescue target
