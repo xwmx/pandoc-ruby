@@ -203,9 +203,3 @@ Style/SingleLineMethods:
 # Configuration parameters: EnforcedStyleForEmptyBraces, SupportedStyles.
 Style/SpaceInsideHashLiteralBraces:
   EnforcedStyle: no_space
-
-# Offense count: 10
-# Cop supports --auto-correct.
-Style/UnneededPercentQ:
-  Exclude:
-    - 'pandoc-ruby.gemspec'

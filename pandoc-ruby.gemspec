@@ -49,17 +49,17 @@ Gem::Specification.new do |s|
       s.add_development_dependency('shoulda', '~> 3.5', '>= 3.5.0')
       s.add_development_dependency('test-unit', '~> 3.0', '>= 3.0.9')
     else
-      s.add_dependency(%q<mocha>, ['~> 1.1.0'])
-      s.add_dependency(%q<rake>, ['~> 10.4.2'])
-      s.add_dependency(%q<rdoc>, ['~> 4.2.0'])
-      s.add_dependency(%q<shoulda>, ['~> 3.5.0'])
-      s.add_dependency(%q<test-unit>, ['~> 3.0.9'])
+      s.add_dependency('mocha', ['~> 1.1.0'])
+      s.add_dependency('rake', ['~> 10.4.2'])
+      s.add_dependency('rdoc', ['~> 4.2.0'])
+      s.add_dependency('shoulda', ['~> 3.5.0'])
+      s.add_dependency('test-unit', ['~> 3.0.9'])
     end
   else
-    s.add_dependency(%q<mocha>, ['~> 1.1.0'])
-    s.add_dependency(%q<rake>, ['~> 10.4.2'])
-    s.add_dependency(%q<rdoc>, ['~> 4.2.0'])
-    s.add_dependency(%q<shoulda>, ['~> 3.5.0'])
-    s.add_dependency(%q<test-unit>, ['~> 3.0.9'])
+    s.add_dependency('mocha', ['~> 1.1.0'])
+    s.add_dependency('rake', ['~> 10.4.2'])
+    s.add_dependency('rdoc', ['~> 4.2.0'])
+    s.add_dependency('shoulda', ['~> 3.5.0'])
+    s.add_dependency('test-unit', ['~> 3.0.9'])
   end
 end
