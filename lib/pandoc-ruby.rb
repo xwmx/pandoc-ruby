@@ -205,7 +205,8 @@ private
         end
       rescue Timeout::Error => ex
         Process.kill 9, wait_thr.pid
-        error = "Pandoc timed out after #{@timeout} seconds." + (error ? "\n#{error}" : "")
+        maybe_ex = "\n#{ex}" if ex
+        error = "Pandoc timed out after #{@timeout} seconds.#{maybe_ex}"
       end
     end
 
