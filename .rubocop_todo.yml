@@ -204,13 +204,6 @@ Style/SingleLineMethods:
 Style/SpaceInsideHashLiteralBraces:
   EnforcedStyle: no_space
 
-# Offense count: 1
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyleForMultiline, SupportedStyles.
-Style/TrailingComma:
-  Exclude:
-    - 'lib/pandoc-ruby.rb'
-
 # Offense count: 10
 # Cop supports --auto-correct.
 Style/UnneededPercentQ:
