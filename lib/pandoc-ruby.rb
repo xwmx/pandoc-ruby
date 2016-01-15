@@ -237,7 +237,7 @@ private
     flag = flag.to_s
     set_pandoc_ruby_options(flag, argument)
     return "" if flag == 'timeout' # pandoc doesn't accept timeouts yet
-    if !!argument
+    if !argument.nil?
       "#{format_flag(flag)} #{argument}"
     else
       format_flag(flag)
