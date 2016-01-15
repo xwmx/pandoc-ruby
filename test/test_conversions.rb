@@ -5,7 +5,6 @@ require 'helper'
 # names of the following structure: "format.#{format_name}"
 describe 'Conversions' do
   @extensions = []
-  @file_paths = []
   Dir.glob(File.join(File.dirname(__FILE__), 'files', 'format*')) do |f|
     @extensions << f.match(/format\.(\w+)\Z/)[1]
   end
