@@ -100,10 +100,10 @@ class PandocRuby
   def initialize(*args)
     target = args.shift
     @target = if @@allow_file_paths && File.exists?(target)
-      File.read(target)
-    else
-      target rescue target
-    end
+                File.read(target)
+              else
+                target rescue target
+              end
     self.options = args
   end
 
