@@ -204,12 +204,6 @@ Style/SingleLineMethods:
 Style/SpaceInsideHashLiteralBraces:
   EnforcedStyle: no_space
 
-# Offense count: 125
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, SupportedStyles.
-Style/StringLiterals:
-  Enabled: false
-
 # Offense count: 1
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyleForMultiline, SupportedStyles.

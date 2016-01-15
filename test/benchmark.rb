@@ -39,10 +39,10 @@ end
 
 test_data = File.read(test_file)
 
-puts "Spinning up ..."
+puts 'Spinning up ...'
 implementations.each { |impl| benchmark(impl, test_data, 1) }
 
-puts "Running benchmarks ..."
+puts 'Running benchmarks ...'
 results =
   implementations.inject([]) do |r, impl|
     GC.start

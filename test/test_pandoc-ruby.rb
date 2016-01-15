@@ -12,13 +12,13 @@ class TestPandocRuby < Test::Unit::TestCase
     PandocRuby.allow_file_paths = false
   end
 
-  should "call bare pandoc when passed no options" do
+  should 'call bare pandoc when passed no options' do
     converter = PandocRuby.new(@file)
     converter.expects(:execute).with('pandoc').returns(true)
     assert converter.convert
   end
 
-  should "convert with altered pandoc_path" do
+  should 'convert with altered pandoc_path' do
     path = '/usr/bin/env pandoc'
     PandocRuby.pandoc_path = path
     converter = PandocRuby.new(@file)
@@ -26,27 +26,27 @@ class TestPandocRuby < Test::Unit::TestCase
     assert converter.convert
   end
 
-  should "treat file paths as strings by default" do
+  should 'treat file paths as strings by default' do
     assert_equal "<p>#{@file}</p>\n", PandocRuby.new(@file).to_html
   end
 
-  should "treat file paths as file paths when enabled" do
+  should 'treat file paths as file paths when enabled' do
     PandocRuby.allow_file_paths = true
     assert PandocRuby.new(@file).to_html.match(/This is a Title/)
   end
 
-  should "accept short options" do
+  should 'accept short options' do
     @converter.expects(:execute).with('pandoc -t rst').returns(true)
     assert @converter.convert
   end
 
-  should "accept long options" do
+  should 'accept long options' do
     converter = PandocRuby.new(@file, :to => :rst)
     converter.expects(:execute).with('pandoc --to rst').returns(true)
     assert converter.convert
   end
 
-  should "accept a variety of options in initializer" do
+  should 'accept a variety of options in initializer' do
     converter = PandocRuby.new(@file, :s, {
       :f => :markdown, :to => :rst
     }, 'no-wrap')
@@ -57,7 +57,7 @@ class TestPandocRuby < Test::Unit::TestCase
     assert converter.convert
   end
 
-  should "accept a variety of options in convert" do
+  should 'accept a variety of options in convert' do
     converter = PandocRuby.new(@file)
     converter \
       .expects(:execute) \
@@ -66,7 +66,7 @@ class TestPandocRuby < Test::Unit::TestCase
     assert converter.convert(:s, {:f => :markdown, :to => :rst}, 'no-wrap')
   end
 
-  should "convert underscore symbol ares to hyphenated long options" do
+  should 'convert underscore symbol ares to hyphenated long options' do
     converter = PandocRuby.new(@file, {
       :email_obfuscation => :javascript
     }, :table_of_contents)
@@ -77,15 +77,15 @@ class TestPandocRuby < Test::Unit::TestCase
     assert converter.convert
   end
 
-  should "use second arg as option" do
+  should 'use second arg as option' do
     converter = PandocRuby.new(@file, 'toc')
     converter.expects(:execute).with('pandoc --toc').returns(true)
     assert converter.convert
   end
 
-  should "raise RuntimeError from pandoc executable error" do
+  should 'raise RuntimeError from pandoc executable error' do
     assert_raise RuntimeError do
-      PandocRuby.new("# hello", "badopt").to_html5
+      PandocRuby.new('# hello', 'badopt').to_html5
     end
   end
 
@@ -119,20 +119,20 @@ class TestPandocRuby < Test::Unit::TestCase
     end
   end
 
-  should "work with strings" do
+  should 'work with strings' do
     converter = PandocRuby.new('## this is a title')
     assert_match(/h2/, converter.convert)
   end
 
-  should "alias to_s" do
+  should 'alias to_s' do
     assert_equal @converter.convert, @converter.to_s
   end
 
-  should "have convert class method" do
+  should 'have convert class method' do
     assert_equal @converter.convert, PandocRuby.convert(@file, :t => :rst)
   end
 
-  should "run more than 400 times without error" do
+  should 'run more than 400 times without error' do
     begin
       400.times do
         PandocRuby.convert(@file)
@@ -143,47 +143,47 @@ class TestPandocRuby < Test::Unit::TestCase
     end
   end
 
-  should "have reader and writer constants" do
+  should 'have reader and writer constants' do
     assert_equal PandocRuby::READERS, {
-      "html"      =>  "HTML",
-      "latex"     =>  "LaTeX",
-      "textile"   =>  "textile",
-      "native"    =>  "pandoc native",
-      "markdown"  =>  "markdown",
-      "json"      =>  "pandoc JSON",
-      "rst"       =>  "reStructuredText"
+      'html'      =>  'HTML',
+      'latex'     =>  'LaTeX',
+      'textile'   =>  'textile',
+      'native'    =>  'pandoc native',
+      'markdown'  =>  'markdown',
+      'json'      =>  'pandoc JSON',
+      'rst'       =>  'reStructuredText'
     }
 
     assert_equal PandocRuby::STRING_WRITERS, {
-      "mediawiki"     =>  "MediaWiki markup",
-      "html"          =>  "HTML",
-      "plain"         =>  "plain",
-      "latex"         =>  "LaTeX",
-      "s5"            =>  "S5 HTML slideshow",
-      "textile"       =>  "textile",
-      "texinfo"       =>  "GNU Texinfo",
-      "docbook"       =>  "DocBook XML",
-      "html5"         =>  "HTML5",
-      "native"        =>  "pandoc native",
-      "org"           =>  "emacs org mode",
-      "rtf"           =>  "rich text format",
-      "markdown"      =>  "markdown",
-      "man"           =>  "groff man",
-      "dzslides"      =>  "Dzslides HTML slideshow",
-      "beamer"        =>  "Beamer PDF slideshow",
-      "json"          =>  "pandoc JSON",
-      "opendocument"  =>  "OpenDocument XML",
-      "slidy"         =>  "Slidy HTML slideshow",
-      "rst"           =>  "reStructuredText",
-      "context"       =>  "ConTeXt",
-      "asciidoc"      =>  "asciidoc"
+      'mediawiki'     =>  'MediaWiki markup',
+      'html'          =>  'HTML',
+      'plain'         =>  'plain',
+      'latex'         =>  'LaTeX',
+      's5'            =>  'S5 HTML slideshow',
+      'textile'       =>  'textile',
+      'texinfo'       =>  'GNU Texinfo',
+      'docbook'       =>  'DocBook XML',
+      'html5'         =>  'HTML5',
+      'native'        =>  'pandoc native',
+      'org'           =>  'emacs org mode',
+      'rtf'           =>  'rich text format',
+      'markdown'      =>  'markdown',
+      'man'           =>  'groff man',
+      'dzslides'      =>  'Dzslides HTML slideshow',
+      'beamer'        =>  'Beamer PDF slideshow',
+      'json'          =>  'pandoc JSON',
+      'opendocument'  =>  'OpenDocument XML',
+      'slidy'         =>  'Slidy HTML slideshow',
+      'rst'           =>  'reStructuredText',
+      'context'       =>  'ConTeXt',
+      'asciidoc'      =>  'asciidoc'
     }
 
     assert_equal PandocRuby::BINARY_WRITERS, {
-      "odt"   => "OpenDocument",
-      "docx"  => "Word docx",
-      "epub"  => "EPUB V2",
-      "epub3" => "EPUB V3"
+      'odt'   => 'OpenDocument',
+      'docx'  => 'Word docx',
+      'epub'  => 'EPUB V2',
+      'epub3' => 'EPUB V3'
     }
 
     assert_equal PandocRuby::WRITERS, (
