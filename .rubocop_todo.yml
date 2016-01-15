@@ -156,13 +156,6 @@ Style/MultilineIfThen:
   Exclude:
     - 'pandoc-ruby.gemspec'
 
-# Offense count: 1
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, MinBodyLength, SupportedStyles.
-Style/Next:
-  Exclude:
-    - 'test/test_conversions.rb'
-
 # Offense count: 29
 # Cop supports --auto-correct.
 # Configuration parameters: PreferredDelimiters.

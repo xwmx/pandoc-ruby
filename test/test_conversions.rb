@@ -49,13 +49,12 @@ class TestConversions < Test::Unit::TestCase
 
   [:markdown, :html, :rst, :latex].each do |from|
     formatted_strings.each_key do |format|
-      unless from == format
-        should "convert #{from} to #{format}" do
-          assert_equal(
-            PandocRuby.convert(TestConversions.formatted_strings[from], :from => from, :to => format).strip,
-            TestConversions.formatted_strings[format]
-          )
-        end
+      next if from == format
+      should "convert #{from} to #{format}" do
+        assert_equal(
+          PandocRuby.convert(TestConversions.formatted_strings[from], :from => from, :to => format).strip,
+          TestConversions.formatted_strings[format]
+        )
       end
     end
   end
