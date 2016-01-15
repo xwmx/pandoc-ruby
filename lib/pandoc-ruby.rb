@@ -210,7 +210,7 @@ private
       end
     end
 
-    raise error unless exit_status && exit_status.success?
+    fail error unless exit_status && exit_status.success?
     output
   end
 

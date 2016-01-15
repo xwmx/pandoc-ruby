@@ -191,13 +191,6 @@ Style/RescueModifier:
   Exclude:
     - 'lib/pandoc-ruby.rb'
 
-# Offense count: 1
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, SupportedStyles.
-Style/SignalException:
-  Exclude:
-    - 'lib/pandoc-ruby.rb'
-
 # Offense count: 4
 # Cop supports --auto-correct.
 # Configuration parameters: AllowIfMethodIsEmpty.
