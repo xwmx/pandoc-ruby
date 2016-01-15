@@ -52,5 +52,7 @@ results =
 puts "Results for #{iterations} iterations:"
 results.each do |impl, time|
   printf "  %10s %09.06fs total time, %09.06fs average\n",
-    "#{impl}:", time, time / iterations
+         "#{impl}:",
+         time,
+         time / iterations
 end

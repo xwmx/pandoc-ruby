@@ -49,13 +49,6 @@ Metrics/MethodLength:
 Style/AccessModifierIndentation:
   EnforcedStyle: outdent
 
-# Offense count: 1
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, SupportedStyles.
-Style/AlignParameters:
-  Exclude:
-    - 'test/benchmark.rb'
-
 # Offense count: 20
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle, SupportedStyles.
