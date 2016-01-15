@@ -71,8 +71,6 @@ Style/EmptyLinesAroundClassBody:
 Style/FileName:
   Exclude:
     - 'lib/pandoc-ruby.rb'
-    - 'test/test_pandoc-bomb.rb'
-    - 'test/test_pandoc-ruby.rb'
 
 # Offense count: 17
 # Cop supports --auto-correct.
