@@ -1,7 +1,6 @@
 require 'helper'
 
 describe PandocRuby do
-
   before do
     @file = File.join(File.dirname(__FILE__), 'files', 'test.md')
     @converter = PandocRuby.new(@file, :t => :rst)
