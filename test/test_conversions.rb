@@ -3,7 +3,7 @@ require 'helper'
 # Generate tests for converting to and from various formats. Use two nested
 # loops to iterate over each source and destination format, using files with
 # names of the following structure: "format.#{format_name}"
-class TestConversions < Test::Unit::TestCase
+describe 'Conversions' do
   @extensions = []
   @file_paths = []
   @file_paths = Dir.glob(
@@ -16,7 +16,7 @@ class TestConversions < Test::Unit::TestCase
   [:markdown, :html, :rst, :latex].each do |from|
     @extensions.each do |to|
       next if from == to
-      should "convert #{from} to #{to}" do
+      it "converts #{from} to #{to}" do
         @from_content = File.read(
           File.join(File.dirname(__FILE__), 'files', "format.#{from}")
         )

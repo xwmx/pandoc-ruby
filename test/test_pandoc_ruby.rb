@@ -1,24 +1,24 @@
 require 'helper'
 
-class TestPandocRuby < Test::Unit::TestCase
+describe PandocRuby do
 
-  def setup
+  before do
     @file = File.join(File.dirname(__FILE__), 'files', 'test.md')
     @converter = PandocRuby.new(@file, :t => :rst)
   end
 
-  def teardown
+  after do
     PandocRuby.pandoc_path = 'pandoc'
     PandocRuby.allow_file_paths = false
   end
 
-  should 'call bare pandoc when passed no options' do
+  it 'calls bare pandoc when passed no options' do
     converter = PandocRuby.new(@file)
     converter.expects(:execute).with('pandoc').returns(true)
     assert converter.convert
   end
 
-  should 'convert with altered pandoc_path' do
+  it 'converts with altered pandoc_path' do
     path = '/usr/bin/env pandoc'
     PandocRuby.pandoc_path = path
     converter = PandocRuby.new(@file)
@@ -26,27 +26,27 @@ class TestPandocRuby < Test::Unit::TestCase
     assert converter.convert
   end
 
-  should 'treat file paths as strings by default' do
+  it 'treats file paths as strings by default' do
     assert_equal "<p>#{@file}</p>\n", PandocRuby.new(@file).to_html
   end
 
-  should 'treat file paths as file paths when enabled' do
+  it 'treats file paths as file paths when enabled' do
     PandocRuby.allow_file_paths = true
     assert PandocRuby.new(@file).to_html.match(/This is a Title/)
   end
 
-  should 'accept short options' do
+  it 'accepts short options' do
     @converter.expects(:execute).with('pandoc -t rst').returns(true)
     assert @converter.convert
   end
 
-  should 'accept long options' do
+  it 'accepts long options' do
     converter = PandocRuby.new(@file, :to => :rst)
     converter.expects(:execute).with('pandoc --to rst').returns(true)
     assert converter.convert
   end
 
-  should 'accept a variety of options in initializer' do
+  it 'accepts a variety of options in initializer' do
     converter = PandocRuby.new(@file, :s, {
       :f => :markdown, :to => :rst
     }, 'no-wrap')
@@ -57,7 +57,7 @@ class TestPandocRuby < Test::Unit::TestCase
     assert converter.convert
   end
 
-  should 'accept a variety of options in convert' do
+  it 'accepts a variety of options in convert' do
     converter = PandocRuby.new(@file)
     converter \
       .expects(:execute) \
@@ -66,7 +66,7 @@ class TestPandocRuby < Test::Unit::TestCase
     assert converter.convert(:s, { :f => :markdown, :to => :rst }, 'no-wrap')
   end
 
-  should 'convert underscore symbol ares to hyphenated long options' do
+  it 'converts underscore symbol ares to hyphenated long options' do
     converter = PandocRuby.new(@file, {
       :email_obfuscation => :javascript
     }, :table_of_contents)
@@ -77,20 +77,20 @@ class TestPandocRuby < Test::Unit::TestCase
     assert converter.convert
   end
 
-  should 'use second arg as option' do
+  it 'uses second arg as option' do
     converter = PandocRuby.new(@file, 'toc')
     converter.expects(:execute).with('pandoc --toc').returns(true)
     assert converter.convert
   end
 
-  should 'raise RuntimeError from pandoc executable error' do
-    assert_raise RuntimeError do
+  it 'raises RuntimeError from pandoc executable error' do
+    assert_raises(RuntimeError) do
       PandocRuby.new('# hello', 'badopt').to_html5
     end
   end
 
   PandocRuby::READERS.each_key do |r|
-    should "convert from #{r} with PandocRuby.#{r}" do
+    it "converts from #{r} with PandocRuby.#{r}" do
       converter = PandocRuby.send(r, @file)
       converter.expects(:execute).with("pandoc --from #{r}").returns(true)
       assert converter.convert
@@ -98,7 +98,7 @@ class TestPandocRuby < Test::Unit::TestCase
   end
 
   PandocRuby::STRING_WRITERS.each_key do |w|
-    should "convert to #{w} with to_#{w}" do
+    it "converts to #{w} with to_#{w}" do
       converter = PandocRuby.new(@file)
       converter \
         .expects(:execute) \
@@ -109,7 +109,7 @@ class TestPandocRuby < Test::Unit::TestCase
   end
 
   PandocRuby::BINARY_WRITERS.each_key do |w|
-    should "convert to #{w} with to_#{w}" do
+    it "converts to #{w} with to_#{w}" do
       converter = PandocRuby.new(@file)
       converter \
         .expects(:execute) \
@@ -119,20 +119,20 @@ class TestPandocRuby < Test::Unit::TestCase
     end
   end
 
-  should 'work with strings' do
+  it 'works with strings' do
     converter = PandocRuby.new('## this is a title')
     assert_match(/h2/, converter.convert)
   end
 
-  should 'alias to_s' do
+  it 'aliases to_s' do
     assert_equal @converter.convert, @converter.to_s
   end
 
-  should 'have convert class method' do
+  it 'has convert class method' do
     assert_equal @converter.convert, PandocRuby.convert(@file, :t => :rst)
   end
 
-  should 'run more than 400 times without error' do
+  it 'runs more than 400 times without error' do
     begin
       400.times do
         PandocRuby.convert(@file)
@@ -143,18 +143,18 @@ class TestPandocRuby < Test::Unit::TestCase
     end
   end
 
-  should 'gracefully time out when pandoc hangs due to malformed input' do
+  it 'gracefully times out when pandoc hangs due to malformed input' do
     file = File.join(File.dirname(__FILE__), 'files', 'bomb.tex')
     contents = File.read(file)
 
-    assert_raise(RuntimeError) do
+    assert_raises(RuntimeError) do
       PandocRuby.convert(
         contents, :from => :latex, :to => :html, :timeout => 1
       )
     end
   end
 
-  should 'have reader and writer constants' do
+  it 'has reader and writer constants' do
     assert_equal PandocRuby::READERS,
                  'html'      =>  'HTML',
                  'latex'     =>  'LaTeX',
