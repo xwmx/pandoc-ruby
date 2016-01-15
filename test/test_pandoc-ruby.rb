@@ -143,6 +143,17 @@ class TestPandocRuby < Test::Unit::TestCase
     end
   end
 
+  should 'gracefully time out when pandoc hangs due to malformed input' do
+    file = File.join(File.dirname(__FILE__), 'files', 'bomb.tex')
+    contents = File.read(file)
+
+    assert_raise(RuntimeError) do
+      PandocRuby.convert(
+        contents, :from => :latex, :to => :html, :timeout => 1
+      )
+    end
+  end
+
   should 'have reader and writer constants' do
     assert_equal PandocRuby::READERS,
                  'html'      =>  'HTML',
