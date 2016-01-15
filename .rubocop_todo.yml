@@ -163,11 +163,6 @@ Style/Next:
   Exclude:
     - 'test/test_conversions.rb'
 
-# Offense count: 1
-# Cop supports --auto-correct.
-Style/NumericLiterals:
-  MinDigits: 9
-
 # Offense count: 29
 # Cop supports --auto-correct.
 # Configuration parameters: PreferredDelimiters.
