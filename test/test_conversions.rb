@@ -3,7 +3,7 @@ require 'helper'
 class TestConversions < Test::Unit::TestCase
 
   def self.formatted_strings
-    h = Hash.new
+    h = {}
     h[:html] =
       %Q|<h1 id=\"this-is-a-title\">This is a Title</h1>\n<p>Some <em>emphasized text</em> and <a href=\"http://daringfireball.net/projects/markdown/\">a link</a></p>|
     h[:html5] =

@@ -91,12 +91,6 @@ Style/EmptyLinesAroundClassBody:
     - 'test/test_conversions.rb'
     - 'test/test_pandoc-ruby.rb'
 
-# Offense count: 1
-# Cop supports --auto-correct.
-Style/EmptyLiteral:
-  Exclude:
-    - 'test/test_conversions.rb'
-
 # Offense count: 3
 # Configuration parameters: Exclude.
 Style/FileName:
