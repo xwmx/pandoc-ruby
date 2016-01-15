@@ -1,0 +1,12 @@
+@node Top
+@top Top
+
+@menu
+* This is a Title::
+@end menu
+
+@node This is a Title
+@chapter This is a Title
+@anchor{#this-is-a-title}
+Some @emph{emphasized text} and
+@uref{http://daringfireball.net/projects/markdown/,a link}

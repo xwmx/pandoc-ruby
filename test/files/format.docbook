@@ -1,0 +1,8 @@
+<sect1 id="this-is-a-title">
+  <title>This is a Title</title>
+  <para>
+    Some <emphasis>emphasized text</emphasis> and
+    <ulink url="http://daringfireball.net/projects/markdown/">a
+    link</ulink>
+  </para>
+</sect1>
