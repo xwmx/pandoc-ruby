@@ -6,31 +6,25 @@ require 'helper'
 describe 'Conversions' do
   @extensions = []
   @file_paths = []
-  @file_paths = Dir.glob(
-    File.join(File.dirname(__FILE__), 'files', 'format*')
-  )
-  @file_paths.each do |f|
+  Dir.glob(File.join(File.dirname(__FILE__), 'files', 'format*')) do |f|
     @extensions << f.match(/format\.(\w+)\Z/)[1]
   end
 
   [:markdown, :html, :rst, :latex].each do |from|
     @extensions.each do |to|
       next if from == to
+
       it "converts #{from} to #{to}" do
-        @from_content = File.read(
-          File.join(File.dirname(__FILE__), 'files', "format.#{from}")
+        files_dir     = File.join(File.dirname(__FILE__), 'files')
+        from_content  = File.read(File.join(files_dir, "format.#{from}"))
+        to_content    = File.read(File.join(files_dir, "format.#{to}"))
+
+        converted_content = PandocRuby.convert(
+          from_content,
+          :from => from,
+          :to   => to
         )
-        @to_content = File.read(
-          File.join(File.dirname(__FILE__), 'files', "format.#{to}")
-        )
-        assert_equal(
-          PandocRuby.convert(
-            @from_content,
-            :from => from,
-            :to => to
-          ).strip,
-          @to_content.strip
-        )
+        assert_equal(converted_content.strip, to_content.strip)
       end
     end
   end
