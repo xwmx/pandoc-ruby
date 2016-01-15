@@ -44,13 +44,6 @@ Style/BarePercentLiterals:
   Exclude:
     - 'test/test_conversions.rb'
 
-# Offense count: 3
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, SupportedStyles.
-Style/BracesAroundHashParameters:
-  Exclude:
-    - 'test/test_pandoc-ruby.rb'
-
 # Offense count: 1
 # Configuration parameters: EnforcedStyle, SupportedStyles.
 Style/ClassAndModuleChildren:

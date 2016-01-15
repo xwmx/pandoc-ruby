@@ -144,47 +144,44 @@ class TestPandocRuby < Test::Unit::TestCase
   end
 
   should 'have reader and writer constants' do
-    assert_equal PandocRuby::READERS, {
-      'html'      =>  'HTML',
-      'latex'     =>  'LaTeX',
-      'textile'   =>  'textile',
-      'native'    =>  'pandoc native',
-      'markdown'  =>  'markdown',
-      'json'      =>  'pandoc JSON',
-      'rst'       =>  'reStructuredText'
-    }
+    assert_equal PandocRuby::READERS,
+                 'html'      =>  'HTML',
+                 'latex'     =>  'LaTeX',
+                 'textile'   =>  'textile',
+                 'native'    =>  'pandoc native',
+                 'markdown'  =>  'markdown',
+                 'json'      =>  'pandoc JSON',
+                 'rst'       =>  'reStructuredText'
 
-    assert_equal PandocRuby::STRING_WRITERS, {
-      'mediawiki'     =>  'MediaWiki markup',
-      'html'          =>  'HTML',
-      'plain'         =>  'plain',
-      'latex'         =>  'LaTeX',
-      's5'            =>  'S5 HTML slideshow',
-      'textile'       =>  'textile',
-      'texinfo'       =>  'GNU Texinfo',
-      'docbook'       =>  'DocBook XML',
-      'html5'         =>  'HTML5',
-      'native'        =>  'pandoc native',
-      'org'           =>  'emacs org mode',
-      'rtf'           =>  'rich text format',
-      'markdown'      =>  'markdown',
-      'man'           =>  'groff man',
-      'dzslides'      =>  'Dzslides HTML slideshow',
-      'beamer'        =>  'Beamer PDF slideshow',
-      'json'          =>  'pandoc JSON',
-      'opendocument'  =>  'OpenDocument XML',
-      'slidy'         =>  'Slidy HTML slideshow',
-      'rst'           =>  'reStructuredText',
-      'context'       =>  'ConTeXt',
-      'asciidoc'      =>  'asciidoc'
-    }
+    assert_equal PandocRuby::STRING_WRITERS,
+                 'mediawiki'     =>  'MediaWiki markup',
+                 'html'          =>  'HTML',
+                 'plain'         =>  'plain',
+                 'latex'         =>  'LaTeX',
+                 's5'            =>  'S5 HTML slideshow',
+                 'textile'       =>  'textile',
+                 'texinfo'       =>  'GNU Texinfo',
+                 'docbook'       =>  'DocBook XML',
+                 'html5'         =>  'HTML5',
+                 'native'        =>  'pandoc native',
+                 'org'           =>  'emacs org mode',
+                 'rtf'           =>  'rich text format',
+                 'markdown'      =>  'markdown',
+                 'man'           =>  'groff man',
+                 'dzslides'      =>  'Dzslides HTML slideshow',
+                 'beamer'        =>  'Beamer PDF slideshow',
+                 'json'          =>  'pandoc JSON',
+                 'opendocument'  =>  'OpenDocument XML',
+                 'slidy'         =>  'Slidy HTML slideshow',
+                 'rst'           =>  'reStructuredText',
+                 'context'       =>  'ConTeXt',
+                 'asciidoc'      =>  'asciidoc'
 
-    assert_equal PandocRuby::BINARY_WRITERS, {
-      'odt'   => 'OpenDocument',
-      'docx'  => 'Word docx',
-      'epub'  => 'EPUB V2',
-      'epub3' => 'EPUB V3'
-    }
+    assert_equal PandocRuby::BINARY_WRITERS,
+                 'odt'   => 'OpenDocument',
+                 'docx'  => 'Word docx',
+                 'epub'  => 'EPUB V2',
+                 'epub3' => 'EPUB V3'
 
     assert_equal PandocRuby::WRITERS, (
       PandocRuby::STRING_WRITERS.merge(PandocRuby::BINARY_WRITERS)
