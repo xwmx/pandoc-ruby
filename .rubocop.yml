@@ -5,3 +5,30 @@
 # https://github.com/bbatsov/rubocop#configuration
 
 inherit_from: .rubocop_todo.yml
+
+# Style/AccessModifierIndentation
+#
+# Indent access modifiers like `protected` and `private`.
+Style/AccessModifierIndentation:
+  EnforcedStyle: indent
+
+# Style/IndentationConsistency
+#
+# Use Rails-style access modifier indentation.
+#
+# Example:
+# ```
+# class Foo
+#   def bar
+#     puts 'bar'
+#   end
+#
+#   private
+#
+#     def baz
+#       puts 'baz'
+#     end
+# end
+# ```
+Style/IndentationConsistency:
+  EnforcedStyle: rails
