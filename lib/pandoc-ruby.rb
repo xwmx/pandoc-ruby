@@ -80,16 +80,24 @@ class PandocRuby
   end
 
   attr_accessor :options
-  def options; @options || [] end
+  def options
+    @options || []
+  end
 
   attr_accessor :option_string
-  def option_string; @option_string || '' end
+  def option_string
+    @option_string || ''
+  end
 
   attr_accessor :binary_output
-  def binary_output; @binary_output || false end
+  def binary_output
+    @binary_output || false
+  end
 
   attr_accessor :writer
-  def writer; @writer || 'html' end
+  def writer
+    @writer || 'html'
+  end
 
   # Create a new PandocRuby converter object. The first argument should be
   # the string that will be converted or, if `.allow_file_paths` has been set
