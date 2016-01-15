@@ -123,13 +123,6 @@ Style/EmptyLiteral:
   Exclude:
     - 'test/test_conversions.rb'
 
-# Offense count: 1
-# Cop supports --auto-correct.
-# Configuration parameters: AllowForAlignment.
-Style/ExtraSpacing:
-  Exclude:
-    - 'lib/pandoc-ruby.rb'
-
 # Offense count: 3
 # Configuration parameters: Exclude.
 Style/FileName:

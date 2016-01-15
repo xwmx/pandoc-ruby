@@ -171,7 +171,7 @@ private
     tmp_file = Tempfile.new('pandoc-conversion')
     begin
       self.options += [{:output => tmp_file.path}]
-      self.option_string =  "#{self.option_string} --output #{tmp_file.path}"
+      self.option_string = "#{self.option_string} --output #{tmp_file.path}"
       execute(command_with_options)
       return IO.binread(tmp_file)
     ensure
