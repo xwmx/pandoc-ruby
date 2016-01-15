@@ -69,13 +69,6 @@ Style/MultilineIfThen:
   Exclude:
     - 'pandoc-ruby.gemspec'
 
-# Offense count: 1
-# Cop supports --auto-correct.
-# Configuration parameters: PreferredDelimiters.
-Style/PercentLiteralDelimiters:
-  Exclude:
-    - 'pandoc-ruby.gemspec'
-
 # Offense count: 4
 # Cop supports --auto-correct.
 Style/RedundantSelf:
