@@ -200,12 +200,6 @@ Style/SingleLineMethods:
 
 # Offense count: 2
 # Cop supports --auto-correct.
-Style/SpaceAfterComma:
-  Exclude:
-    - 'test/benchmark.rb'
-
-# Offense count: 2
-# Cop supports --auto-correct.
 Style/SpaceInsideBrackets:
   Exclude:
     - 'test/benchmark.rb'

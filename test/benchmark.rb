@@ -44,13 +44,13 @@ implementations.each { |impl| benchmark(impl, test_data, 1) }
 
 puts "Running benchmarks ..."
 results =
-  implementations.inject([]) do |r,impl|
+  implementations.inject([]) do |r, impl|
     GC.start
     r << [ impl, benchmark(impl, test_data, iterations) ]
   end
 
 puts "Results for #{iterations} iterations:"
-results.each do |impl,time|
+results.each do |impl, time|
   printf "  %10s %09.06fs total time, %09.06fs average\n",
     "#{impl}:", time, time / iterations
 end
