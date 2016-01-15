@@ -31,7 +31,7 @@ implementations.map! { |class_name| Object.const_get(class_name) }
 
 def benchmark(implementation, text, iterations)
   start = Time.now
-  iterations.times do |i|
+  iterations.times do |_i|
     implementation.new(text).to_html
   end
   Time.now - start
