@@ -250,7 +250,7 @@ private
     if flag.length == 1
       " -#{flag}"
     else
-      " --#{flag.to_s.gsub(/_/, '-')}"
+      " --#{flag.to_s.tr('_', '-')}"
     end
   end
 
