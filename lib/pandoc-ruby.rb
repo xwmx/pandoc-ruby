@@ -194,7 +194,7 @@ private
   def execute(command)
     output = error = exit_status = nil
     @timeout ||= 31_557_600 # A year should be enough?
-    Open3::popen3(command) do |stdin, stdout, stderr, wait_thr|
+    Open3.popen3(command) do |stdin, stdout, stderr, wait_thr|
       begin
         Timeout.timeout(@timeout) do
           stdin.puts @target

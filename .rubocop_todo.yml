@@ -75,12 +75,6 @@ Style/ClassVars:
     - 'lib/pandoc-ruby.rb'
 
 # Offense count: 1
-# Cop supports --auto-correct.
-Style/ColonMethodCall:
-  Exclude:
-    - 'lib/pandoc-ruby.rb'
-
-# Offense count: 1
 # Configuration parameters: Exclude.
 Style/Documentation:
   Exclude:
