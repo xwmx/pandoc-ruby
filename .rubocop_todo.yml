@@ -51,12 +51,6 @@ Style/EmptyLinesAroundClassBody:
   Exclude:
     - 'lib/pandoc-ruby.rb'
 
-# Offense count: 1
-# Configuration parameters: Exclude.
-Style/FileName:
-  Exclude:
-    - 'lib/pandoc-ruby.rb'
-
 # Offense count: 17
 # Cop supports --auto-correct.
 # Configuration parameters: SupportedStyles, UseHashRocketsWithSymbolValues.

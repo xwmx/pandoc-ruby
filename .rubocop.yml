@@ -12,6 +12,15 @@ inherit_from: .rubocop_todo.yml
 Style/AccessModifierIndentation:
   EnforcedStyle: indent
 
+# Style/FileName
+#
+# Long, long ago, this was named with a dash rather than an underscore. Now
+# it's unconventional, but let's consider it retro and leave it for now so we
+# don't have to rename the gem. TODO: Rename using an underscore.
+Style/FileName:
+  Exclude:
+    - 'lib/pandoc-ruby.rb'
+
 # Style/IndentationConsistency
 #
 # Use Rails-style access modifier indentation.
