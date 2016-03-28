@@ -193,8 +193,7 @@ describe PandocRuby do
                  'epub'  => 'EPUB V2',
                  'epub3' => 'EPUB V3'
 
-    assert_equal PandocRuby::WRITERS, (
-      PandocRuby::STRING_WRITERS.merge(PandocRuby::BINARY_WRITERS)
-    )
+    assert_equal PandocRuby::WRITERS,
+                 PandocRuby::STRING_WRITERS.merge(PandocRuby::BINARY_WRITERS)
   end
 end
