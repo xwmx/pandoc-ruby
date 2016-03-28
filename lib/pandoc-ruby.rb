@@ -218,7 +218,7 @@ class PandocRuby
         end
       end
 
-      fail error unless exit_status && exit_status.success?
+      raise error unless exit_status && exit_status.success?
       output
     end
 
