@@ -135,7 +135,7 @@ class PandocRuby
       convert_string
     end
   end
-  alias_method :to_s, :convert
+  alias to_s convert
 
   # Generate class methods for each of the readers in PandocRuby::READERS.
   # When one of these methods is called, it simply calls the initializer
