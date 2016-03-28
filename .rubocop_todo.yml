@@ -72,12 +72,6 @@ Style/MultilineIfThen:
   Exclude:
     - 'pandoc-ruby.gemspec'
 
-# Offense count: 3
-# Cop supports --auto-correct.
-Style/MutableConstant:
-  Exclude:
-    - 'lib/pandoc-ruby.rb'
-
 # Offense count: 1
 # Cop supports --auto-correct.
 Style/RedundantParentheses:

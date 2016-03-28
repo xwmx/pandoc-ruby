@@ -17,7 +17,7 @@ class PandocRuby
     'textile'  => 'textile',
     'html'     => 'HTML',
     'latex'    => 'LaTeX'
-  }
+  }.freeze
 
   # The available string writers and their corresponding names. The keys are
   # used to generate methods and specify options to Pandoc.
@@ -44,7 +44,7 @@ class PandocRuby
     'rtf'           => 'rich text format',
     'org'           => 'emacs org mode',
     'asciidoc'      => 'asciidoc'
-  }
+  }.freeze
 
   # The available binary writers and their corresponding names. The keys are
   # used to generate methods and specify options to Pandoc.
@@ -53,7 +53,7 @@ class PandocRuby
     'docx'  => 'Word docx',
     'epub'  => 'EPUB V2',
     'epub3' => 'EPUB V3'
-  }
+  }.freeze
 
   # All of the available Writers.
   WRITERS = STRING_WRITERS.merge(BINARY_WRITERS)
