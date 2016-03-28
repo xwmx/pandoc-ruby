@@ -21,7 +21,7 @@ describe PandocRuby do
     path = '/usr/bin/env pandoc'
     PandocRuby.pandoc_path = path
     converter = PandocRuby.new(@file)
-    converter.expects(:execute).with("#{path}").returns(true)
+    converter.expects(:execute).with(path).returns(true)
     assert converter.convert
   end
 

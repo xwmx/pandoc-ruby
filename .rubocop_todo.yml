@@ -95,9 +95,3 @@ Style/RedundantSelf:
 Style/RescueModifier:
   Exclude:
     - 'lib/pandoc-ruby.rb'
-
-# Offense count: 1
-# Cop supports --auto-correct.
-Style/UnneededInterpolation:
-  Exclude:
-    - 'test/test_pandoc_ruby.rb'
