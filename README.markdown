@@ -55,15 +55,13 @@ and writers can be specified like this:
     PandocRuby.html("<h1>hello</h1>").to_latex
     => "\\section{hello}"
 
-PandocRuby assumes the `pandoc` executable is in the path.  If you'd like to set
-a custom executable path, you can do so
-with `PandocRuby.pandoc_path = '/path/to/pandoc'`
+PandocRuby assumes the `pandoc` executable is via your environment's `$PATH`
+variable.  If you'd like to set an explicit path to the `pandoc` executable,
+you can do so with  `PandocRuby.pandoc_path = '/path/to/pandoc'`
 
-Pandoc can also be set to take a file path as the first argument. For security
-reasons, this is disabled by default, but it can be enabled and used as follows
+Pandoc can also be set to take an array of file paths as the first argument.
 
-    PandocRuby.allow_file_paths = true
-    PandocRuby.html('/some/file.html').to_markdown
+    PandocRuby.html(['/path/to/file1.html', '/path/to/file2.html']).to_markdown
 
 Available format readers and writers are available in the `PandocRuby::READERS`
 and `PandocRuby::WRITERS` constants.

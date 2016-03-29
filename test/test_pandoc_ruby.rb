@@ -3,16 +3,17 @@ require 'helper'
 describe PandocRuby do
   before do
     @file = File.join(File.dirname(__FILE__), 'files', 'test.md')
-    @converter = PandocRuby.new(@file, :t => :rst)
+    @file2 = File.join(File.dirname(__FILE__), 'files', 'test2.md')
+    @string = '# Test String'
+    @converter = PandocRuby.new(@string, :t => :rst)
   end
 
   after do
     PandocRuby.pandoc_path = 'pandoc'
-    PandocRuby.allow_file_paths = false
   end
 
   it 'calls bare pandoc when passed no options' do
-    converter = PandocRuby.new(@file)
+    converter = PandocRuby.new(@string)
     converter.expects(:execute).with('pandoc').returns(true)
     assert converter.convert
   end
@@ -20,28 +21,24 @@ describe PandocRuby do
   it 'converts with altered pandoc_path' do
     path = '/usr/bin/env pandoc'
     PandocRuby.pandoc_path = path
-    converter = PandocRuby.new(@file)
+    converter = PandocRuby.new(@string)
     converter.expects(:execute).with(path).returns(true)
     assert converter.convert
   end
 
-  it 'treats file paths as strings by default' do
-    assert_equal "<p>#{@file}</p>\n", PandocRuby.new(@file).to_html
+  it 'converts input passed as a string' do
+    assert_equal "<h1 id=\"test-string\">Test String</h1>\n",
+                 PandocRuby.new(@string).to_html
   end
 
-  it 'treats file paths as file paths when enabled' do
-    PandocRuby.allow_file_paths = true
-    assert PandocRuby.new(@file).to_html.match(/This is a Title/)
+  it 'converts single element array input as array of file paths' do
+    assert PandocRuby.new([@file]).to_html.match(/This is a Title/)
   end
 
-  it "concatenate multiple files if provided an array" do
-    PandocRuby.allow_file_paths = true
-    html_output = PandocRuby.new([@file, @file]).to_html
-
-    assert html_output.match(/This is a Title/)
-    assert html_output.match(%r{link\</a\>\</p\>\n\<h1})
+  it 'converts multiple element array input as array of file paths' do
+    assert PandocRuby.new([@file, @file2]).to_html.match(/This is a Title/)
+    assert PandocRuby.new([@file, @file2]).to_html.match(/A Second Title/)
   end
-
 
   it 'accepts short options' do
     @converter.expects(:execute).with('pandoc -t rst').returns(true)
@@ -49,13 +46,13 @@ describe PandocRuby do
   end
 
   it 'accepts long options' do
-    converter = PandocRuby.new(@file, :to => :rst)
+    converter = PandocRuby.new(@string, :to => :rst)
     converter.expects(:execute).with('pandoc --to rst').returns(true)
     assert converter.convert
   end
 
   it 'accepts a variety of options in initializer' do
-    converter = PandocRuby.new(@file, :s, {
+    converter = PandocRuby.new(@string, :s, {
       :f => :markdown, :to => :rst
     }, 'no-wrap')
     converter \
@@ -66,7 +63,7 @@ describe PandocRuby do
   end
 
   it 'accepts a variety of options in convert' do
-    converter = PandocRuby.new(@file)
+    converter = PandocRuby.new(@string)
     converter \
       .expects(:execute) \
       .with('pandoc -s -f markdown --to rst --no-wrap') \
@@ -75,7 +72,7 @@ describe PandocRuby do
   end
 
   it 'converts underscore symbol ares to hyphenated long options' do
-    converter = PandocRuby.new(@file, {
+    converter = PandocRuby.new(@string, {
       :email_obfuscation => :javascript
     }, :table_of_contents)
     converter \
@@ -86,7 +83,7 @@ describe PandocRuby do
   end
 
   it 'uses second arg as option' do
-    converter = PandocRuby.new(@file, 'toc')
+    converter = PandocRuby.new(@string, 'toc')
     converter.expects(:execute).with('pandoc --toc').returns(true)
     assert converter.convert
   end
@@ -99,7 +96,7 @@ describe PandocRuby do
 
   PandocRuby::READERS.each_key do |r|
     it "converts from #{r} with PandocRuby.#{r}" do
-      converter = PandocRuby.send(r, @file)
+      converter = PandocRuby.send(r, @string)
       converter.expects(:execute).with("pandoc --from #{r}").returns(true)
       assert converter.convert
     end
@@ -107,7 +104,7 @@ describe PandocRuby do
 
   PandocRuby::STRING_WRITERS.each_key do |w|
     it "converts to #{w} with to_#{w}" do
-      converter = PandocRuby.new(@file)
+      converter = PandocRuby.new(@string)
       converter \
         .expects(:execute) \
         .with("pandoc --no-wrap --to #{w}") \
@@ -118,7 +115,7 @@ describe PandocRuby do
 
   PandocRuby::BINARY_WRITERS.each_key do |w|
     it "converts to #{w} with to_#{w}" do
-      converter = PandocRuby.new(@file)
+      converter = PandocRuby.new(@string)
       converter \
         .expects(:execute) \
         .with(regexp_matches(/^pandoc --no-wrap --to #{w} --output /)) \
@@ -137,13 +134,13 @@ describe PandocRuby do
   end
 
   it 'has convert class method' do
-    assert_equal @converter.convert, PandocRuby.convert(@file, :t => :rst)
+    assert_equal @converter.convert, PandocRuby.convert(@string, :t => :rst)
   end
 
   it 'runs more than 400 times without error' do
     begin
       400.times do
-        PandocRuby.convert(@file)
+        PandocRuby.convert(@string)
       end
       assert true
     rescue Errno::EMFILE, Errno::EAGAIN => e

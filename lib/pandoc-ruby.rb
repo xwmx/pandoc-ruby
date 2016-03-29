@@ -5,7 +5,6 @@ require 'timeout'
 class PandocRuby
 
   @@pandoc_path = 'pandoc'
-  @@allow_file_paths = false
 
   # The available readers and their corresponding names. The keys are used to
   # generate methods and specify options to Pandoc.
@@ -64,13 +63,6 @@ class PandocRuby
     @@pandoc_path = path
   end
 
-  # Pandoc can also be used with a file path as the first argument. For
-  # security reasons, this is disabled by default, but it can be enabled by
-  # setting this to `true`.
-  def self.allow_file_paths=(value)
-    @@allow_file_paths = value
-  end
-
   # A shortcut method that creates a new PandocRuby object and immediately
   # calls `#convert`. Options passed to this method are passed directly to
   # `#new` and treated the same as if they were passed directly to the
@@ -99,24 +91,20 @@ class PandocRuby
     @writer || 'html'
   end
 
-  # Create a new PandocRuby converter object. The first argument should be the
-  # string that will be converted or, if `.allow_file_paths` has been set to
-  # `true`, this can also be a path to a file (or an array of file paths). The
-  # executable name can be used as the second argument, but will default to
-  # `pandoc` if the second argument is omitted or anything other than an
-  # executable name. Any other arguments will be converted to pandoc options.
+  # Create a new PandocRuby converter object. The first argument contains the
+  # input either as string or as an array of filenames.
+  #
+  # Any other arguments will be converted to pandoc options.
+  #
+  # Usage:
+  #   new("# A String", :option1 => :value, :option2)
+  #   new(["/path/to/file.md"], :option1 => :value, :option2)
+  #   new(["/to/file1.html", "/to/file2.html"], :option1 => :value)
   def initialize(*args)
-    target = args.shift
-    @target = if @@allow_file_paths && target.is_a?(String) && File.exists?(target)
-      File.read(target)
-    elsif @@allow_file_paths && target.is_a?(Array)
-      target_strings = []
-      target.each do | file_path |
-        target_strings << File.read(file_path)
-      end
-      target_strings.join("\n\n")
-    else
-      target rescue target
+    if args[0].is_a?(String)
+      @input_string = args.shift
+    elsif args[0].is_a?(Array)
+      @input_files = args.shift.join(' ')
     end
     self.options = args
   end
@@ -150,7 +138,7 @@ class PandocRuby
   # Example:
   #
   #   PandocRuby.markdown("# text")
-  #   # => #<PandocRuby:0x007 @target="# text", @options=[{:from=>"markdown"}]
+  #   # => #<PandocRuby:0x007 @input_string="# text", @options=[{:from=>"markdown"}]
   class << self
     READERS.each_key do |r|
       define_method(r) do |*args|
@@ -178,7 +166,7 @@ class PandocRuby
 
   private
 
-    # Executes the pandoc command for binary writers. A temp file is created
+    # Execute the pandoc command for binary writers. A temp file is created
     # and written to, then read back into the program as a string, then the
     # temp file is closed and unlinked.
     def convert_binary
@@ -186,7 +174,7 @@ class PandocRuby
       begin
         self.options += [{ :output => tmp_file.path }]
         self.option_string = "#{self.option_string} --output #{tmp_file.path}"
-        execute(command_with_options)
+        execute("#{@@pandoc_path}#{self.option_string}")
         return IO.binread(tmp_file)
       ensure
         tmp_file.close
@@ -194,25 +182,26 @@ class PandocRuby
       end
     end
 
-    # Executes the pandoc command for btring writers.
+    # Execute the pandoc command for string writers.
     def convert_string
-      execute(command_with_options)
+      if ! @input_files.nil?
+        execute("#{@@pandoc_path} #{@input_files}#{self.option_string}")
+      else
+        execute("#{@@pandoc_path}#{self.option_string}")
+      end
     end
 
-    # Combines the executable string with the option string.
-    def command_with_options
-      @@pandoc_path + self.option_string
-    end
-
-    # Runs the command and returns the output.
+    # Run the command and returns the output.
     def execute(command)
       output = error = exit_status = nil
       @timeout ||= 31_557_600 # A year should be enough?
       Open3.popen3(command) do |stdin, stdout, stderr, wait_thr|
         begin
           Timeout.timeout(@timeout) do
-            stdin.puts @target
-            stdin.close
+            unless @input_string.nil?
+              stdin.puts @input_string
+              stdin.close
+            end
             output = stdout.read
             error = stderr.read
             exit_status = wait_thr.value
