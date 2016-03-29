@@ -34,6 +34,15 @@ describe PandocRuby do
     assert PandocRuby.new(@file).to_html.match(/This is a Title/)
   end
 
+  it "concatenate multiple files if provided an array" do
+    PandocRuby.allow_file_paths = true
+    html_output = PandocRuby.new([@file, @file]).to_html
+
+    assert html_output.match(/This is a Title/)
+    assert html_output.match(%r{link\</a\>\</p\>\n\<h1})
+  end
+
+
   it 'accepts short options' do
     @converter.expects(:execute).with('pandoc -t rst').returns(true)
     assert @converter.convert

@@ -99,19 +99,25 @@ class PandocRuby
     @writer || 'html'
   end
 
-  # Create a new PandocRuby converter object. The first argument should be
-  # the string that will be converted or, if `.allow_file_paths` has been set
-  # to `true`, this can also be a path to a file. The executable name can
-  # be used as the second argument, but will default to `pandoc` if the second
-  # argument is omitted or anything other than an executable name. Any other
-  # arguments will be converted to pandoc options.
+  # Create a new PandocRuby converter object. The first argument should be the
+  # string that will be converted or, if `.allow_file_paths` has been set to
+  # `true`, this can also be a path to a file (or an array of file paths). The
+  # executable name can be used as the second argument, but will default to
+  # `pandoc` if the second argument is omitted or anything other than an
+  # executable name. Any other arguments will be converted to pandoc options.
   def initialize(*args)
     target = args.shift
-    @target = if @@allow_file_paths && File.exist?(target)
-                File.read(target)
-              else
-                target rescue target
-              end
+    @target = if @@allow_file_paths && target.is_a?(String) && File.exists?(target)
+      File.read(target)
+    elsif @@allow_file_paths && target.is_a?(Array)
+      target_strings = []
+      target.each do | file_path |
+        target_strings << File.read(file_path)
+      end
+      target_strings.join("\n\n")
+    else
+      target rescue target
+    end
     self.options = args
   end
 
