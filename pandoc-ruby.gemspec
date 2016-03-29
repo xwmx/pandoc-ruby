@@ -5,16 +5,16 @@
 
 Gem::Specification.new do |s|
   s.name = 'pandoc-ruby'
-  s.version = '1.0.0'
+  s.version = '2.0.0'
 
   s.required_rubygems_version = Gem::Requirement.new('>= 0') if s.respond_to? :required_rubygems_version=
   s.authors = ['William Melody']
-  s.date = '2015-02-09'
+  s.date = '2016-03-28'
   s.description = 'Ruby wrapper for Pandoc'
   s.email = 'hi@williammelody.com'
   s.extra_rdoc_files = [
     'LICENSE',
-    'README.markdown'
+    'README.md'
   ]
   s.files = %w(
     .document
@@ -30,7 +30,7 @@ Gem::Specification.new do |s|
     test/files/test.md
     test/helper.rb
     test/test_conversions.rb
-    test/test_pandoc-ruby.rb
+    test/test_pandoc_ruby.rb
   )
   s.homepage = 'http://github.com/alphabetum/pandoc-ruby'
   s.licenses = ['MIT']
@@ -46,20 +46,17 @@ Gem::Specification.new do |s|
       s.add_development_dependency('mocha', '~> 1.1', '>= 1.1.0')
       s.add_development_dependency('rake', '~> 10.4', '>= 10.4.2')
       s.add_development_dependency('rdoc', '~> 4.2', '>= 4.2.0')
-      s.add_development_dependency('shoulda', '~> 3.5', '>= 3.5.0')
-      s.add_development_dependency('test-unit', '~> 3.0', '>= 3.0.9')
+      s.add_development_dependency('minitest', '~>5.8.3', '>= 5.8.3')
     else
       s.add_dependency('mocha', ['~> 1.1.0'])
       s.add_dependency('rake', ['~> 10.4.2'])
       s.add_dependency('rdoc', ['~> 4.2.0'])
-      s.add_dependency('shoulda', ['~> 3.5.0'])
-      s.add_dependency('test-unit', ['~> 3.0.9'])
+      s.add_dependency('minitest', ['~>5.8.3'])
     end
   else
     s.add_dependency('mocha', ['~> 1.1.0'])
     s.add_dependency('rake', ['~> 10.4.2'])
     s.add_dependency('rdoc', ['~> 4.2.0'])
-    s.add_dependency('shoulda', ['~> 3.5.0'])
-    s.add_dependency('test-unit', ['~> 3.0.9'])
+    s.add_dependency('minitest', ['~>5.8.3'])
   end
 end
