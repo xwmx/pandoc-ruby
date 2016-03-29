@@ -83,7 +83,9 @@ PandocRuby assumes the `pandoc` executable is via your environment's `$PATH`
 variable.  If you'd like to set an explicit path to the `pandoc` executable,
 you can do so with  `PandocRuby.pandoc_path = '/path/to/pandoc'`
 
-Pandoc can also be set to take an array of file paths as the first argument.
+PandocRuby can also take an array of one or more file paths as the first
+argument. The files will be concatenated together with a blank line between
+each and used as input.
 
 ```ruby
 # One file path as a single-element array.
