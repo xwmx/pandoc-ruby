@@ -21,7 +21,7 @@ Gem::Specification.new do |s|
     Gemfile
     Gemfile.lock
     LICENSE
-    README.markdown
+    README.md
     Rakefile
     lib/pandoc-ruby.rb
     pandoc-ruby.gemspec
