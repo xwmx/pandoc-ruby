@@ -40,6 +40,10 @@ describe PandocRuby do
     assert PandocRuby.new([@file, @file2]).to_html.match(/A Second Title/)
   end
 
+  it 'converts multiple element array input as array of file paths to a binary output format' do
+    assert PandocRuby.new([@file, @file2]).to_epub.match(/com.apple.ibooks/)
+  end
+
   it 'accepts short options' do
     @converter.expects(:execute).with('pandoc -t rst').returns(true)
     assert @converter.convert
