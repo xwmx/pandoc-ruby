@@ -73,22 +73,22 @@ class PandocRuby
 
   attr_accessor :options
   def options
-    @options || []
+    @options ||= []
   end
 
   attr_accessor :option_string
   def option_string
-    @option_string || ''
+    @option_string ||= ''
   end
 
   attr_accessor :binary_output
   def binary_output
-    @binary_output || false
+    @binary_output ||= false
   end
 
   attr_accessor :writer
   def writer
-    @writer || 'html'
+    @writer ||= 'html'
   end
 
   # Create a new PandocRuby converter object. The first argument contains the
@@ -101,6 +101,9 @@ class PandocRuby
   #   new(["/path/to/file.md"], :option1 => :value, :option2)
   #   new(["/to/file1.html", "/to/file2.html"], :option1 => :value)
   def initialize(*args)
+    @input_files = nil
+    @input_string = nil
+
     if args[0].is_a?(String)
       @input_string = args.shift
     elsif args[0].is_a?(Array)
@@ -174,7 +177,7 @@ class PandocRuby
       begin
         self.options += [{ :output => tmp_file.path }]
         self.option_string = "#{self.option_string} --output #{tmp_file.path}"
-        execute("#{@@pandoc_path}#{self.option_string}")
+        execute_pandoc
         return IO.binread(tmp_file)
       ensure
         tmp_file.close
@@ -184,6 +187,11 @@ class PandocRuby
 
     # Execute the pandoc command for string writers.
     def convert_string
+      execute_pandoc
+    end
+
+    # Wrapper to run pandoc in a consistent, DRY way
+    def execute_pandoc
       if ! @input_files.nil?
         execute("#{@@pandoc_path} #{@input_files}#{self.option_string}")
       else
