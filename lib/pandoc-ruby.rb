@@ -177,7 +177,7 @@ class PandocRuby
       begin
         self.options += [{ :output => tmp_file.path }]
         self.option_string = "#{self.option_string} --output #{tmp_file.path}"
-        execute("#{@@pandoc_path}#{self.option_string}")
+        execute_pandoc
         return IO.binread(tmp_file)
       ensure
         tmp_file.close
@@ -187,6 +187,11 @@ class PandocRuby
 
     # Execute the pandoc command for string writers.
     def convert_string
+      execute_pandoc
+    end
+
+    # Wrapper to run pandoc in a consistent, DRY way
+    def execute_pandoc
       if ! @input_files.nil?
         execute("#{@@pandoc_path} #{@input_files}#{self.option_string}")
       else
