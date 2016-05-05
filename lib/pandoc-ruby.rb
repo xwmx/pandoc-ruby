@@ -71,24 +71,24 @@ class PandocRuby
     new(*args).convert
   end
 
-  attr_accessor :options
+  attr_writer :options
   def options
-    @options || []
+    @options ||= []
   end
 
-  attr_accessor :option_string
+  attr_writer :option_string
   def option_string
-    @option_string || ''
+    @option_string ||= ''
   end
 
-  attr_accessor :binary_output
+  attr_writer :binary_output
   def binary_output
-    @binary_output || false
+    @binary_output ||= false
   end
 
-  attr_accessor :writer
+  attr_writer :writer
   def writer
-    @writer || 'html'
+    @writer ||= 'html'
   end
 
   # Create a new PandocRuby converter object. The first argument contains the
@@ -101,6 +101,9 @@ class PandocRuby
   #   new(["/path/to/file.md"], :option1 => :value, :option2)
   #   new(["/to/file1.html", "/to/file2.html"], :option1 => :value)
   def initialize(*args)
+    @input_string = nil
+    @input_files = nil
+
     if args[0].is_a?(String)
       @input_string = args.shift
     elsif args[0].is_a?(Array)
