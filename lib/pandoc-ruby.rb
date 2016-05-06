@@ -71,6 +71,11 @@ class PandocRuby
     new(*args).convert
   end
 
+  attr_writer :binary_output
+  def binary_output
+    @binary_output ||= false
+  end
+
   attr_writer :options
   def options
     @options ||= []
@@ -81,15 +86,13 @@ class PandocRuby
     @option_string ||= ''
   end
 
-  attr_writer :binary_output
-  def binary_output
-    @binary_output ||= false
-  end
-
   attr_writer :writer
   def writer
     @writer ||= 'html'
   end
+
+  attr_accessor :input_files
+  attr_accessor :input_string
 
   # Create a new PandocRuby converter object. The first argument contains the
   # input either as string or as an array of filenames.
@@ -101,13 +104,10 @@ class PandocRuby
   #   new(["/path/to/file.md"], :option1 => :value, :option2)
   #   new(["/to/file1.html", "/to/file2.html"], :option1 => :value)
   def initialize(*args)
-    @input_string = nil
-    @input_files = nil
-
     if args[0].is_a?(String)
-      @input_string = args.shift
+      self.input_string = args.shift
     elsif args[0].is_a?(Array)
-      @input_files = args.shift.join(' ')
+      self.input_files = args.shift.join(' ')
     end
     self.options = args
   end
@@ -192,8 +192,8 @@ class PandocRuby
 
     # Wrapper to run pandoc in a consistent, DRY way
     def execute_pandoc
-      if ! @input_files.nil?
-        execute("#{@@pandoc_path} #{@input_files}#{self.option_string}")
+      if !self.input_files.nil?
+        execute("#{@@pandoc_path} #{self.input_files}#{self.option_string}")
       else
         execute("#{@@pandoc_path}#{self.option_string}")
       end
@@ -206,8 +206,8 @@ class PandocRuby
       Open3.popen3(command) do |stdin, stdout, stderr, wait_thr|
         begin
           Timeout.timeout(@timeout) do
-            unless @input_string.nil?
-              stdin.puts @input_string
+            unless self.input_string.nil?
+              stdin.puts self.input_string
               stdin.close
             end
             output = stdout.read
