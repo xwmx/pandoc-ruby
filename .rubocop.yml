@@ -41,3 +41,11 @@ Style/FileName:
 # ```
 Style/IndentationConsistency:
   EnforcedStyle: rails
+
+# Style/RedundantSelf
+#
+# Explicit `self` is currently preferred in this project in order to
+# better distinguish between accessors and local variables.
+Style/RedundantSelf:
+  Exclude:
+    - 'lib/pandoc-ruby.rb'

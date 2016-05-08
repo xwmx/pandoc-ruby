@@ -71,9 +71,3 @@ Style/IndentHash:
 Style/MultilineIfThen:
   Exclude:
     - 'pandoc-ruby.gemspec'
-
-# Offense count: 9
-# Cop supports --auto-correct.
-Style/RedundantSelf:
-  Exclude:
-    - 'lib/pandoc-ruby.rb'
