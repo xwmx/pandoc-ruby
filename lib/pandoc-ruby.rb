@@ -180,14 +180,14 @@ class PandocRuby
       end
       begin
         execute_pandoc
-        if tmp_file == nil
+        if tmp_file
           option_tab = self.option_string.split(' ')
           index = option_tab.rindex {|x| x == '--output' || x == '-o'}
           return File.read(option_tab[index + 1])
         end
         return IO.binread(tmp_file)
       ensure
-        unless tmp_file == nil
+        unless tmp_file
           tmp_file.close
           tmp_file.unlink
         end
