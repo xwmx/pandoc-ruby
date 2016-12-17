@@ -121,6 +121,10 @@ the correct header and footer are added.
 PandocRuby.new("# Some title", :standalone).to_rtf
 ```
 
+My default only whitelisted options (those known to Pandoc) are passed on to
+Pandoc. You can send all options to Pandoc by using the `:ignore_whitelist`
+option.
+
 ## Note on Patches/Pull Requests
 
 * Fork the project.

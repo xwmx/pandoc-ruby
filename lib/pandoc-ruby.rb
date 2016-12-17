@@ -58,7 +58,7 @@ class PandocRuby
   WRITERS = STRING_WRITERS.merge(BINARY_WRITERS)
 
   # Options understood by pandoc, taken from http://pandoc.org/MANUAL.html.
-  # Ignore all other options passed to pandoc
+  # Ignore all other options passed to pandoc, unless overriden.
   AVAILABLE_OPTIONS = Set.new %w(from read to write output data-dir strict
     parse-raw smart old-dashes base-header-level indented-code-classes filter
     normalize preserve-tabs tab-stop track-changes extract-media standalone
@@ -263,7 +263,7 @@ class PandocRuby
     # Takes a flag and optional argument, uses it to set any relevant options
     # used by the library, and returns string with the option formatted as a
     # command line options. If the option has an argument, it is also included.
-    # Only whitelisted options are sent to pandoc.
+    # Only whitelisted options are sent to pandoc, unless overridden.
     def create_option(flag, argument = nil)
       return '' unless flag
       flag = flag.to_s
