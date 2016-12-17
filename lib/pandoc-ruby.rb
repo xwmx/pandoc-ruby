@@ -76,10 +76,8 @@ class PandocRuby
     katex-stylesheet gladtex trace dump-args ignore-args verbose bash-completion
     list-input-formats list-output-formats list-extensions
     list-highlight-languages list-highlight-styles)
-  PANDOC_CITEPROC_OPTIONS = Set.new %w(bib2yaml bib2json reference-section-title
-    suppress-bibliography notes-after-punctuation y j)
   ALIAS_OPTIONS = Set.new %w(f r t w o R S F p s M V D H B A 5 N i T c m)
-  ALLOWED_OPTIONS = AVAILABLE_OPTIONS + PANDOC_CITEPROC_OPTIONS + ALIAS_OPTIONS
+  ALLOWED_OPTIONS = AVAILABLE_OPTIONS + ALIAS_OPTIONS
 
   # To use run the pandoc command with a custom executable path, the path
   # to the pandoc executable can be set here.
