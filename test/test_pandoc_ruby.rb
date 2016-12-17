@@ -92,6 +92,18 @@ describe PandocRuby do
     assert converter.convert
   end
 
+  it 'ignores options not whitelisted' do
+    converter = PandocRuby.new('# hello', 'badopt')
+    converter.expects(:execute).with('pandoc').returns(true)
+    assert converter.convert
+  end
+
+  it 'raises RuntimeError from pandoc executable error' do
+    assert_raises(RuntimeError) do
+      PandocRuby.new('# hello', 'badopt', :ignore_whitelist).to_html5
+    end
+  end
+
   PandocRuby::READERS.each_key do |r|
     it "converts from #{r} with PandocRuby.#{r}" do
       converter = PandocRuby.send(r, @string)
@@ -143,6 +155,17 @@ describe PandocRuby do
       assert true
     rescue Errno::EMFILE, Errno::EAGAIN => e
       flunk e
+    end
+  end
+
+  it 'gracefully times out when pandoc hangs due to malformed input' do
+    file = File.join(File.dirname(__FILE__), 'files', 'bomb.tex')
+    contents = File.read(file)
+
+    assert_raises(RuntimeError) do
+      PandocRuby.convert(
+        contents, :from => :latex, :to => :html, :timeout => 1
+      )
     end
   end
 

@@ -101,6 +101,11 @@ class PandocRuby
     @options ||= []
   end
 
+  attr_writer :ignore_whitelist
+  def ignore_whitelist
+    @ignore_whitelist
+  end
+
   attr_writer :option_string
   def option_string
     @option_string ||= ''
@@ -130,6 +135,7 @@ class PandocRuby
       self.input_files = args.shift.join(' ')
     end
     self.options = args
+    self.ignore_whitelist = self.options.find { |o| o == :ignore_whitelist }
   end
 
   # Run the conversion. The convert method can take any number of arguments,
@@ -265,9 +271,11 @@ class PandocRuby
     # command line options. If the option has an argument, it is also included.
     # Only whitelisted options are sent to pandoc.
     def create_option(flag, argument = nil)
-      return '' unless flag && ALLOWED_OPTIONS.include?(flag.to_s.gsub('_', '-'))
+      return '' unless flag
       flag = flag.to_s
       set_pandoc_ruby_options(flag, argument)
+      return '' unless @ignore_whitelist ||
+                       ALLOWED_OPTIONS.include?(flag.gsub('_', '-'))
       if !argument.nil?
         "#{format_flag(flag)} #{argument}"
       else
@@ -292,6 +300,8 @@ class PandocRuby
       when 't', 'to'
         self.writer = argument.to_s
         self.binary_output = true if BINARY_WRITERS.keys.include?(self.writer)
+      when 'timeout'
+        @timeout = argument
       end
     end
 
