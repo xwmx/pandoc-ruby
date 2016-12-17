@@ -101,11 +101,6 @@ class PandocRuby
     @options ||= []
   end
 
-  attr_writer :ignore_whitelist
-  def ignore_whitelist
-    @ignore_whitelist
-  end
-
   attr_writer :option_string
   def option_string
     @option_string ||= ''
@@ -135,7 +130,6 @@ class PandocRuby
       self.input_files = args.shift.join(' ')
     end
     self.options = args
-    self.ignore_whitelist = self.options.find { |o| o == :ignore_whitelist }
   end
 
   # Run the conversion. The convert method can take any number of arguments,
@@ -274,8 +268,8 @@ class PandocRuby
       return '' unless flag
       flag = flag.to_s
       set_pandoc_ruby_options(flag, argument)
-      return '' unless @ignore_whitelist ||
-                       ALLOWED_OPTIONS.include?(flag.gsub('_', '-'))
+      return '' unless ALLOWED_OPTIONS.include?(flag.gsub('_', '-')) ||
+                       @options.find { |o| o == :ignore_whitelist }
       if !argument.nil?
         "#{format_flag(flag)} #{argument}"
       else
