@@ -92,9 +92,15 @@ describe PandocRuby do
     assert converter.convert
   end
 
+  it 'ignores options not whitelisted' do
+    converter = PandocRuby.new('# hello', 'badopt')
+    converter.expects(:execute).with('pandoc').returns(true)
+    assert converter.convert
+  end
+
   it 'raises RuntimeError from pandoc executable error' do
     assert_raises(RuntimeError) do
-      PandocRuby.new('# hello', 'badopt').to_html5
+      PandocRuby.new('# hello', 'badopt', :ignore_whitelist).to_html5
     end
   end
 

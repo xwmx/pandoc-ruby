@@ -57,6 +57,28 @@ class PandocRuby
   # All of the available Writers.
   WRITERS = STRING_WRITERS.merge(BINARY_WRITERS)
 
+  # Options understood by pandoc, taken from http://pandoc.org/MANUAL.html.
+  # Ignore all other options passed to pandoc, unless overriden.
+  AVAILABLE_OPTIONS = Set.new %w(from read to write output data-dir strict
+    parse-raw smart old-dashes base-header-level indented-code-classes filter
+    normalize preserve-tabs tab-stop track-changes file-scope extract-media
+    standalone template metadata variable print-default-template
+    print-default-data-file no-wrap wrap columns toc table-of-contents toc-depth
+    no-highlight highlight-style include-in-header include-before-body
+    include-after-body self-contained offline html5 html-q-tags ascii
+    reference-links reference-location atx-headers chapters top-level-division
+    number-sections number-offsetS no-tex-ligatures listings incremental
+    slide-level section-divs default-image-extension email-obfuscation id-prefix
+    title-prefix css reference-odt reference-docx epub-stylesheet
+    epub-cover-image epub-metadata epub-embed-font epub-chapter-level
+    latex-engine latex-engine-opt bibliography csl citation-abbreviations natbib
+    biblatex latexmathml asciimathml mathml mimetex webtex jsmath mathjax katex
+    katex-stylesheet gladtex trace dump-args ignore-args verbose bash-completion
+    list-input-formats list-output-formats list-extensions
+    list-highlight-languages list-highlight-styles)
+  ALIAS_OPTIONS = Set.new %w(f r t w o R S F p s M V D H B A 5 N i T c m)
+  ALLOWED_OPTIONS = AVAILABLE_OPTIONS + ALIAS_OPTIONS
+
   # To use run the pandoc command with a custom executable path, the path
   # to the pandoc executable can be set here.
   def self.pandoc_path=(path)
@@ -243,11 +265,13 @@ class PandocRuby
     # Takes a flag and optional argument, uses it to set any relevant options
     # used by the library, and returns string with the option formatted as a
     # command line options. If the option has an argument, it is also included.
+    # Only whitelisted options are sent to pandoc, unless overridden.
     def create_option(flag, argument = nil)
       return '' unless flag
       flag = flag.to_s
       set_pandoc_ruby_options(flag, argument)
-      return '' if flag == 'timeout' # pandoc doesn't accept timeouts yet
+      return '' unless ALLOWED_OPTIONS.include?(flag.gsub('_', '-')) ||
+                       @options.find { |o| o == :ignore_whitelist }
       if !argument.nil?
         "#{format_flag(flag)} #{argument}"
       else
