@@ -206,10 +206,8 @@ class PandocRuby
       Open3.popen3(command) do |stdin, stdout, stderr, wait_thr|
         begin
           Timeout.timeout(@timeout) do
-            unless self.input_string.nil?
-              stdin.puts self.input_string
-              stdin.close
-            end
+            stdin.puts self.input_string
+            stdin.close
             output = stdout.read
             error = stderr.read
             exit_status = wait_thr.value

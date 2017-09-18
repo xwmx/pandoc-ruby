@@ -133,6 +133,16 @@ describe PandocRuby do
     assert_match(/h2/, converter.convert)
   end
 
+  it 'accepts blank strings' do
+    converter = PandocRuby.new('')
+    assert_match("\n", converter.convert)
+  end
+
+  it 'accepts nil and treats like a blank string' do
+    converter = PandocRuby.new(nil)
+    assert_match("\n", converter.convert)
+  end
+
   it 'aliases to_s' do
     assert_equal @converter.convert, @converter.to_s
   end
