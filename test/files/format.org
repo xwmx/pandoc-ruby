@@ -1,4 +1,7 @@
 * This is a Title
+  :PROPERTIES:
+  :CUSTOM_ID: this-is-a-title
+  :END:
 
 Some /emphasized text/ and
 [[http://daringfireball.net/projects/markdown/][a link]]
