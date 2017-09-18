@@ -29,3 +29,34 @@ Rake::RDocTask.new do |rdoc|
   rdoc.rdoc_files.include('README*')
   rdoc.rdoc_files.include('lib/**/*.rb')
 end
+
+require './lib/pandoc-ruby.rb'
+desc <<HEREDOC
+  Regenerate test files in existing formats.
+HEREDOC
+task :regenerate_files do
+  extensions = []
+  files_dir = File.join(File.dirname(__FILE__), 'test', 'files')
+
+  Dir.glob(File.join(files_dir, 'format*')) do |f|
+    extensions << f.match(/format\.(\w+)\Z/)[1]
+  end
+
+  from_content = File.read(File.join(files_dir, 'format.markdown'))
+
+  extensions.each do |to|
+    next if to == 'markdown'
+
+    to_file = File.join(files_dir, "format.#{to}")
+
+    converted_content = PandocRuby.convert(
+      from_content,
+      :from => 'markdown',
+      :to   => to
+    )
+
+    File.open(to_file, 'w') do |file|
+      file.write(converted_content)
+    end
+  end
+end
