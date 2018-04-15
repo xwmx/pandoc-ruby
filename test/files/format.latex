@@ -1,4 +1,5 @@
-\section{This is a Title}\label{this-is-a-title}
+\hypertarget{this-is-a-title}{%
+\section{This is a Title}\label{this-is-a-title}}
 
 Some \emph{emphasized text} and
 \href{http://daringfireball.net/projects/markdown/}{a link}

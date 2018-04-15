@@ -1,4 +1,4 @@
-\section[this-is-a-title]{This is a Title}
+\section[title={This is a Title},reference={this-is-a-title}]
 
 Some {\em emphasized text} and
 \useURL[url1][http://daringfireball.net/projects/markdown/][][a

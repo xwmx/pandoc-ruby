@@ -1,8 +1,8 @@
-<sect1 id="this-is-a-title">
+<section xml:id="this-is-a-title">
   <title>This is a Title</title>
   <para>
     Some <emphasis>emphasized text</emphasis> and
-    <ulink url="http://daringfireball.net/projects/markdown/">a
-    link</ulink>
+    <link xlink:href="http://daringfireball.net/projects/markdown/">a
+    link</link>
   </para>
-</sect1>
+</section>

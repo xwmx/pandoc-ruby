@@ -1,4 +1,5 @@
 \begin{frame}{This is a Title}
+\protect\hypertarget{this-is-a-title}{}
 
 Some \emph{emphasized text} and
 \href{http://daringfireball.net/projects/markdown/}{a link}
