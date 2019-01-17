@@ -6,6 +6,10 @@
 
 inherit_from: .rubocop_todo.yml
 
+# Layout/AlignHash
+Layout/AlignHash:
+  EnforcedHashRocketStyle: table
+
 # Style/AccessModifierIndentation
 #
 # Indent access modifiers like `protected` and `private`.

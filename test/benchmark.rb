@@ -6,10 +6,10 @@
 iterations = 100
 test_file = File.join(File.dirname(__FILE__), 'files', 'benchmark.txt')
 impl_gems = {
-  'BlueCloth'   => 'bluecloth',
-  'RDiscount'   => 'rdiscount',
-  'Maruku'      => 'maruku',
-  'PandocRuby'  => 'pandoc-ruby'
+  'BlueCloth'  => 'bluecloth',
+  'RDiscount'  => 'rdiscount',
+  'Maruku'     => 'maruku',
+  'PandocRuby' => 'pandoc-ruby'
 }
 
 implementations = impl_gems.keys

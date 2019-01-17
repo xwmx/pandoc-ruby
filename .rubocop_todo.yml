@@ -6,20 +6,6 @@
 # Note that changes in the inspected code, or installation of new
 # versions of RuboCop, may require this file to be generated again.
 
-# Offense count: 69
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedHashRocketStyle, EnforcedColonStyle, EnforcedLastArgumentHashStyle.
-# SupportedHashRocketStyles: key, separator, table
-# SupportedColonStyles: key, separator, table
-# SupportedLastArgumentHashStyles: always_inspect, always_ignore, ignore_implicit, ignore_explicit
-Layout/AlignHash:
-  Exclude:
-    - 'Rakefile'
-    - 'lib/pandoc-ruby.rb'
-    - 'test/benchmark.rb'
-    - 'test/test_conversions.rb'
-    - 'test/test_pandoc_ruby.rb'
-
 # Offense count: 3
 # Cop supports --auto-correct.
 Layout/EmptyLineAfterGuardClause:
