@@ -32,14 +32,6 @@ Metrics/ClassLength:
 Metrics/MethodLength:
   Max: 19
 
-# Offense count: 1
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: percent_q, bare_percent
-Style/BarePercentLiterals:
-  Exclude:
-    - 'test/test_pandoc_ruby.rb'
-
 # Offense count: 2
 Style/ClassVars:
   Exclude:
