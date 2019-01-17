@@ -220,6 +220,7 @@ class PandocRuby
       end
 
       raise error unless exit_status && exit_status.success?
+
       output
     end
 
@@ -243,9 +244,11 @@ class PandocRuby
     # command line options. If the option has an argument, it is also included.
     def create_option(flag, argument = nil)
       return '' unless flag
+
       flag = flag.to_s
       set_pandoc_ruby_options(flag, argument)
       return '' if flag == 'timeout' # pandoc doesn't accept timeouts yet
+
       if !argument.nil?
         "#{format_flag(flag)} #{argument}"
       else
