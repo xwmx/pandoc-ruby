@@ -46,12 +46,6 @@ Style/Documentation:
 
 # Offense count: 1
 # Cop supports --auto-correct.
-Style/EmptyCaseCondition:
-  Exclude:
-    - 'lib/pandoc-ruby.rb'
-
-# Offense count: 1
-# Cop supports --auto-correct.
 Style/Encoding:
   Exclude:
     - 'Rakefile'
