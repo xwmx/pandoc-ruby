@@ -51,6 +51,12 @@ Style/HashSyntax:
 Style/IndentationConsistency:
   EnforcedStyle: rails
 
+# Style/SymbolArray
+#
+# Avoid `%i` syntax so symbols look like symbols.
+Style/SymbolArray:
+  EnforcedStyle: brackets
+
 # Style/RedundantSelf
 #
 # Explicit `self` is currently preferred in this project in order to

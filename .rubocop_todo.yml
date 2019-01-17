@@ -65,13 +65,6 @@ Style/StderrPuts:
 
 # Offense count: 1
 # Cop supports --auto-correct.
-# Configuration parameters: MinSize.
-# SupportedStyles: percent, brackets
-Style/SymbolArray:
-  EnforcedStyle: brackets
-
-# Offense count: 1
-# Cop supports --auto-correct.
 Style/UnneededPercentQ:
   Exclude:
     - 'test/test_pandoc_ruby.rb'
