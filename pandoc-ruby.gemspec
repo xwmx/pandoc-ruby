@@ -14,7 +14,7 @@ Gem::Specification.new do |s|
     'LICENSE',
     'README.md'
   ]
-  s.files = %w(
+  s.files = %w[
     .document
     Gemfile
     Gemfile.lock
@@ -29,7 +29,7 @@ Gem::Specification.new do |s|
     test/helper.rb
     test/test_conversions.rb
     test/test_pandoc_ruby.rb
-  )
+  ]
   s.homepage = 'http://github.com/alphabetum/pandoc-ruby'
   s.licenses = ['MIT']
   s.require_paths = ['lib']
