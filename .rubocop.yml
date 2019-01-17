@@ -6,9 +6,11 @@
 
 inherit_from: .rubocop_todo.yml
 
-# Layout/AlignHash
 Layout/AlignHash:
   EnforcedHashRocketStyle: table
+
+Layout/IndentHash:
+  EnforcedStyle: consistent
 
 # Style/AccessModifierIndentation
 #
