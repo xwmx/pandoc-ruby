@@ -227,13 +227,13 @@ class PandocRuby
     # opts passed in. Recursively calls itself in order to handle hash options.
     def prepare_options(opts = [])
       opts.inject('') do |string, (option, value)|
-        string += if value
-                    create_option(option, value)
-                  elsif option.respond_to?(:each_pair)
-                    prepare_options(option)
-                  else
-                    create_option(option)
-                  end
+        string + if value
+                   create_option(option, value)
+                 elsif option.respond_to?(:each_pair)
+                   prepare_options(option)
+                 else
+                   create_option(option)
+                 end
       end
     end
 
