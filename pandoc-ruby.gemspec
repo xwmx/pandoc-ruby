@@ -6,8 +6,6 @@
 Gem::Specification.new do |s|
   s.name = 'pandoc-ruby'
   s.version = '2.0.2'
-
-  s.required_rubygems_version = Gem::Requirement.new('>= 0') if s.respond_to? :required_rubygems_version=
   s.authors = ['William Melody']
   s.date = '2017-09-17'
   s.description = 'Ruby wrapper for Pandoc'
@@ -36,6 +34,5 @@ Gem::Specification.new do |s|
   s.licenses = ['MIT']
   s.require_paths = ['lib']
   s.required_ruby_version = '>= 1.9.3'
-  s.rubygems_version = '1.8.25'
   s.summary = 'PandocRuby'
 end
