@@ -6,8 +6,8 @@ source 'http://rubygems.org'
 # Add dependencies to develop your gem here.
 # Include everything needed to run rake, tests, features, etc.
 group :development, :test do
-  gem 'minitest', '~>5.8.4'
-  gem 'mocha', '~>1.5.0'
+  gem 'minitest'
+  gem 'mocha'
   gem 'rake'
   gem 'rdoc'
 end

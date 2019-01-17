@@ -38,25 +38,4 @@ Gem::Specification.new do |s|
   s.required_ruby_version = '>= 1.9.3'
   s.rubygems_version = '1.8.25'
   s.summary = 'PandocRuby'
-
-  if s.respond_to? :specification_version then
-    s.specification_version = 3
-
-    if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
-      s.add_development_dependency('mocha', '~> 1.5', '>= 1.5.0')
-      s.add_development_dependency('rake', '~> 12.3', '>= 12.3.1')
-      s.add_development_dependency('rdoc', '~> 6.0', '>= 6.0.3')
-      s.add_development_dependency('minitest', '~>5.8.4', '>= 5.8.4')
-    else
-      s.add_dependency('mocha', ['~> 1.5.0'])
-      s.add_dependency('rake', ['~> 12.3.1'])
-      s.add_dependency('rdoc', ['~> 6.0.3'])
-      s.add_dependency('minitest', ['~>5.8.4'])
-    end
-  else
-    s.add_dependency('mocha', ['~> 1.5.0'])
-    s.add_dependency('rake', ['~> 12.3.1'])
-    s.add_dependency('rdoc', ['~> 6.0.3'])
-    s.add_dependency('minitest', ['~>5.8.4'])
-  end
 end

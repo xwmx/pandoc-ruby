@@ -2,20 +2,20 @@ GEM
   remote: http://rubygems.org/
   specs:
     metaclass (0.0.4)
-    minitest (5.8.5)
-    mocha (1.5.0)
+    minitest (5.11.3)
+    mocha (1.8.0)
       metaclass (~> 0.0.1)
-    rake (12.3.1)
-    rdoc (6.0.3)
+    rake (12.3.2)
+    rdoc (6.1.1)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
-  minitest (~> 5.8.4)
-  mocha (~> 1.5.0)
+  minitest
+  mocha
   rake
   rdoc
 
 BUNDLED WITH
-   1.16.1
+   1.17.1
