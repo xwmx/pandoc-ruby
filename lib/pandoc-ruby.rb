@@ -3,7 +3,6 @@ require 'tempfile'
 require 'timeout'
 
 class PandocRuby
-
   @@pandoc_path = 'pandoc'
 
   # The available readers and their corresponding names. The keys are used to
@@ -277,5 +276,4 @@ class PandocRuby
         @timeout = argument
       end
     end
-
 end
