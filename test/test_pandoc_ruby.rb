@@ -163,9 +163,9 @@ describe PandocRuby do
   end
 
   it 'gracefully times out when pandoc hangs due to malformed input' do
-    skip(%{
+    skip(%(
 Pandoc no longer times out with test file. Determine how to test.
-    })
+    ))
     file = File.join(File.dirname(__FILE__), 'files', 'bomb.tex')
     contents = File.read(file)
 

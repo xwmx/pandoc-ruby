@@ -56,13 +56,6 @@ Style/Encoding:
   Exclude:
     - 'Rakefile'
 
-# Offense count: 1
-# Cop supports --auto-correct.
-# Configuration parameters: PreferredDelimiters.
-Style/PercentLiteralDelimiters:
-  Exclude:
-    - 'test/test_pandoc_ruby.rb'
-
 # Offense count: 4
 # Cop supports --auto-correct.
 Style/StderrPuts:
