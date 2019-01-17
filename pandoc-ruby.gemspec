@@ -33,6 +33,6 @@ Gem::Specification.new do |s|
   s.homepage = 'http://github.com/alphabetum/pandoc-ruby'
   s.licenses = ['MIT']
   s.require_paths = ['lib']
-  s.required_ruby_version = '>= 1.9.3'
+  s.required_ruby_version = '>= 2.2'
   s.summary = 'PandocRuby'
 end
