@@ -1,5 +1,5 @@
-<text:h text:style-name="Heading_20_1" text:outline-level="1">This is a
-Title</text:h>
+<text:h text:style-name="Heading_20_1" text:outline-level="1"><text:bookmark-start text:name="this-is-a-title" />This
+is a Title<text:bookmark-end text:name="this-is-a-title" /></text:h>
 <text:p text:style-name="First_20_paragraph">Some
 <text:span text:style-name="T1">emphasized text</text:span> and
 <text:a xlink:type="simple" xlink:href="http://daringfireball.net/projects/markdown/" office:name=""><text:span text:style-name="Definition">a

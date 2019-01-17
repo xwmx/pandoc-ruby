@@ -1,5 +1,4 @@
-This is a Title
----------------
+== This is a Title
 
 Some _emphasized text_ and
 http://daringfireball.net/projects/markdown/[a link]
