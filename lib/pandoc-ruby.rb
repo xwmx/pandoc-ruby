@@ -271,7 +271,7 @@ class PandocRuby
       case flag
       when 't', 'to'
         self.writer = argument.to_s
-        self.binary_output = true if BINARY_WRITERS.keys.include?(self.writer)
+        self.binary_output = true if BINARY_WRITERS.key?(self.writer)
       when 'timeout'
         @timeout = argument
       end
