@@ -27,4 +27,39 @@ describe 'Conversions' do
       end
     end
   end
+
+  describe '.docx' do
+    it "converts from docx to html" do
+      converted_content = PandocRuby.convert(
+        ['./test/files/reference.docx'],
+        :from => 'docx',
+        :to   => 'html'
+      )
+      assert_equal("<p>Hello World.</p>", converted_content.strip)
+    end
+
+    it "raises an error when attempting to convert doc with docx format" do
+      error = assert_raises(RuntimeError) do
+        PandocRuby.convert(
+          ['./test/files/reference.doc'],
+          :from => 'docx',
+          :to   => 'html'
+        )
+      end
+
+      assert_match(/couldn't parse docx file/, error.message)
+    end
+
+    it "raises an error when attempting to convert doc with doc format" do
+      error = assert_raises(RuntimeError) do
+        PandocRuby.convert(
+          ['./test/files/reference.doc'],
+          :from => 'doc',
+          :to   => 'html'
+        )
+      end
+
+      assert_match(/Pandoc can convert from DOCX, but not from DOC./, error.message)
+    end
+  end
 end
