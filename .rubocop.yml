@@ -6,31 +6,19 @@
 
 inherit_from: .rubocop_todo.yml
 
-Layout/AlignHash:
-  EnforcedHashRocketStyle: table
-
-Layout/IndentHash:
-  EnforcedStyle: consistent
-
-# Style/AccessModifierIndentation
+# Layout/AccessModifierIndentation
 #
 # Indent access modifiers like `protected` and `private`.
-Style/AccessModifierIndentation:
+Layout/AccessModifierIndentation:
   EnforcedStyle: indent
 
-# Style/FileName
-#
-# Long, long ago, this was named with a dash rather than an underscore. Now
-# it's unconventional, but let's consider it retro and leave it for now so we
-# don't have to rename the gem. TODO: Rename using an underscore.
-Style/FileName:
-  Exclude:
-    - 'lib/pandoc-ruby.rb'
+Layout/FirstHashElementIndentation:
+  EnforcedStyle: consistent
 
-Style/HashSyntax:
-  EnforcedStyle: hash_rockets
+Layout/HashAlignment:
+  EnforcedHashRocketStyle: table
 
-# Style/IndentationConsistency
+# Layout/IndentationConsistency
 #
 # Use Rails-style access modifier indentation.
 #
@@ -48,8 +36,33 @@ Style/HashSyntax:
 #     end
 # end
 # ```
-Style/IndentationConsistency:
-  EnforcedStyle: rails
+Layout/IndentationConsistency:
+  EnforcedStyle: indented_internal_methods
+
+# Naming/FileName
+#
+# Long, long ago, this was named with a dash rather than an underscore. Now
+# it's unconventional, but let's consider it retro and leave it for now so we
+# don't have to rename the gem. TODO: Rename using an underscore.
+Naming/FileName:
+  Exclude:
+    - 'lib/pandoc-ruby.rb'
+
+
+# TODO: Remove when Rubocop hits version 1.0.
+Style/HashEachMethods:
+  Enabled: true
+
+# TODO: Remove when Rubocop hits version 1.0.
+Style/HashTransformKeys:
+  Enabled: true
+
+Style/HashSyntax:
+  EnforcedStyle: hash_rockets
+
+# TODO: Remove when Rubocop hits version 1.0.
+Style/HashTransformValues:
+  Enabled: true
 
 # Style/SymbolArray
 #
