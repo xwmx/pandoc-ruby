@@ -58,12 +58,6 @@ Style/Documentation:
     - 'test/**/*'
     - 'lib/pandoc-ruby.rb'
 
-# Offense count: 1
-# Cop supports --auto-correct.
-Style/Encoding:
-  Exclude:
-    - 'Rakefile'
-
 # Offense count: 3
 # Configuration parameters: .
 # SupportedStyles: annotated, template, unannotated
