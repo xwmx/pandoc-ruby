@@ -10,9 +10,6 @@ markdown, reStructuredText, HTML, LaTeX, ConTeXt, PDF, RTF, DocBook XML,
 OpenDocument XML, ODT, GNU Texinfo, MediaWiki markup, groff man pages,
 HTML slide shows, EPUB, and Microsoft Word docx.
 
-*This documentation is for version 2 and higher. For version 1 documentation
-[see here](https://github.com/xwmx/pandoc-ruby/blob/v1.0.0/README.markdown).*
-
 ## Installation
 
 First, make sure to
