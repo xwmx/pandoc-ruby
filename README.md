@@ -80,6 +80,8 @@ PandocRuby assumes the `pandoc` executable is via your environment's `$PATH`
 variable.  If you'd like to set an explicit path to the `pandoc` executable,
 you can do so with  `PandocRuby.pandoc_path = '/path/to/pandoc'`
 
+### Converting Files
+
 PandocRuby can also take an array of one or more file paths as the first
 argument. The files will be concatenated together with a blank line between
 each and used as input.
@@ -90,6 +92,16 @@ PandocRuby.new(['/path/to/file1.docx'], from: 'docx').to_html
 # Multiple file paths as an array.
 PandocRuby.new(['/path/to/file1.docx', '/path/to/file1.docx'], from: 'docx').to_html
 ```
+
+If you are trying to generate a standalone file with full file headers rather
+than just a marked up fragment, remember to pass the `:standalone` option so
+the correct header and footer are added.
+
+```ruby
+PandocRuby.new("# Some title", :standalone).to_rtf
+```
+
+### More Information
 
 Available format readers and writers are available in the `PandocRuby::READERS`
 and `PandocRuby::WRITERS` constants.
@@ -108,16 +120,6 @@ reStructuredText syntax from within Ruby, check out
 This gem was inspired by [Albino](http://github.com/github/albino). For a
 slightly different approach to using Pandoc with Ruby, see
 [Pandoku](http://github.com/dahlia/pandoku).
-
-## Additional Notes
-
-If you are trying to generate a standalone file with full file headers rather
-than just a marked up fragment, remember to pass the `:standalone` option so
-the correct header and footer are added.
-
-```ruby
-PandocRuby.new("# Some title", :standalone).to_rtf
-```
 
 ## Note on Patches/Pull Requests
 
