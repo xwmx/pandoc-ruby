@@ -101,6 +101,22 @@ the correct header and footer are added.
 PandocRuby.new("# Some title", :standalone).to_rtf
 ```
 
+### Extensions
+
+Pandoc [extensions](https://pandoc.org/MANUAL.html#extensions) can be
+used to modify the behavior of readers and writers. To use an extension,
+add the extension with a `+` or `-` after the reader or writer name:
+
+```ruby
+# Without extension
+PandocRuby.new("Line 1\n# Heading", from: 'markdown_strict').to_html
+# => "<p>Line 1</p>\n<h1>Heading</h1>\n"
+
+# With extension:
+>> PandocRuby.new("Line 1\n# Heading", from: 'markdown_strict+blank_before_header').to_html
+# => "<p>Line 1 # Heading</p>\n
+```
+
 ### More Information
 
 Available format readers and writers are available in the `PandocRuby::READERS`

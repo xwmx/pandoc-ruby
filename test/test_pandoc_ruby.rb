@@ -92,6 +92,44 @@ describe PandocRuby do
     assert converter.convert
   end
 
+  it 'supports reader extensions' do
+    assert_equal(
+      PandocRuby.convert(
+        "Line 1\n# Heading",
+        :from => 'markdown_strict',
+        :to   => 'html'
+      ),
+      "<p>Line 1</p>\n<h1>Heading</h1>\n"
+    )
+    assert_equal(
+      PandocRuby.convert(
+        "Line 1\n# Heading",
+        :from => 'markdown_strict+blank_before_header',
+        :to   => 'html'
+      ),
+      "<p>Line 1 # Heading</p>\n"
+    )
+  end
+
+  it 'supports writer extensions' do
+    assert_equal(
+      PandocRuby.convert(
+        "<sub>example</sub>\n",
+        :from => 'html',
+        :to   => 'markdown'
+      ),
+      "~example~\n"
+    )
+    assert_equal(
+      PandocRuby.convert(
+        "<sub>example</sub>\n",
+        :from => 'html',
+        :to   => 'markdown-subscript'
+      ),
+      "<sub>example</sub>\n"
+    )
+  end
+
   it 'raises RuntimeError from pandoc executable error' do
     assert_raises(RuntimeError) do
       PandocRuby.new('# hello', 'badopt').to_html5
