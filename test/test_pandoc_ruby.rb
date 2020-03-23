@@ -75,7 +75,7 @@ describe PandocRuby do
     assert converter.convert(:s, { :f => :markdown, :to => :rst }, 'no-wrap')
   end
 
-  it 'converts underscore symbol ares to hyphenated long options' do
+  it 'converts underscore symbol args to hyphenated long options' do
     converter = PandocRuby.new(@string, {
       :email_obfuscation => :javascript
     }, :table_of_contents)
