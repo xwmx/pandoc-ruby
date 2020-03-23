@@ -108,7 +108,7 @@ used to modify the behavior of readers and writers. To use an extension,
 add the extension with a `+` or `-` after the reader or writer name:
 
 ```ruby
-# Without extension
+# Without extension:
 PandocRuby.new("Line 1\n# Heading", from: 'markdown_strict').to_html
 # => "<p>Line 1</p>\n<h1>Heading</h1>\n"
 
