@@ -100,9 +100,10 @@ or run `man pandoc`
 ([also available here](http://johnmacfarlane.net/pandoc/pandoc.1.html)).
 
 If you'd prefer a pure-Ruby extended markdown interpreter that can output a
-few different formats, take a look at [Maruku](http://maruku.rubyforge.org/).
-If you want to use the full reStructuredText syntax from within Ruby, check
-out [RbST](https://github.com/xwmx/rbst), a docutils wrapper.
+few different formats, take a look at
+[kramdown](https://kramdown.gettalong.org/). If you want to use the full
+reStructuredText syntax from within Ruby, check out
+[RbST](https://github.com/xwmx/rbst), a docutils wrapper.
 
 This gem was inspired by [Albino](http://github.com/github/albino). For a
 slightly different approach to using Pandoc with Ruby, see
