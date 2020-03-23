@@ -215,16 +215,16 @@ describe PandocRuby do
     assert_equal @converter.convert, PandocRuby.convert(@string, :t => :rst)
   end
 
-  # it 'runs more than 400 times without error' do
-  #   begin
-  #     400.times do
-  #       PandocRuby.convert(@string)
-  #     end
-  #     assert true
-  #   rescue Errno::EMFILE, Errno::EAGAIN => e
-  #     flunk e
-  #   end
-  # end
+  it 'runs more than 400 times without error' do
+    begin
+      400.times do
+        PandocRuby.convert(@string)
+      end
+      assert true
+    rescue Errno::EMFILE, Errno::EAGAIN => e
+      flunk e
+    end
+  end
 
   it 'gracefully times out when pandoc hangs due to malformed input' do
     skip(%(
