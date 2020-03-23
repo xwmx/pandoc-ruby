@@ -86,9 +86,9 @@ each and used as input.
 
 ```ruby
 # One file path as a single-element array.
-PandocRuby.html(['/path/to/file1.html']).to_markdown
+PandocRuby.new(['/path/to/file1.docx'], from: 'docx').to_html
 # Multiple file paths as an array.
-PandocRuby.html(['/path/to/file1.html', '/path/to/file2.html']).to_markdown
+PandocRuby.new(['/path/to/file1.docx', '/path/to/file1.docx'], from: 'docx').to_html
 ```
 
 Available format readers and writers are available in the `PandocRuby::READERS`
