@@ -48,13 +48,13 @@ symbols or strings for options without arguments and hashes of strings or
 symbols for options with arguments.
 
 ```ruby
-PandocRuby.convert('# Markdown Title', :s, {f: :markdown, to: :rst}, 'no-wrap', :table_of_contents)
+PandocRuby.convert('# Markdown Title', :s, {f: :markdown, to: :rst}, '--wrap=none', :table_of_contents)
 ```
 
 is equivalent to
 
 ```bash
-echo "# Markdown Title" | pandoc -s -f markdown --to=rst --no-wrap --table-of-contents
+echo "# Markdown Title" | pandoc -s -f markdown --to=rst --wrap=none --table-of-contents
 ```
 
 Also provided are `#to_[writer]` instance methods for each of the writers,
