@@ -303,10 +303,12 @@ class PandocRuby
       set_pandoc_ruby_options(flag, argument)
       return '' if flag == 'timeout' # pandoc doesn't accept timeouts yet
 
-      if !argument.nil?
-        "#{format_flag(flag)} #{argument}"
-      else
+      if argument.nil?
         format_flag(flag)
+      elsif argument =~ /\s/
+        "#{format_flag(flag)} '#{argument}'"
+      else
+        "#{format_flag(flag)} #{argument}"
       end
     end
 

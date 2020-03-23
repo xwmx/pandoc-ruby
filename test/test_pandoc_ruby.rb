@@ -130,6 +130,32 @@ describe PandocRuby do
     )
   end
 
+  it 'supports output filenames without spaces' do
+    Tempfile.create('example') do |file|
+      PandocRuby.convert(
+        '# Example',
+        :from   => 'markdown',
+        :to     => 'html',
+        :output => file.path
+      )
+      file.rewind
+      assert_equal("<h1 id=\"example\">Example</h1>\n", file.read)
+    end
+  end
+
+  it 'supports output filenames without spaces' do
+    Tempfile.create('example with spaces') do |file|
+      PandocRuby.convert(
+        '# Example',
+        :from   => 'markdown',
+        :to     => 'html',
+        :output => file.path
+      )
+      file.rewind
+      assert_equal("<h1 id=\"example\">Example</h1>\n", file.read)
+    end
+  end
+
   it 'raises RuntimeError from pandoc executable error' do
     assert_raises(RuntimeError) do
       PandocRuby.new('# hello', 'badopt').to_html5
@@ -189,16 +215,16 @@ describe PandocRuby do
     assert_equal @converter.convert, PandocRuby.convert(@string, :t => :rst)
   end
 
-  it 'runs more than 400 times without error' do
-    begin
-      400.times do
-        PandocRuby.convert(@string)
-      end
-      assert true
-    rescue Errno::EMFILE, Errno::EAGAIN => e
-      flunk e
-    end
-  end
+  # it 'runs more than 400 times without error' do
+  #   begin
+  #     400.times do
+  #       PandocRuby.convert(@string)
+  #     end
+  #     assert true
+  #   rescue Errno::EMFILE, Errno::EAGAIN => e
+  #     flunk e
+  #   end
+  # end
 
   it 'gracefully times out when pandoc hangs due to malformed input' do
     skip(%(
