@@ -92,6 +92,12 @@ describe PandocRuby do
     assert converter.convert
   end
 
+  it 'passes command line options without modification' do
+    converter = PandocRuby.new(@string, '+RTS', '-M512M', '-RTS')
+    converter.expects(:execute).with('pandoc +RTS -M512M -RTS').returns(true)
+    assert converter.convert
+  end
+
   it 'supports reader extensions' do
     assert_equal(
       PandocRuby.convert(

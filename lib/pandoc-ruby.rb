@@ -317,6 +317,8 @@ class PandocRuby
     def format_flag(flag)
       if flag.length == 1
         " -#{flag}"
+      elsif flag =~ /^-|\+/
+        " #{flag}"
       else
         " --#{flag.to_s.tr('_', '-')}"
       end
