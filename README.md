@@ -112,8 +112,8 @@ add the extension with a `+` or `-` after the reader or writer name:
 PandocRuby.new("Line 1\n# Heading", from: 'markdown_strict').to_html
 # => "<p>Line 1</p>\n<h1>Heading</h1>\n"
 
-# With extension:
->> PandocRuby.new("Line 1\n# Heading", from: 'markdown_strict+blank_before_header').to_html
+# With `+blank_before_header` extension:
+PandocRuby.new("Line 1\n# Heading", from: 'markdown_strict+blank_before_header').to_html
 # => "<p>Line 1 # Heading</p>\n
 ```
 
