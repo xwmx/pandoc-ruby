@@ -31,7 +31,7 @@ gem install pandoc-ruby
 
 ```ruby
 require 'pandoc-ruby'
-@converter = PandocRuby.new('# Markdown Title', :from => :markdown, :to => :rst)
+@converter = PandocRuby.new('# Markdown Title', from: :markdown, to: :rst)
 puts @converter.convert
 ```
 
@@ -40,7 +40,7 @@ This takes the Markdown formatted file and converts it to reStructuredText.
 You can also use the `#convert` class method:
 
 ```ruby
-puts PandocRuby.convert('# Markdown Title', :from => :markdown, :to => :html)
+puts PandocRuby.convert('# Markdown Title', from: :markdown, to: :html)
 ```
 
 Other arguments are simply converted into command line options, accepting
@@ -48,7 +48,7 @@ symbols or strings for options without arguments and hashes of strings or
 symbols for options with arguments.
 
 ```ruby
-PandocRuby.convert('# Markdown Title', :s, {:f => :markdown, :to => :rst}, 'no-wrap', :table_of_contents)
+PandocRuby.convert('# Markdown Title', :s, {f: :markdown, to: :rst}, 'no-wrap', :table_of_contents)
 ```
 
 is equivalent to
