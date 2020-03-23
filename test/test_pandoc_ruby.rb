@@ -93,8 +93,13 @@ describe PandocRuby do
   end
 
   it 'passes command line options without modification' do
-    converter = PandocRuby.new(@string, '+RTS', '-M512M', '-RTS')
-    converter.expects(:execute).with('pandoc +RTS -M512M -RTS').returns(true)
+    converter = PandocRuby.new(
+      @string,
+      '+RTS', '-M512M', '-RTS', '--to=markdown', '--no-wrap'
+    )
+    converter.expects(:execute).with(
+      'pandoc +RTS -M512M -RTS --to=markdown --no-wrap'
+    ).returns(true)
     assert converter.convert
   end
 
