@@ -4,28 +4,30 @@ PandocRuby is a wrapper for [Pandoc](http://johnmacfarlane.net/pandoc/), a
 Haskell library with command line tools for converting one markup format to
 another.
 
-Pandoc can convert documents in markdown, reStructuredText, textile, HTML,
-DocBook, LaTeX, or MediaWiki markup to a variety of formats, including
-markdown, reStructuredText, HTML, LaTeX, ConTeXt, PDF, RTF, DocBook XML,
-OpenDocument XML, ODT, GNU Texinfo, MediaWiki markup, groff man pages,
-HTML slide shows, EPUB, and Microsoft Word docx.
+Pandoc can convert documents from a variety of formats including markdown,
+reStructuredText, textile, HTML, DocBook, LaTeX, and MediaWiki markup to a
+variety of other formats, including markdown, reStructuredText, HTML, LaTeX,
+ConTeXt, PDF, RTF, DocBook XML, OpenDocument XML, ODT, GNU Texinfo, MediaWiki
+markup, groff man pages, HTML slide shows, EPUB, Microsoft Word docx, and more.
 
 ## Installation
 
-First, make sure to
-[install Pandoc](http://johnmacfarlane.net/pandoc/installing.html).
+First, [install Pandoc](http://johnmacfarlane.net/pandoc/installing.html).
 
-Next, add PandocRuby to your Gemfile
+PandocRuby is available on [RubyGems](http://rubygems.org/gems/pandoc-ruby):
+
+```bash
+gem install pandoc-ruby
+```
+
+To install with [Bundler](https://bundler.io/), add the following to your
+Gemfile:
 
 ```ruby
 gem 'pandoc-ruby'
 ```
 
-or install PandocRuby from [RubyGems](http://rubygems.org/gems/pandoc-ruby).
-
-```bash
-gem install pandoc-ruby
-```
+Then run `bundle install`
 
 ## Usage
 
@@ -35,7 +37,7 @@ require 'pandoc-ruby'
 puts @converter.convert
 ```
 
-This takes the Markdown formatted file and converts it to reStructuredText.
+This takes the Markdown formatted string and converts it to reStructuredText.
 
 You can also use the `#convert` class method:
 
@@ -44,8 +46,7 @@ puts PandocRuby.convert('# Markdown Title', from: :markdown, to: :html)
 ```
 
 Other arguments are simply converted into command line options, accepting
-symbols or strings for options without arguments and hashes of strings or
-symbols for options with arguments.
+symbols and strings for options and hashes for options with arguments.
 
 ```ruby
 PandocRuby.convert('# Markdown Title', :s, {f: :markdown, to: :rst}, '--wrap=none', :table_of_contents)
@@ -76,7 +77,7 @@ PandocRuby.html("<h1>hello</h1>").to_latex
 # => "\\section{hello}"
 ```
 
-PandocRuby assumes the `pandoc` executable is via your environment's `$PATH`
+PandocRuby assumes the `pandoc` executable is in your environment's `$PATH`
 variable.  If you'd like to set an explicit path to the `pandoc` executable,
 you can do so with  `PandocRuby.pandoc_path = '/path/to/pandoc'`
 
@@ -117,10 +118,14 @@ PandocRuby.new("Line 1\n# Heading", from: 'markdown_strict+blank_before_header')
 # => "<p>Line 1 # Heading</p>\n
 ```
 
-### More Information
+Available readers and writers are can be found in the following
+variables:
+- [`PandocRuby::READERS`](lib/pandoc-ruby.rb#L10)
+- [`PandocRuby::STRING_WRITERS`](lib/pandoc-ruby.rb#L48)
+- [`PandocRuby::BINARY_WRITERS`](lib/pandoc-ruby.rb#L104)
+- [`PandocRuby::WRITERS`](lib/pandoc-ruby.rb#L113)
 
-Available format readers and writers are available in the `PandocRuby::READERS`
-and `PandocRuby::WRITERS` constants.
+### More Information
 
 For more information on Pandoc, see the
 [Pandoc documentation](http://johnmacfarlane.net/pandoc/)
