@@ -77,6 +77,13 @@ PandocRuby.html("<h1>hello</h1>").to_latex
 # => "\\section{hello}"
 ```
 
+Available readers and writers are can be found in the following
+variables:
+- [`PandocRuby::READERS`](lib/pandoc-ruby.rb#L10)
+- [`PandocRuby::STRING_WRITERS`](lib/pandoc-ruby.rb#L48)
+- [`PandocRuby::BINARY_WRITERS`](lib/pandoc-ruby.rb#L104)
+- [`PandocRuby::WRITERS`](lib/pandoc-ruby.rb#L113)
+
 PandocRuby assumes the `pandoc` executable is in your environment's `$PATH`
 variable.  If you'd like to set an explicit path to the `pandoc` executable,
 you can do so with  `PandocRuby.pandoc_path = '/path/to/pandoc'`
@@ -117,13 +124,6 @@ PandocRuby.new("Line 1\n# Heading", from: 'markdown_strict').to_html
 PandocRuby.new("Line 1\n# Heading", from: 'markdown_strict+blank_before_header').to_html
 # => "<p>Line 1 # Heading</p>\n
 ```
-
-Available readers and writers are can be found in the following
-variables:
-- [`PandocRuby::READERS`](lib/pandoc-ruby.rb#L10)
-- [`PandocRuby::STRING_WRITERS`](lib/pandoc-ruby.rb#L48)
-- [`PandocRuby::BINARY_WRITERS`](lib/pandoc-ruby.rb#L104)
-- [`PandocRuby::WRITERS`](lib/pandoc-ruby.rb#L113)
 
 ### More Information
 
