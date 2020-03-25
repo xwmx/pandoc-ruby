@@ -305,8 +305,8 @@ class PandocRuby
 
       if argument.nil?
         format_flag(flag)
-      elsif argument =~ /\s/
-        "#{format_flag(flag)} '#{argument}'"
+      elsif argument.to_s =~ /\s/
+        "#{format_flag(flag)} \"#{argument}\""
       else
         "#{format_flag(flag)} #{argument}"
       end

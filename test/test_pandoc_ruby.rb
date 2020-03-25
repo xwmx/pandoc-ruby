@@ -154,13 +154,59 @@ describe PandocRuby do
     end
   end
 
-  it 'supports output filenames without spaces' do
+  it 'quotes output filenames with spaces' do
+    Tempfile.create('example with spaces') do |file|
+      converter = PandocRuby.new(
+        '# Example',
+        :from   => 'markdown',
+        :to     => 'html',
+        :output => file.path
+      )
+      converter \
+        .expects(:execute) \
+        .with("pandoc --from markdown --to html --output \"#{file.path}\"") \
+        .returns(true)
+      assert converter.convert
+    end
+  end
+
+  it 'outputs to filenames with spaces' do
     Tempfile.create('example with spaces') do |file|
       PandocRuby.convert(
         '# Example',
         :from   => 'markdown',
         :to     => 'html',
         :output => file.path
+      )
+
+      file.rewind
+      assert_equal("<h1 id=\"example\">Example</h1>\n", file.read)
+    end
+  end
+
+  it 'quotes output filenames as Pathname objects' do
+    Tempfile.create('example with spaces') do |file|
+      converter = PandocRuby.new(
+        '# Example',
+        :from   => 'markdown',
+        :to     => 'html',
+        :output => Pathname.new(file.path)
+      )
+      converter \
+        .expects(:execute) \
+        .with("pandoc --from markdown --to html --output \"#{file.path}\"") \
+        .returns(true)
+      assert converter.convert
+    end
+  end
+
+  it 'outputs to filenames as Pathname objects' do
+    Tempfile.create('example with spaces') do |file|
+      PandocRuby.convert(
+        '# Example',
+        :from   => 'markdown',
+        :to     => 'html',
+        :output => Pathname.new(file.path)
       )
       file.rewind
       assert_equal("<h1 id=\"example\">Example</h1>\n", file.read)
