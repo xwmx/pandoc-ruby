@@ -39,6 +39,9 @@ Layout/HashAlignment:
 Layout/IndentationConsistency:
   EnforcedStyle: indented_internal_methods
 
+Metrics/BlockLength:
+  Enabled: false
+
 # Naming/FileName
 #
 # Long, long ago, this was named with a dash rather than an underscore. Now
