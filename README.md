@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/xwmx/pandoc-ruby.svg?branch=master)](https://travis-ci.org/xwmx/pandoc-ruby)
+
 # PandocRuby
 
 PandocRuby is a wrapper for [Pandoc](http://johnmacfarlane.net/pandoc/), a
@@ -9,8 +11,6 @@ reStructuredText, textile, HTML, DocBook, LaTeX, and MediaWiki markup to a
 variety of other formats, including markdown, reStructuredText, HTML, LaTeX,
 ConTeXt, PDF, RTF, DocBook XML, OpenDocument XML, ODT, GNU Texinfo, MediaWiki
 markup, groff man pages, HTML slide shows, EPUB, Microsoft Word docx, and more.
-
-[![Build Status](https://travis-ci.org/xwmx/pandoc-ruby.svg?branch=master)](https://travis-ci.org/xwmx/pandoc-ruby)
 
 ## Installation
 
