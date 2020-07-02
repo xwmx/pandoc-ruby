@@ -65,11 +65,12 @@ Also provided are `#to_[writer]` instance methods for each of the writers,
 and these can also accept options:
 
 ```ruby
-PandocRuby.new("# Some title").to_html(:no_wrap)
-# => "<div id=\"some-title\"><h1>Some title</h1></div>"
+PandocRuby.new('# Example').to_html(:ascii)
+# => "<h1 id="example">Example</h1>"
 # or
-PandocRuby.new("# Some title").to_rst
-# => "Some title\n=========="
+PandocRuby.new("# Example").to_rst
+# => "Example
+#     ======="
 ```
 
 Similarly, there are class methods for each of the readers, so readers
