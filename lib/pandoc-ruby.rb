@@ -3,7 +3,11 @@ require 'tempfile'
 require 'timeout'
 
 class PandocRuby
-  @@pandoc_path = 'pandoc'
+  # Use the pandoc command with a custom executable path.
+  @pandoc_path = 'pandoc'
+  class << self
+    attr_accessor :pandoc_path
+  end
 
   # The available readers and their corresponding names. The keys are used to
   # generate methods and specify options to Pandoc.
@@ -111,12 +115,6 @@ class PandocRuby
 
   # All of the available Writers.
   WRITERS = STRING_WRITERS.merge(BINARY_WRITERS)
-
-  # To use run the pandoc command with a custom executable path, the path
-  # to the pandoc executable can be set here.
-  def self.pandoc_path=(path)
-    @@pandoc_path = path
-  end
 
   # A shortcut method that creates a new PandocRuby object and immediately
   # calls `#convert`. Options passed to this method are passed directly to
@@ -248,9 +246,9 @@ class PandocRuby
     # Wrapper to run pandoc in a consistent, DRY way
     def execute_pandoc
       if !self.input_files.nil?
-        execute("#{@@pandoc_path} #{self.input_files}#{self.option_string}")
+        execute("#{PandocRuby.pandoc_path} #{self.input_files}#{self.option_string}")
       else
-        execute("#{@@pandoc_path}#{self.option_string}")
+        execute("#{PandocRuby.pandoc_path}#{self.option_string}")
       end
     end
 
