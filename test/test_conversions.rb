@@ -23,7 +23,7 @@ describe 'Conversions' do
           :from => from,
           :to   => to
         )
-        assert_equal(converted_content.strip, to_content.strip)
+        assert_equal(to_content.strip, converted_content.strip)
       end
     end
   end
