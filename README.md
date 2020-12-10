@@ -2,6 +2,7 @@
 
 [![Build Status](https://travis-ci.org/xwmx/pandoc-ruby.svg?branch=master)](https://travis-ci.org/xwmx/pandoc-ruby)
 [![Gem Version](https://img.shields.io/gem/v/pandoc-ruby)](http://rubygems.org/gems/pandoc-ruby)
+[![Gem Downloads](https://img.shields.io/gem/dt/pandoc-ruby)](http://rubygems.org/gems/pandoc-ruby)
 
 PandocRuby is a wrapper for [Pandoc](http://johnmacfarlane.net/pandoc/), a
 Haskell library with command line tools for converting one markup format to
