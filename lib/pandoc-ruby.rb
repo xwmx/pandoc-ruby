@@ -223,18 +223,27 @@ class PandocRuby
   private
 
     # Execute the pandoc command for binary writers. A temp file is created
-    # and written to, then read back into the program as a string, then the
-    # temp file is closed and unlinked.
+    # if there is no output and written to, then read back into the program
+    # as a string, then the temp file is closed and unlinked.
     def convert_binary
-      tmp_file = Tempfile.new('pandoc-conversion')
-      begin
+      unless (self.option_string.include?('-o') && self.option_string.include?('--output'))
+        tmp_file = Tempfile.new('pandoc-conversion')
         self.options += [{ :output => tmp_file.path }]
         self.option_string = "#{self.option_string} --output #{tmp_file.path}"
+      end
+      begin
         execute_pandoc
+        if tmp_file.nil?
+          option_tab = self.option_string.split(' ')
+          index = option_tab.rindex {|x| x == '--output' || x == '-o'}
+          return File.read(option_tab[index + 1])
+        end
         return IO.binread(tmp_file)
       ensure
-        tmp_file.close
-        tmp_file.unlink
+        unless tmp_file.nil?
+          tmp_file.close
+          tmp_file.unlink
+        end
       end
     end
 
