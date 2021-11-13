@@ -23,6 +23,7 @@ describe 'Conversions' do
           :from => from,
           :to   => to
         )
+
         assert_equal(to_content.strip, converted_content.strip)
       end
     end
@@ -47,7 +48,7 @@ describe 'Conversions' do
         )
       end
 
-      assert_match(/couldn't parse docx file/, error.message)
+      assert_match(/couldn't unpack docx container/, error.message)
     end
 
     it "raises an error when attempting to convert doc with doc format" do

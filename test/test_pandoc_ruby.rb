@@ -2,10 +2,10 @@ require 'helper'
 
 describe PandocRuby do
   before do
-    @file = File.join(File.dirname(__FILE__), 'files', 'test.md')
-    @file2 = File.join(File.dirname(__FILE__), 'files', 'test2.md')
-    @string = '# Test String'
-    @converter = PandocRuby.new(@string, :t => :rst)
+    @file       = File.join(File.dirname(__FILE__), 'files', 'test.md')
+    @file2      = File.join(File.dirname(__FILE__), 'files', 'test2.md')
+    @string     = '# Test String'
+    @converter  = PandocRuby.new(@string, :t => :rst)
   end
 
   after do
@@ -14,15 +14,20 @@ describe PandocRuby do
 
   it 'calls bare pandoc when passed no options' do
     converter = PandocRuby.new(@string)
+
     converter.expects(:execute).with('pandoc').returns(true)
+
     assert converter.convert
   end
 
   it 'converts with altered pandoc_path' do
     path = '/usr/bin/env pandoc'
     PandocRuby.pandoc_path = path
+
     converter = PandocRuby.new(@string)
+
     converter.expects(:execute).with(path).returns(true)
+
     assert converter.convert
   end
 
@@ -45,50 +50,66 @@ describe PandocRuby do
   end
 
   it 'accepts short options' do
-    @converter.expects(:execute).with('pandoc -t rst').returns(true)
+    @converter.expects(:execute).with('pandoc -t "rst"').returns(true)
+
     assert @converter.convert
   end
 
   it 'accepts long options' do
     converter = PandocRuby.new(@string, :to => :rst)
-    converter.expects(:execute).with('pandoc --to rst').returns(true)
+
+    converter.expects(:execute).with('pandoc --to "rst"').returns(true)
+
     assert converter.convert
   end
 
   it 'accepts a variety of options in initializer' do
-    converter = PandocRuby.new(@string, :s, {
-      :f => :markdown, :to => :rst
-    }, 'no-wrap')
-    converter \
-      .expects(:execute) \
-      .with('pandoc -s -f markdown --to rst --no-wrap') \
+    converter = PandocRuby.new(
+      @string,
+      :s,
+      { :f => :markdown, :to => :rst },
+      'no-wrap'
+    )
+
+    converter                                               \
+      .expects(:execute)                                    \
+      .with('pandoc -s -f "markdown" --to "rst" --no-wrap') \
       .returns(true)
+
     assert converter.convert
   end
 
   it 'accepts a variety of options in convert' do
     converter = PandocRuby.new(@string)
-    converter \
-      .expects(:execute) \
-      .with('pandoc -s -f markdown --to rst --no-wrap') \
+
+    converter                                               \
+      .expects(:execute)                                    \
+      .with('pandoc -s -f "markdown" --to "rst" --no-wrap') \
       .returns(true)
+
     assert converter.convert(:s, { :f => :markdown, :to => :rst }, 'no-wrap')
   end
 
   it 'converts underscore symbol args to hyphenated long options' do
-    converter = PandocRuby.new(@string, {
-      :email_obfuscation => :javascript
-    }, :table_of_contents)
-    converter \
-      .expects(:execute) \
-      .with('pandoc --email-obfuscation javascript --table-of-contents') \
+    converter = PandocRuby.new(
+      @string,
+      { :email_obfuscation => :javascript },
+      :table_of_contents
+    )
+
+    converter                                                               \
+      .expects(:execute)                                                    \
+      .with('pandoc --email-obfuscation "javascript" --table-of-contents')  \
       .returns(true)
+
     assert converter.convert
   end
 
   it 'uses second arg as option' do
     converter = PandocRuby.new(@string, 'toc')
+
     converter.expects(:execute).with('pandoc --toc').returns(true)
+
     assert converter.convert
   end
 
@@ -97,9 +118,11 @@ describe PandocRuby do
       @string,
       '+RTS', '-M512M', '-RTS', '--to=markdown', '--no-wrap'
     )
+
     converter.expects(:execute).with(
       'pandoc +RTS -M512M -RTS --to=markdown --no-wrap'
     ).returns(true)
+
     assert converter.convert
   end
 
@@ -112,6 +135,7 @@ describe PandocRuby do
       ),
       "<p>Line 1</p>\n<h1>Heading</h1>\n"
     )
+
     assert_equal(
       PandocRuby.convert(
         "Line 1\n# Heading",
@@ -131,6 +155,7 @@ describe PandocRuby do
       ),
       "~example~\n"
     )
+
     assert_equal(
       PandocRuby.convert(
         "<sub>example</sub>\n",
@@ -149,7 +174,9 @@ describe PandocRuby do
         :to     => 'html',
         :output => file.path
       )
+
       file.rewind
+
       assert_equal("<h1 id=\"example\">Example</h1>\n", file.read)
     end
   end
@@ -162,10 +189,13 @@ describe PandocRuby do
         :to     => 'html',
         :output => file.path
       )
-      converter \
-        .expects(:execute) \
-        .with("pandoc --from markdown --to html --output \"#{file.path}\"") \
-        .returns(true)
+
+      converter             \
+        .expects(:execute)  \
+        .with(
+          "pandoc --from \"markdown\" --to \"html\" --output \"#{file.path}\""
+        ).returns(true)
+
       assert converter.convert
     end
   end
@@ -180,6 +210,7 @@ describe PandocRuby do
       )
 
       file.rewind
+
       assert_equal("<h1 id=\"example\">Example</h1>\n", file.read)
     end
   end
@@ -192,10 +223,13 @@ describe PandocRuby do
         :to     => 'html',
         :output => Pathname.new(file.path)
       )
-      converter \
-        .expects(:execute) \
-        .with("pandoc --from markdown --to html --output \"#{file.path}\"") \
-        .returns(true)
+
+      converter             \
+        .expects(:execute)  \
+        .with(
+          "pandoc --from \"markdown\" --to \"html\" --output \"#{file.path}\""
+        ).returns(true)
+
       assert converter.convert
     end
   end
@@ -208,7 +242,9 @@ describe PandocRuby do
         :to     => 'html',
         :output => Pathname.new(file.path)
       )
+
       file.rewind
+
       assert_equal("<h1 id=\"example\">Example</h1>\n", file.read)
     end
   end
@@ -222,7 +258,9 @@ describe PandocRuby do
   PandocRuby::READERS.each_key do |r|
     it "converts from #{r} with PandocRuby.#{r}" do
       converter = PandocRuby.send(r, @string)
-      converter.expects(:execute).with("pandoc --from #{r}").returns(true)
+
+      converter.expects(:execute).with("pandoc --from \"#{r}\"").returns(true)
+
       assert converter.convert
     end
   end
@@ -230,10 +268,12 @@ describe PandocRuby do
   PandocRuby::STRING_WRITERS.each_key do |w|
     it "converts to #{w} with to_#{w}" do
       converter = PandocRuby.new(@string)
-      converter \
-        .expects(:execute) \
-        .with("pandoc --no-wrap --to #{w}") \
+
+      converter                                 \
+        .expects(:execute)                      \
+        .with("pandoc --no-wrap --to \"#{w}\"") \
         .returns(true)
+
       assert converter.send("to_#{w}", :no_wrap)
     end
   end
@@ -241,26 +281,31 @@ describe PandocRuby do
   PandocRuby::BINARY_WRITERS.each_key do |w|
     it "converts to #{w} with to_#{w}" do
       converter = PandocRuby.new(@string)
-      converter \
-        .expects(:execute) \
-        .with(regexp_matches(/^pandoc --no-wrap --to #{w} --output /)) \
+
+      converter                                                           \
+        .expects(:execute)                                                \
+        .with(regexp_matches(/^pandoc --no-wrap --to "#{w}" --output /))  \
         .returns(true)
+
       assert converter.send("to_#{w}", :no_wrap)
     end
   end
 
   it 'works with strings' do
     converter = PandocRuby.new('## this is a title')
+
     assert_match(/h2/, converter.convert)
   end
 
   it 'accepts blank strings' do
     converter = PandocRuby.new('')
+
     assert_match("\n", converter.convert)
   end
 
   it 'accepts nil and treats like a blank string' do
     converter = PandocRuby.new(nil)
+
     assert_match("\n", converter.convert)
   end
 
@@ -273,21 +318,20 @@ describe PandocRuby do
   end
 
   it 'runs more than 400 times without error' do
-    begin
-      400.times do
-        PandocRuby.convert(@string)
-      end
-      assert true
-    rescue Errno::EMFILE, Errno::EAGAIN => e
-      flunk e
+    400.times do
+      PandocRuby.convert(@string)
     end
+
+    assert true
+  rescue Errno::EMFILE, Errno::EAGAIN => e
+    flunk e
   end
 
   it 'gracefully times out when pandoc hangs due to malformed input' do
-    skip(%(
-Pandoc no longer times out with test file. Determine how to test.
-    ))
+    skip('Pandoc no longer times out with test file. Determine how to test.')
+
     file = File.join(File.dirname(__FILE__), 'files', 'bomb.tex')
+
     contents = File.read(file)
 
     assert_raises(RuntimeError) do

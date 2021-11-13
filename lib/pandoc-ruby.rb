@@ -229,8 +229,10 @@ class PandocRuby
       tmp_file = Tempfile.new('pandoc-conversion')
       begin
         self.options += [{ :output => tmp_file.path }]
-        self.option_string = "#{self.option_string} --output #{tmp_file.path}"
+        self.option_string = "#{self.option_string} --output \"#{tmp_file.path}\""
+
         execute_pandoc
+
         return IO.binread(tmp_file)
       ensure
         tmp_file.close
@@ -303,10 +305,8 @@ class PandocRuby
 
       if argument.nil?
         format_flag(flag)
-      elsif argument.to_s =~ /\s/
-        "#{format_flag(flag)} \"#{argument}\""
       else
-        "#{format_flag(flag)} #{argument}"
+        "#{format_flag(flag)} \"#{argument}\""
       end
     end
 
