@@ -39,6 +39,9 @@ Layout/HashAlignment:
 Layout/IndentationConsistency:
   EnforcedStyle: indented_internal_methods
 
+Layout/SpaceAroundOperators:
+  Enabled: false
+
 Metrics/AbcSize:
   Enabled: false
 

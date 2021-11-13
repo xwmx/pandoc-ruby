@@ -127,25 +127,25 @@ class PandocRuby
   attr_writer :binary_output
 
   def binary_output
-    @binary_output ||= false
+    @binary_output  ||= false
   end
 
   attr_writer :options
 
   def options
-    @options ||= []
+    @options        ||= []
   end
 
   attr_writer :option_string
 
   def option_string
-    @option_string ||= ''
+    @option_string  ||= ''
   end
 
   attr_writer :writer
 
   def writer
-    @writer ||= 'html'
+    @writer         ||= 'html'
   end
 
   attr_accessor :input_files
@@ -164,7 +164,7 @@ class PandocRuby
     if args[0].is_a?(String)
       self.input_string = args.shift
     elsif args[0].is_a?(Array)
-      self.input_files = args.shift.join(' ')
+      self.input_files  = args.shift.join(' ')
     end
     self.options = args
   end
@@ -181,8 +181,9 @@ class PandocRuby
   #   PandocRuby.new("# text").convert
   #   # => "<h1 id=\"text\">text</h1>\n"
   def convert(*args)
-    self.options += args if args
-    self.option_string = prepare_options(self.options)
+    self.options        +=  args if args
+    self.option_string  =   prepare_options(self.options)
+
     if self.binary_output
       convert_binary
     else
@@ -203,6 +204,7 @@ class PandocRuby
     READERS.each_key do |r|
       define_method(r) do |*args|
         args += [{ :from => r }]
+
         new(*args)
       end
     end
@@ -220,6 +222,7 @@ class PandocRuby
   WRITERS.each_key do |w|
     define_method(:"to_#{w}") do |*args|
       args += [{ :to => w.to_sym }]
+
       convert(*args)
     end
   end
@@ -233,8 +236,8 @@ class PandocRuby
       tmp_file = Tempfile.new('pandoc-conversion')
 
       begin
-        self.options += [{ :output => tmp_file.path }]
-        self.option_string = "#{self.option_string} --output \"#{tmp_file.path}\""
+        self.options        +=  [{ :output => tmp_file.path }]
+        self.option_string  =   "#{self.option_string} --output \"#{tmp_file.path}\""
 
         execute_pandoc
 
@@ -269,14 +272,14 @@ class PandocRuby
         Timeout.timeout(@timeout) do
           stdin.puts self.input_string
           stdin.close
-          output = stdout.read
-          error = stderr.read
+          output      = stdout.read
+          error       = stderr.read
           exit_status = wait_thr.value
         end
       rescue Timeout::Error => ex
         Process.kill 9, wait_thr.pid
-        maybe_ex = "\n#{ex}" if ex
-        error = "Pandoc timed out after #{@timeout} seconds.#{maybe_ex}"
+        maybe_ex  = "\n#{ex}" if ex
+        error     = "Pandoc timed out after #{@timeout} seconds.#{maybe_ex}"
       end
 
       raise error unless exit_status && exit_status.success?
@@ -332,8 +335,8 @@ class PandocRuby
     def set_pandoc_ruby_options(flag, argument = nil)
       case flag
       when 't', 'to'
-        self.writer = argument.to_s
-        self.binary_output = true if BINARY_WRITERS.key?(self.writer)
+        self.writer         = argument.to_s
+        self.binary_output  = true if BINARY_WRITERS.key?(self.writer)
       when 'timeout'
         @timeout = argument
       end
