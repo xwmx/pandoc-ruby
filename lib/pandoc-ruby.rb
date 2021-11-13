@@ -125,21 +125,25 @@ class PandocRuby
   end
 
   attr_writer :binary_output
+
   def binary_output
     @binary_output ||= false
   end
 
   attr_writer :options
+
   def options
     @options ||= []
   end
 
   attr_writer :option_string
+
   def option_string
     @option_string ||= ''
   end
 
   attr_writer :writer
+
   def writer
     @writer ||= 'html'
   end
