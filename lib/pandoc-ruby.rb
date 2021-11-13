@@ -161,11 +161,13 @@ class PandocRuby
   #   new(["/path/to/file.md"], :option1 => :value, :option2)
   #   new(["/to/file1.html", "/to/file2.html"], :option1 => :value)
   def initialize(*args)
-    if args[0].is_a?(String)
+    case args[0]
+    when String
       self.input_string = args.shift
-    elsif args[0].is_a?(Array)
+    when Array
       self.input_files  = args.shift.join(' ')
     end
+
     self.options = args
   end
 
