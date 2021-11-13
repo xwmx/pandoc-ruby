@@ -246,6 +246,7 @@ class PandocRuby
         return IO.binread(tmp_file)
       ensure
         tmp_file.close
+
         tmp_file.unlink
       end
     end
@@ -273,13 +274,16 @@ class PandocRuby
       Open3.popen3(command) do |stdin, stdout, stderr, wait_thr|
         Timeout.timeout(@timeout) do
           stdin.puts self.input_string
+
           stdin.close
+
           output      = stdout.read
           error       = stderr.read
           exit_status = wait_thr.value
         end
       rescue Timeout::Error => ex
         Process.kill 9, wait_thr.pid
+
         maybe_ex  = "\n#{ex}" if ex
         error     = "Pandoc timed out after #{@timeout} seconds.#{maybe_ex}"
       end
