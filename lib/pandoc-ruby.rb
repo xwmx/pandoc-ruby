@@ -227,6 +227,7 @@ class PandocRuby
     # temp file is closed and unlinked.
     def convert_binary
       tmp_file = Tempfile.new('pandoc-conversion')
+
       begin
         self.options += [{ :output => tmp_file.path }]
         self.option_string = "#{self.option_string} --output \"#{tmp_file.path}\""
@@ -257,7 +258,9 @@ class PandocRuby
     # Run the command and returns the output.
     def execute(command)
       output = error = exit_status = nil
-      @timeout ||= 31_557_600 # A year should be enough?
+
+      @timeout ||= 31_557_600
+
       Open3.popen3(command) do |stdin, stdout, stderr, wait_thr|
         begin
           Timeout.timeout(@timeout) do
