@@ -39,6 +39,9 @@ Layout/HashAlignment:
 Layout/IndentationConsistency:
   EnforcedStyle: indented_internal_methods
 
+Metrics/AbcSize:
+  Enabled: false
+
 Metrics/BlockLength:
   Enabled: false
 
@@ -51,21 +54,11 @@ Naming/FileName:
   Exclude:
     - 'lib/pandoc-ruby.rb'
 
-
-# TODO: Remove when Rubocop hits version 1.0.
-Style/HashEachMethods:
-  Enabled: true
-
-# TODO: Remove when Rubocop hits version 1.0.
-Style/HashTransformKeys:
-  Enabled: true
+Style/AccessorGrouping:
+  Enabled: false
 
 Style/HashSyntax:
   EnforcedStyle: hash_rockets
-
-# TODO: Remove when Rubocop hits version 1.0.
-Style/HashTransformValues:
-  Enabled: true
 
 # Style/SymbolArray
 #
