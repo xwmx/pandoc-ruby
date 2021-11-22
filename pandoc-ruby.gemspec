@@ -5,9 +5,9 @@
 
 Gem::Specification.new do |s|
   s.name = 'pandoc-ruby'
-  s.version = '2.1.5'
+  s.version = '2.1.6'
   s.authors = ['William Melody']
-  s.date = '2021-11-13'
+  s.date = '2021-11-22'
   s.description = 'Ruby wrapper for Pandoc'
   s.email = 'hi@williammelody.com'
   s.extra_rdoc_files = [
