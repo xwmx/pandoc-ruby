@@ -12,12 +12,17 @@ class PandocRuby
   # The available readers and their corresponding names. The keys are used to
   # generate methods and specify options to Pandoc.
   READERS = {
+    'biblatex'          => 'BibLaTeX bibliography',
+    'bibtex'            => 'BibTeX bibliography',
     'commonmark'        => 'CommonMark Markdown',
+    'commonmark_x'      => 'CommonMark Markdown with extensions',
     'creole'            => 'Creole 1.0',
+    'csljson'           => 'CSL JSON bibliography',
     'csv'               => 'CSV table',
     'docbook'           => 'DocBook',
     'docx'              => 'Word docx',
     'dokuwiki'          => 'DokuWiki markup',
+    'endnotexml'        => 'EndNote XML bibliography',
     'epub'              => 'EPUB',
     'fb2'               => 'FictionBook2 e-book',
     'gfm'               => 'GitHub-Flavored Markdown',
@@ -39,10 +44,13 @@ class PandocRuby
     'odt'               => 'ODT',
     'opml'              => 'OPML',
     'org'               => 'Emacs Org mode',
+    'ris'               => 'RIS bibliography',
     'rst'               => 'reStructuredText',
+    'rtf'               => 'Rich Text Format',
     't2t'               => 'txt2tags',
     'textile'           => 'Textile',
     'tikiwiki'          => 'TikiWiki markup',
+    'tsv'               => 'TSV table',
     'twiki'             => 'TWiki markup',
     'vimwiki'           => 'Vimwiki'
   }.freeze
@@ -53,8 +61,12 @@ class PandocRuby
     'asciidoc'              => 'AsciiDoc',
     'asciidoctor'           => 'AsciiDoctor',
     'beamer'                => 'LaTeX beamer slide show',
+    'biblatex'              => 'BibLaTeX bibliography',
+    'bibtex'                => 'BibTeX bibliography',
     'commonmark'            => 'CommonMark Markdown',
+    'commonmark_x'          => 'CommonMark Markdown with extensions',
     'context'               => 'ConTeXt',
+    'csljson'               => 'CSL JSON bibliography',
     'docbook'               => 'DocBook 4',
     'docbook4'              => 'DocBook 4',
     'docbook5'              => 'DocBook 5',
@@ -79,6 +91,7 @@ class PandocRuby
     'markdown_mmd'          => 'MultiMarkdown',
     'markdown_phpextra'     => 'PHP Markdown Extra',
     'markdown_strict'       => 'original unextended Markdown',
+    'markua'                => 'Markua',
     'mediawiki'             => 'MediaWiki markup',
     'ms'                    => 'roff ms',
     'muse'                  => 'Muse',
@@ -108,7 +121,7 @@ class PandocRuby
   BINARY_WRITERS = {
     'odt'   => 'OpenOffice text document',
     'docx'  => 'Word docx',
-    'epub'  => 'EPUB v2',
+    'epub'  => 'EPUB v3',
     'epub2' => 'EPUB v2',
     'epub3' => 'EPUB v3'
   }.freeze
