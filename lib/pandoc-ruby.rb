@@ -63,6 +63,7 @@ class PandocRuby
     'beamer'                => 'LaTeX beamer slide show',
     'biblatex'              => 'BibLaTeX bibliography',
     'bibtex'                => 'BibTeX bibliography',
+    'chunkedhtml'           => 'zip archive of multiple linked HTML files',
     'commonmark'            => 'CommonMark Markdown',
     'commonmark_x'          => 'CommonMark Markdown with extensions',
     'context'               => 'ConTeXt',
