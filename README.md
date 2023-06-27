@@ -1,6 +1,6 @@
 # PandocRuby
 
-[![Build Status](https://img.shields.io/github/actions/workflow/status/xwmx/pandoc-ruby/tests.yml?branch=master)](https://github.com/xwmx/nb/actions)
+[![Build Status](https://img.shields.io/github/actions/workflow/status/xwmx/pandoc-ruby/tests.yml?branch=master)](https://github.com/xwmx/pandoc-ruby/actions)
 [![Gem Version](https://img.shields.io/gem/v/pandoc-ruby)](http://rubygems.org/gems/pandoc-ruby)
 [![Gem Downloads](https://img.shields.io/gem/dt/pandoc-ruby)](http://rubygems.org/gems/pandoc-ruby)
 
