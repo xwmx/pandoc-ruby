@@ -5,6 +5,7 @@
         alt="Build Status"
         style="max-width:100%;">
 </a>
+
 [![Gem Version](https://img.shields.io/gem/v/pandoc-ruby)](http://rubygems.org/gems/pandoc-ruby)
 [![Gem Downloads](https://img.shields.io/gem/dt/pandoc-ruby)](http://rubygems.org/gems/pandoc-ruby)
 
