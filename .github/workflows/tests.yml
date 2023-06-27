@@ -13,7 +13,7 @@ on:
 
 jobs:
   test-ubuntu-latest:
-    name: Test: Ubuntu Latest
+    name: "Test: Ubuntu Latest"
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -23,7 +23,7 @@ jobs:
         with:
           ruby-version: 3.2.1
           bundler-cache: true
-      - name: Setup Environment
+      - name: "Setup Environment"
         run: |
           sudo apt-get update
           sudo apt-get -yqq install libpq-dev build-essential libcurl4-openssl-dev
@@ -31,6 +31,6 @@ jobs:
           sudo dpkg -i pandoc-2.1.4-1-amd64.deb
           gem install bundler
           bundle install --jobs 4 --retry 3
-      - name: Run tests
+      - name: "Run tests"
         run: |
           bundle exec rake
