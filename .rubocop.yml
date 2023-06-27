@@ -48,6 +48,9 @@ Metrics/AbcSize:
 Metrics/BlockLength:
   Enabled: false
 
+Metrics/ClassLength:
+  Enabled: false
+
 # Naming/FileName
 #
 # Long, long ago, this was named with a dash rather than an underscore. Now
