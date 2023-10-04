@@ -2,8 +2,8 @@ require 'helper'
 
 describe PandocRuby do
   before do
-    @file       = File.join(File.dirname(__FILE__), 'files', 'test.md')
-    @file2      = File.join(File.dirname(__FILE__), 'files', 'test2.md')
+    @file       = File.join(File.dirname(__FILE__), 'files', 'Test File 1.md')
+    @file2      = File.join(File.dirname(__FILE__), 'files', 'Test File 2.md')
     @string     = '# Test String'
     @converter  = PandocRuby.new(@string, :t => :rst)
   end
