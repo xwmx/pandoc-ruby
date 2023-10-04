@@ -179,7 +179,7 @@ class PandocRuby
     when String
       self.input_string = args.shift
     when Array
-      self.input_files  = args.shift.map{ |f| "'#{f}'"}.join(' ')
+      self.input_files  = args.shift.map { |f| "'#{f}'" }.join(' ')
     end
 
     self.options = args
