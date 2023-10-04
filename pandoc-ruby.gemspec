@@ -25,7 +25,8 @@ Gem::Specification.new do |s|
     pandoc-ruby.gemspec
     test/benchmark.rb
     test/files/benchmark.txt
-    test/files/test.md
+    test/files/Test\ File\ 1.md
+    test/files/Test\ File\ 2.md
     test/helper.rb
     test/test_conversions.rb
     test/test_pandoc_ruby.rb
