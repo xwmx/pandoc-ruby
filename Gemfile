@@ -10,4 +10,5 @@ group :development, :test do
   gem 'mocha'
   gem 'rake'
   gem 'rdoc'
+  gem 'rubocop'
 end

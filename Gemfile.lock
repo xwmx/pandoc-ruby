@@ -1,10 +1,44 @@
 GEM
   remote: http://rubygems.org/
   specs:
-    minitest (5.14.4)
-    mocha (1.13.0)
+    ast (2.4.2)
+    base64 (0.1.1)
+    json (2.6.3)
+    language_server-protocol (3.17.0.3)
+    minitest (5.20.0)
+    mocha (2.1.0)
+      ruby2_keywords (>= 0.0.5)
+    parallel (1.23.0)
+    parser (3.2.2.4)
+      ast (~> 2.4.1)
+      racc
+    psych (5.1.0)
+      stringio
+    racc (1.7.1)
+    rainbow (3.1.1)
     rake (13.0.6)
-    rdoc (6.3.3)
+    rdoc (6.5.0)
+      psych (>= 4.0.0)
+    regexp_parser (2.8.1)
+    rexml (3.2.6)
+    rubocop (1.56.4)
+      base64 (~> 0.1.1)
+      json (~> 2.3)
+      language_server-protocol (>= 3.17.0)
+      parallel (~> 1.10)
+      parser (>= 3.2.2.3)
+      rainbow (>= 2.2.2, < 4.0)
+      regexp_parser (>= 1.8, < 3.0)
+      rexml (>= 3.2.5, < 4.0)
+      rubocop-ast (>= 1.28.1, < 2.0)
+      ruby-progressbar (~> 1.7)
+      unicode-display_width (>= 2.4.0, < 3.0)
+    rubocop-ast (1.29.0)
+      parser (>= 3.2.1.0)
+    ruby-progressbar (1.13.0)
+    ruby2_keywords (0.0.5)
+    stringio (3.0.8)
+    unicode-display_width (2.5.0)
 
 PLATFORMS
   ruby
@@ -14,6 +48,7 @@ DEPENDENCIES
   mocha
   rake
   rdoc
+  rubocop
 
 BUNDLED WITH
    2.2.28
