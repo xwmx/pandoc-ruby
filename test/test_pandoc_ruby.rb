@@ -318,15 +318,13 @@ describe PandocRuby do
   end
 
   it 'runs more than 400 times without error' do
-    begin
-      400.times do
-        PandocRuby.convert(@string)
-      end
-
-      assert true
-    rescue Errno::EMFILE, Errno::EAGAIN => e
-      flunk e
+    400.times do
+      PandocRuby.convert(@string)
     end
+
+    assert true
+  rescue Errno::EMFILE, Errno::EAGAIN => e
+    flunk e
   end
 
   it 'gracefully times out when pandoc hangs due to malformed input' do
