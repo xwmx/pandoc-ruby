@@ -286,20 +286,22 @@ class PandocRuby
       @timeout ||= 31_557_600
 
       Open3.popen3(command) do |stdin, stdout, stderr, wait_thr|
-        Timeout.timeout(@timeout) do
-          stdin.puts self.input_string
+        begin
+          Timeout.timeout(@timeout) do
+            stdin.puts self.input_string
 
-          stdin.close
+            stdin.close
 
-          output      = stdout.read
-          error       = stderr.read
-          exit_status = wait_thr.value
+            output      = stdout.read
+            error       = stderr.read
+            exit_status = wait_thr.value
+          end
+        rescue Timeout::Error => ex
+          Process.kill 9, wait_thr.pid
+
+          maybe_ex  = "\n#{ex}" if ex
+          error     = "Pandoc timed out after #{@timeout} seconds.#{maybe_ex}"
         end
-      rescue Timeout::Error => ex
-        Process.kill 9, wait_thr.pid
-
-        maybe_ex  = "\n#{ex}" if ex
-        error     = "Pandoc timed out after #{@timeout} seconds.#{maybe_ex}"
       end
 
       raise error unless exit_status && exit_status.success?
