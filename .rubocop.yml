@@ -66,6 +66,16 @@ Style/AccessorGrouping:
 Style/HashSyntax:
   EnforcedStyle: hash_rockets
 
+# Style/RedundantBegin
+#
+# Permit redundant `begin` block to support Ruby 2.4 and earlier.
+#
+# See also:
+#   https://github.com/xwmx/pandoc-ruby/issues/47
+#   https://github.com/xwmx/pandoc-ruby/issues/41
+Style/RedundantBegin:
+  Enabled: false
+
 # Style/SymbolArray
 #
 # Avoid `%i` syntax so symbols look like symbols.
