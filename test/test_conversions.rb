@@ -24,7 +24,22 @@ describe 'Conversions' do
           :to   => to
         )
 
-        assert_equal(to_content.strip, converted_content.strip)
+        assert_equal(
+          to_content.strip,
+          converted_content.strip,
+          <<-HEREDOC
+---------
+EXPECTED:
+---------
+#{to_content.strip}
+---------
+-------
+ACTUAL:
+-------
+#{converted_content.strip}
+-------
+          HEREDOC
+        )
       end
     end
   end

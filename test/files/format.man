@@ -1,4 +1,5 @@
 .SH This is a Title
-.PP
-Some \f[I]emphasized text\f[R] and a
-link (http://daringfireball.net/projects/markdown/)
+Some \f[I]emphasized text\f[R] and \c
+.UR http://daringfireball.net/projects/markdown/
+a link
+.UE \c
