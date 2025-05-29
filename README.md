@@ -16,7 +16,7 @@ markup, groff man pages, HTML slide shows, EPUB, Microsoft Word docx, and more.
 
 ## Installation
 
-First, [install Pandoc](http://johnmacfarlane.net/pandoc/installing.html).
+First, [install Pandoc](https://pandoc.org/installing.html).
 
 PandocRuby is available on [RubyGems](http://rubygems.org/gems/pandoc-ruby):
 
