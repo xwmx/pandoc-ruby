@@ -4,7 +4,7 @@
 [![Gem Version](https://img.shields.io/gem/v/pandoc-ruby)](http://rubygems.org/gems/pandoc-ruby)
 [![Gem Downloads](https://img.shields.io/gem/dt/pandoc-ruby)](http://rubygems.org/gems/pandoc-ruby)
 
-PandocRuby is a wrapper for [Pandoc](http://johnmacfarlane.net/pandoc/), a
+PandocRuby is a wrapper for [Pandoc](http://pandoc.org), a
 Haskell library with command line tools for converting one markup format to
 another.
 
@@ -133,9 +133,9 @@ PandocRuby.new("Line 1\n# Heading", from: 'markdown_strict+blank_before_header')
 ### More Information
 
 For more information on Pandoc, see the
-[Pandoc documentation](http://johnmacfarlane.net/pandoc/)
+[Pandoc documentation](http://pandoc.org)
 or run `man pandoc`
-([also available here](http://johnmacfarlane.net/pandoc/pandoc.1.html)).
+([also available here](https://pandoc.org/MANUAL.html)).
 
 If you'd prefer a pure-Ruby extended markdown interpreter that can output a
 few different formats, take a look at
